@@ -1,3 +1,4 @@
+<details>
 ---
 layout: null
 ---
@@ -30,3 +31,4 @@ layout: null
     </url>
     {% endfor %}
 </urlset>
+</details>

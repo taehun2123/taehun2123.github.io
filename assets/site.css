@@ -119,7 +119,7 @@ code { font-size: 0.88em; background: var(--soft); padding: 1px 6px; border-radi
 .project-intro.portrait { grid-template-columns: minmax(0, 300px) minmax(0, 1fr); }
 .video-frame { border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--line); }
 .video-frame video { width: 100%; height: auto; aspect-ratio: 16 / 9; }
-.video-frame.portrait video { aspect-ratio: 1 / 2; }
+.video-frame.portrait video { aspect-ratio: 9 / 20; }
 .video-cap { margin-top: 10px; font-size: 13px; color: var(--mute); line-height: 1.6; }
 .intro-block + .intro-block { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
 .intro-label { font-size: 12px; font-weight: 600; color: var(--mute); margin-bottom: 8px; }

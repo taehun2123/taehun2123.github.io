@@ -9,26 +9,43 @@
 <style>
 /* 포트폴리오 PDF 인쇄 규칙
  - 용지: A4, 여백 14mm
- - 색: 잉크 본문, 빨강은 표지 표시에만 사용
- - 링크: 인쇄본에서도 읽히도록 전체 주소 표기 */
-@page { size: A4; margin: 14mm; }
-:root { --primary: #e60000; --ink: #25282b; --body: #5d6165; --hair: #dcdcdc; --soft: #f2f2f2; }
+ - 색: 잉크 본문, 핵심 수치만 강조색 #0070CC
+ - 쪽 번호: 하단 오른쪽 "김태훈 포트폴리오 n / 전체" */
+@page { size: A4; margin: 14mm 14mm 16mm; @bottom-right { content: "김태훈 포트폴리오 " counter(page) " / " counter(pages); font-family: "IBM Plex Sans KR", sans-serif; font-size: 8pt; color: #5d6165; } }
+:root { --accent: #0070cc; --ink: #25282b; --body: #5d6165; --hair: #dcdcdc; --soft: #f2f2f2; }
 * { box-sizing: border-box; }
-body { margin: 0; font-family: "IBM Plex Sans KR", sans-serif; color: var(--ink); font-size: 9.3pt; line-height: 1.58; word-break: keep-all; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font-family: "IBM Plex Sans KR", sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.6; word-break: keep-all; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 h1, h2, h3, p, ul, table { margin: 0; }
 a { color: inherit; text-decoration: none; }
 .break { break-before: page; }
-/* 대표 이미지: 세로 화면 3장 또는 가로 화면 2장 */
-.shots { display: flex; gap: 3mm; margin-top: 5mm; break-inside: avoid; }
-.shots img { height: 32mm; width: auto; border-radius: 2mm; border: 0.3mm solid var(--hair); }
-.shots.wide img { height: 32mm; width: auto; }
+.project { margin-top: 9mm; }
+h2 + p, h2 + p + p { break-before: avoid; }
+/* 대표 이미지: 세로 화면 3장은 3등분, 가로 화면 2장은 2등분 */
+.shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5mm; margin-top: 5mm; break-inside: avoid; }
+.shots img { width: 100%; aspect-ratio: 1 / 1.45; object-fit: cover; object-position: top; border-radius: 2mm; border: 0.3mm solid var(--hair); }
+.shots.wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.shots.wide img { aspect-ratio: 16 / 10; object-position: center; }
+.arch { margin: 5mm 0 0; break-inside: avoid; }
+.arch svg { display: block; width: 100%; height: auto; }
+.arch figcaption { font-size: 9pt; color: var(--body); margin-top: 3px; }
+.linklist { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 18px; margin-top: 8px; font-size: 9.2pt; }
+.linklist div { display: grid; grid-template-columns: 26mm minmax(0, 1fr); padding: 3px 0; border-bottom: 1px solid var(--hair); }
+.linklist dt { font-weight: 600; }
+.linklist dd { margin: 0; color: var(--body); }
+.linklist a { color: var(--accent); }
+.contact { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px 18px; margin-top: 10px; font-size: 9.4pt; }
+.contact div { display: grid; grid-template-columns: 22mm minmax(0, 1fr); }
+.contact dt { font-weight: 600; }
+.contact dd { margin: 0; }
+.bullets { padding-left: 1.05em; margin-top: 6px; }
+.bullets li { margin: 2px 0; }
 .top { display: grid; grid-template-columns: 1fr auto; align-items: end; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
 .name { font-size: 28pt; font-weight: 700; line-height: 1; letter-spacing: -0.5px; }
 .name span { font-size: 12pt; font-weight: 400; margin-left: 10px; letter-spacing: 0; }
 .logo { height: 13mm; width: auto; }
 .apply { margin-top: 8px; font-size: 10pt; }
 .apply b { font-weight: 700; margin-right: 6px; }
-h2 { font-size: 15pt; font-weight: 700; margin: 0 0 4px; padding-bottom: 6px; border-bottom: 2px solid var(--ink); }
+h2 { font-size: 15pt; font-weight: 700; margin: 0 0 4px; padding-bottom: 6px; border-bottom: 2px solid var(--ink); break-after: avoid; }
 h3 { font-size: 11pt; font-weight: 700; margin: 16px 0 6px; break-after: avoid; }
 .claim { font-weight: 600; margin: 4px 0 6px; }
 p + p { margin-top: 4px; }
@@ -37,11 +54,13 @@ p + p { margin-top: 4px; }
 .summary ul { padding-left: 1.05em; }
 .summary li { margin: 2px 0; }
 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
-.kpi { border-top: 2px solid var(--ink); padding-top: 6px; }
-.kpi b { display: block; font-size: 17pt; line-height: 1.1; font-weight: 700; font-variant-numeric: tabular-nums; }
-.kpi span { font-size: 8.4pt; color: var(--body); }
-table { width: 100%; border-collapse: collapse; font-size: 8.7pt; line-height: 1.5; margin-top: 6px; }
-th { text-align: left; font-weight: 600; font-size: 8pt; color: var(--body); padding: 4px 8px 4px 0; border-bottom: 1px solid var(--ink); vertical-align: bottom; }
+.kpi { border-top: 2px solid var(--accent); padding-top: 8px; }
+.kpi b { display: block; font-size: 17pt; line-height: 1.1; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.kpi span { display: block; margin-top: 3px; font-size: 9pt; line-height: 1.45; color: var(--body); }
+.kpis.three { grid-template-columns: repeat(3, 1fr); }
+.sec-kpis { margin-top: 10px; }
+table { width: 100%; border-collapse: collapse; font-size: 9.4pt; line-height: 1.5; margin-top: 6px; }
+th { text-align: left; font-weight: 600; font-size: 8.8pt; color: var(--body); padding: 4px 8px 4px 0; border-bottom: 1px solid var(--ink); vertical-align: bottom; }
 td { padding: 5px 8px 5px 0; border-bottom: 1px solid var(--hair); vertical-align: top; }
 td.k { font-weight: 600; white-space: nowrap; }
 td.n, .n { font-variant-numeric: tabular-nums; }
@@ -49,12 +68,11 @@ td.after { font-weight: 700; }
 tr { break-inside: avoid; }
 .links td:first-child { width: 30mm; font-weight: 600; }
 .links td a { font-variant-numeric: tabular-nums; }
-.note { margin-top: 5px; font-size: 8.2pt; color: var(--body); }
+.note { margin-top: 5px; font-size: 9pt; color: var(--body); }
 code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius: 2px; }
-.toc { margin-top: 12px; }
-.toc li { margin: 1px 0; }
-.toc { padding-left: 1.05em; }
-.toc a { text-decoration: underline; text-underline-offset: 2px; }
+td code { background: none; padding: 0; }
+.toc a { color: var(--accent); }
+.toc td.pg { text-align: right; width: 12mm; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -62,19 +80,20 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 <!-- 표지 -->
 <div class="top">
   <div>
-    <h1 class="name">김태훈<span>Full-Stack Developer</span></h1>
+    <h1 class="name">김태훈<span>풀스택 개발자</span></h1>
     <div class="apply"><b>지원</b>당근 2027 프로덕트 빌더 인턴십, 커뮤니티 팀(Software Engineer, Backend)</div>
   </div>
   <img class="logo" src="../assets/taehun-blue-clay.svg" alt="태훈">
 </div>
 
-<table class="links" style="margin-top:10px">
-  <tr><td>이메일</td><td>taehun@pusan.ac.kr</td></tr>
-  <tr><td>전화</td><td>010-3343-8636</td></tr>
-  <tr><td>포트폴리오 웹</td><td><a href="https://taehun2123.github.io/">https://taehun2123.github.io/</a> (시연 영상 3개 포함)</td></tr>
-  <tr><td>GitHub</td><td><a href="https://github.com/taehun2123">https://github.com/taehun2123</a></td></tr>
-  <tr><td>이력서 PDF</td><td><a href="https://taehun2123.github.io/assets/kim-taehun-resume.pdf">https://taehun2123.github.io/assets/kim-taehun-resume.pdf</a></td></tr>
-</table>
+<dl class="contact">
+  <div><dt>이메일</dt><dd>taehun@pusan.ac.kr</dd></div>
+  <div><dt>전화</dt><dd>010-3343-8636</dd></div>
+  <div><dt>GitHub</dt><dd><a href="https://github.com/taehun2123">github.com/taehun2123</a></dd></div>
+  <div><dt>포트폴리오 웹</dt><dd><a href="https://taehun2123.github.io/">taehun2123.github.io</a></dd></div>
+  <div><dt>이력서 PDF</dt><dd><a href="https://taehun2123.github.io/assets/kim-taehun-resume.pdf">PDF 열기</a></dd></div>
+  <div><dt>시연 영상</dt><dd>포트폴리오 웹에 3개</dd></div>
+</dl>
 
 <div class="summary">
   <div class="summary-title">요약 (기준일 2026-11-22)</div>
@@ -85,33 +104,36 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
     <li>직접 사용, 제휴 체육관 미팅, AI 페르소나 점검으로 찾은 문제 6건을 고쳤습니다.<br>기술은 후보를 비용과 성능으로 비교해 선택했습니다.</li>
   </ul>
   <div class="kpis">
-    <div class="kpi"><b>485명</b><span>넉터 가입 회원(2026-11-22)</span></div>
-    <div class="kpi"><b>11건</b><span>출시 후 완료 경기(2026-08-19 ~ 11-21)</span></div>
-    <div class="kpi"><b>40명</b><span>주간 활동 회원(2026-11-16 ~ 11-22)</span></div>
-    <div class="kpi"><b>12배</b><span>큐 매칭 응답 속도(6.30초 → 0.51초, 매칭 성립 시 1.27초)</span></div>
+    <div class="kpi"><b>485명</b><span>넉터 가입 회원<br>2026-11-22</span></div>
+    <div class="kpi"><b>11건</b><span>출시 후 완료 경기<br>2026-08-19 ~ 11-21</span></div>
+    <div class="kpi"><b>40명</b><span>주간 활동 회원<br>2026-11-16 ~ 11-22</span></div>
+    <div class="kpi"><b>12배</b><span>큐 매칭 응답 속도<br>6.30초 → 0.51초, 성립 시 1.27초</span></div>
   </div>
 </div>
 
 <h3>구성</h3>
-<ol class="toc">
-  <li><a href="#nuktu">넉터</a></li>
-  <li><a href="#ege">에게</a></li>
-  <li><a href="#bustracker">버스트래커</a></li>
-</ol>
+<table class="toc">
+  <thead><tr><th>프로젝트</th><th>기간</th><th>팀</th><th>본인 담당</th><th>결과</th><th style="text-align:right">쪽</th></tr></thead>
+  <tbody>
+    <tr><td class="k"><a href="#nuktu">1. 넉터</a></td><td>2026.08 ~ 운영 중</td><td>5명</td><td>앱, 웹, 서버, 배포, 장애 대응</td><td>App Store, Google Play 출시</td><td class="pg">@P1</td></tr>
+    <tr><td class="k"><a href="#ege">2. 에게</a></td><td>2026.11.19 ~ 11.21</td><td>4명, 팀장</td><td>웹, 서버리스 API, 도면 인식 모델</td><td>해커톤 최우수상</td><td class="pg">@P2</td></tr>
+    <tr><td class="k"><a href="#bustracker">3. 버스트래커</a></td><td>2024.03 ~ 2025.11</td><td>5명, 3명</td><td>승객 앱, 백엔드, CI/CD</td><td>수상 5건</td><td class="pg">@P3</td></tr>
+  </tbody>
+</table>
 
 <!-- 1. 넉터 -->
-<section class="break">
+<section class="project">
   <h2 id="nuktu">1. 넉터</h2>
   <p>농구 동호회 운영진은 게스트 모집, 친선전 상대 섭외, 체육관 대관을 단톡방과 전화로 조율합니다.<br>창업팀 조사에서 운영진 1명이 경기 1회 일정을 확정하는 데 1시간 이상을 썼습니다.</p>
-  <table class="links">
-    <tr><td>App Store</td><td><a href="https://apps.apple.com/kr/app/id6801552960">https://apps.apple.com/kr/app/id6801552960</a></td></tr>
-    <tr><td>Google Play</td><td><a href="https://play.google.com/store/apps/details?id=com.pnu.basketball">https://play.google.com/store/apps/details?id=com.pnu.basketball</a></td></tr>
-    <tr><td>웹 앱</td><td><a href="https://app.nuktu.com">https://app.nuktu.com</a></td></tr>
-    <tr><td>제휴 체육관 웹</td><td><a href="https://partner.nuktu.com">https://partner.nuktu.com</a></td></tr>
-    <tr><td>서비스 소개</td><td><a href="https://nuktu.com">https://nuktu.com</a></td></tr>
-    <tr><td>시연 영상</td><td><a href="https://taehun2123.github.io/assets/video/nuktu-demo.mp4">https://taehun2123.github.io/assets/video/nuktu-demo.mp4</a> (앱 화면 녹화 109초, 기능 설명 자막)</td></tr>
-    <tr><td>소스 코드</td><td>NUKTU 조직 비공개 저장소(Backend, Frontend, Partner, docs)</td></tr>
-  </table>
+  <dl class="linklist">
+    <div><dt>App Store</dt><dd><a href="https://apps.apple.com/kr/app/id6801552960">apps.apple.com/kr/app/id6801552960</a></dd></div>
+    <div><dt>Google Play</dt><dd><a href="https://play.google.com/store/apps/details?id=com.pnu.basketball">play.google.com</a></dd></div>
+    <div><dt>웹 앱</dt><dd><a href="https://app.nuktu.com">app.nuktu.com</a></dd></div>
+    <div><dt>제휴 체육관 웹</dt><dd><a href="https://partner.nuktu.com">partner.nuktu.com</a></dd></div>
+    <div><dt>서비스 소개</dt><dd><a href="https://nuktu.com">nuktu.com</a></dd></div>
+    <div><dt>시연 영상</dt><dd><a href="https://taehun2123.github.io/assets/video/nuktu-demo.mp4">taehun2123.github.io</a> (앱 화면 녹화 109초, 기능 설명 자막)</dd></div>
+    <div><dt>소스 코드</dt><dd>NUKTU 조직 비공개 저장소(Backend, Frontend, Partner, docs)</dd></div>
+  </dl>
 
   <div class="shots">
     <img src="img/nuktu-1.jpg" alt="넉터 모집글 목록 화면">
@@ -129,22 +151,29 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
       <tr><td class="k">docs</td><td>팀 문서 사이트 구축, 문서 검사 자동화</td><td class="n">586 / 666 (88%)</td><td class="n">290 / 349</td></tr>
     </tbody>
   </table>
-  <p class="note">팀은 개발 3명, 디자이너 2명입니다.<br>다른 개발 팀원 2명은 장애 전환 서버 최초 구축과 CI 초기 구성, 경기장 상황 알리기, 채팅 알림, 회원 경기장 추가 승인을 담당했습니다.<br>디자이너 2명은 로고, 스토어 이미지, 웹 배색 조합, 마케팅 포스터를 담당했습니다.<br>운영 구성은 Mac mini blue/green 배포, 울산 스탠바이 복제 서버, 자체 CI 러너 4대입니다.<br>본인은 운영 중 장애 대응, 배포 시간 단축, CI 러너 증설을 맡았습니다.<br>설계와 코드 리뷰는 직접 하고, 구현은 AI 코딩 도구(Claude Code)로 보조했습니다.<br>병합 전 테스트와 CI 검사를 통과시켰습니다.</p>
+  <ul class="bullets">
+    <li>팀은 개발 3명, 디자이너 2명입니다.</li>
+    <li>다른 개발 팀원 2명은 장애 전환 서버 최초 구축과 CI 초기 구성, 경기장 상황 알리기, 채팅 알림, 회원 경기장 추가 승인을 담당했습니다.</li>
+    <li>디자이너 2명은 로고, 스토어 이미지, 웹 배색 조합, 마케팅 포스터를 담당했습니다.</li>
+    <li>운영 구성은 Mac mini blue/green 배포, 울산 스탠바이 복제 서버, 자체 CI 러너 4대입니다.</li>
+    <li>본인은 운영 중 장애 대응, 배포 시간 단축, CI 러너 증설을 맡았습니다.</li>
+    <li>설계와 코드 리뷰는 직접 하고, 구현은 AI 코딩 도구(Claude Code)로 보조했습니다.</li>
+    <li>병합 전 테스트와 CI 검사를 통과시켰습니다.</li>
+  </ul>
+  <figure class="arch"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 1004 434" role="img" aria-label="넉터 서버 구성도" font-family="IBM Plex Sans KR, Apple SD Gothic Neo, sans-serif"><defs><marker id="wa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0070cc"/></marker><marker id="wg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8a8a8a"/></marker></defs><rect x="0" y="0" width="170" height="300" rx="12" fill="#f6f8fb" stroke="#d4d4d4"/><text x="14" y="22" font-size="12.5" font-weight="700" fill="#525252">클라이언트</text><rect x="14" y="60" width="142" height="56" rx="8" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/><text x="85.0" y="81.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">iOS, Android 앱</text><text x="85.0" y="100.0" text-anchor="middle" font-size="12" fill="#525252">React Native, Expo</text><rect x="14" y="170" width="142" height="56" rx="8" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/><text x="85.0" y="191.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">웹 앱</text><text x="85.0" y="210.0" text-anchor="middle" font-size="12" fill="#525252">Cloudflare Pages</text><rect x="200" y="0" width="170" height="300" rx="12" fill="#f6f8fb" stroke="#d4d4d4"/><text x="214" y="22" font-size="12.5" font-weight="700" fill="#525252">Cloudflare</text><rect x="214" y="170" width="142" height="56" rx="8" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/><text x="285.0" y="191.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">Worker</text><text x="285.0" y="210.0" text-anchor="middle" font-size="12" fill="#525252">웹 /api 같은 도메인</text><rect x="400" y="0" width="370" height="300" rx="12" fill="#f6f8fb" stroke="#d4d4d4"/><text x="414" y="22" font-size="12.5" font-weight="700" fill="#525252">Mac mini 운영 서버</text><text x="756" y="22" text-anchor="end" font-size="11.5" fill="#525252">blue/green 2슬롯 동시 서빙</text><rect x="414" y="40" width="342" height="48" rx="8" fill="#ffffff" stroke="#0070cc" stroke-width="1.5"/><text x="585.0" y="57.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">nginx</text><text x="585.0" y="76.0" text-anchor="middle" font-size="12" fill="#525252">80, 443 포트만 외부 공개</text><rect x="414" y="112" width="166" height="56" rx="8" fill="#ffffff" stroke="#0070cc" stroke-width="1.5"/><text x="497.0" y="133.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">Spring Boot blue</text><text x="497.0" y="152.0" text-anchor="middle" font-size="12" fill="#525252">운영 슬롯 1</text><rect x="590" y="112" width="166" height="56" rx="8" fill="#ffffff" stroke="#0070cc" stroke-width="1.5"/><text x="673.0" y="133.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">Spring Boot green</text><text x="673.0" y="152.0" text-anchor="middle" font-size="12" fill="#525252">운영 슬롯 2</text><rect x="414" y="196" width="166" height="56" rx="8" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/><text x="497.0" y="217.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">PostgreSQL 17</text><text x="497.0" y="236.0" text-anchor="middle" font-size="12" fill="#525252">운영 DB, 내부망</text><rect x="590" y="196" width="166" height="56" rx="8" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/><text x="673.0" y="217.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">Redis 7.4</text><text x="673.0" y="236.0" text-anchor="middle" font-size="12" fill="#525252">세션, AOF, 내부망</text><rect x="800" y="0" width="200" height="300" rx="12" fill="#f6f8fb" stroke="#d4d4d4"/><text x="814" y="22" font-size="12.5" font-weight="700" fill="#525252">울산 스탠바이 서버</text><rect x="814" y="112" width="172" height="56" rx="8" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/><text x="900.0" y="133.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">Spring Boot</text><text x="900.0" y="152.0" text-anchor="middle" font-size="12" fill="#525252">장애 전환 대상</text><rect x="814" y="196" width="172" height="56" rx="8" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/><text x="900.0" y="217.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">PostgreSQL 17</text><text x="900.0" y="236.0" text-anchor="middle" font-size="12" fill="#525252">스트리밍 복제본</text><polyline points="156,88 412,64" fill="none" stroke="#0070cc" stroke-width="1.6" marker-end="url(#wa)"/><text x="284" y="66" text-anchor="middle" font-size="11.5" fill="#525252">api.nuktu.com</text><polyline points="156,198 212,198" fill="none" stroke="#0070cc" stroke-width="1.6" marker-end="url(#wa)"/><polyline points="356,198 385,198 385,78 412,78" fill="none" stroke="#0070cc" stroke-width="1.6" marker-end="url(#wa)"/><polyline points="497,88 497,110" fill="none" stroke="#0070cc" stroke-width="1.6" marker-end="url(#wa)"/><polyline points="673,88 673,110" fill="none" stroke="#0070cc" stroke-width="1.6" marker-end="url(#wa)"/><polyline points="497,168 497,194" fill="none" stroke="#0070cc" stroke-width="1.6" marker-end="url(#wa)"/><polyline points="673,168 673,194" fill="none" stroke="#0070cc" stroke-width="1.6" marker-end="url(#wa)"/><polyline points="497,252 497,276 900,276 900,254" fill="none" stroke="#8a8a8a" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#wg)"/><text x="700" y="292" text-anchor="middle" font-size="11.5" fill="#525252">스트리밍 복제</text><rect x="0" y="330" width="1000" height="100" rx="12" fill="#f6f8fb" stroke="#d4d4d4"/><text x="14" y="352" font-size="12.5" font-weight="700" fill="#525252">배포와 감시</text><rect x="14" y="362" width="190" height="52" rx="8" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/><text x="109.0" y="381.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">GitHub Actions</text><text x="109.0" y="400.0" text-anchor="middle" font-size="12" fill="#525252">자체 CI 러너 4대</text><rect x="244" y="362" width="150" height="52" rx="8" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/><text x="319.0" y="381.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">GHCR</text><text x="319.0" y="400.0" text-anchor="middle" font-size="12" fill="#525252">백엔드 이미지</text><rect x="434" y="362" width="220" height="52" rx="8" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/><text x="544.0" y="381.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">리컨실러</text><text x="544.0" y="400.0" text-anchor="middle" font-size="12" fill="#525252">이미지 반영, blue/green 전환</text><rect x="694" y="362" width="292" height="52" rx="8" fill="#ffffff" stroke="#d4d4d4" stroke-width="1"/><text x="840.0" y="381.0" text-anchor="middle" font-size="14" font-weight="700" fill="#171717">감시</text><text x="840.0" y="400.0" text-anchor="middle" font-size="12" fill="#525252">5분 주기 점검, Sentry, Prometheus</text><polyline points="204,388 242,388" fill="none" stroke="#8a8a8a" stroke-width="1.6" marker-end="url(#wg)"/><polyline points="394,388 432,388" fill="none" stroke="#8a8a8a" stroke-width="1.6" marker-end="url(#wg)"/><polyline points="544,360 544,302" fill="none" stroke="#8a8a8a" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#wg)"/></svg><figcaption>넉터 서버 구성. 앱은 api.nuktu.com, 웹은 Cloudflare Worker의 같은 도메인 /api로 접속합니다.</figcaption></figure>
 
   <h3>1-2. 지표</h3>
   <table>
     <thead><tr><th>지표</th><th>값</th><th>기준</th></tr></thead>
     <tbody>
-      <tr><td class="k">가입 회원</td><td class="n after">485명</td><td>2026-11-22</td></tr>
+      <tr><td class="k">가입 회원</td><td class="n">485명</td><td>2026-11-22</td></tr>
       <tr><td class="k">출시</td><td class="n">2026-08-19</td><td>App Store, Google Play, 웹</td></tr>
-      <tr><td class="k">주간 활동 회원</td><td class="n after">40명</td><td>2026-11-16 ~ 11-22 조회, 채팅, 작성, 신청 회원(관리자 제외), 주별 18명 → 23명 → 38명, 최근 30일 62명</td></tr>
+      <tr><td class="k">주간 활동 회원</td><td class="n">40명</td><td>2026-11-16 ~ 11-22 조회, 채팅, 작성, 신청 회원(관리자 제외), 주별 18명 → 23명 → 38명, 최근 30일 62명</td></tr>
       <tr><td class="k">완료 경기</td><td class="n">11건</td><td>2026-08-19 ~ 11-21 운영 DB, 11월 5건, 수락된 참가 신청 22건(17명)</td></tr>
     </tbody>
   </table>
-</section>
 
-<section class="break">
-  <h3 style="margin-top:0">1-3. 팀 문서 협업 자동화</h3>
+  <h3>1-3. 팀 문서 협업 자동화</h3>
   <p>사람이 읽기 쉬운 문서 형태(Wiki와 같은 형태)로 웹 사이트를 만들고, 저장소의 Docs들을 참조하여 빌드, 배포, 검사를 자동화했습니다.</p>
   <table>
     <thead><tr><th style="width:24mm">자동화</th><th>내용</th><th style="width:44mm">결과</th></tr></thead>
@@ -161,7 +190,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 
   <h3>1-4. 사용자 문제와 변경</h3>
   <table>
-    <thead><tr><th style="width:52mm">문제</th><th>변경</th><th style="width:36mm">결과</th></tr></thead>
+    <thead><tr><th style="width:28%">문제</th><th style="width:42%">변경</th><th style="width:30%">결과</th></tr></thead>
     <tbody>
       <tr><td class="k">글 재조회 시 조회 수 중복 증가 문제</td><td>조회자당 1행인 조회 기록 표(<code>post_views</code>)를 추가했습니다.<br>첫 조회만 집계하고 작성자, 운영진, 비로그인은 제외합니다.</td><td>재조회 시 조회 수 변화 없음. 이 수정이 만든 글 상세 500 장애도 다음 날 수정</td></tr>
       <tr><td class="k">운영 웹 체감 응답 1.5초 지연 문제</td><td>원인인 CORS 사전 요청(요청당 291~375ms)을 없애려고 Cloudflare Worker로 같은 도메인 <code>/api</code> 경유를 적용했습니다.</td><td>로그인 요청 중앙값 276ms → <b>139ms</b>, 사전 요청 0회</td></tr>
@@ -172,10 +201,8 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
     </tbody>
   </table>
 
-</section>
 
-<section class="break">
-  <h3 style="margin-top:0">1-5. 기술 선택</h3>
+  <h3>1-5. 기술 선택</h3>
   <p>후보가 2개 이상이면 비용, 성능, 운영 부담을 표로 비교하고 기술 선택 기록으로 남깁니다.</p>
   <table>
     <thead><tr><th style="width:26mm">대상</th><th>비교한 후보</th><th>선택</th><th>이유</th></tr></thead>
@@ -192,25 +219,30 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 
   <h3>1-6. 장애와 성능 문제 대응</h3>
   <table>
-    <thead><tr><th style="width:30mm">장애</th><th>원인</th><th>조치</th><th style="width:38mm">전후 수치</th></tr></thead>
+    <thead><tr><th style="width:22%">장애</th><th style="width:48%">원인과 조치</th><th style="width:30%">전후 수치</th></tr></thead>
     <tbody>
-      <tr><td class="k">큐 매칭 요청 6초 대기<br>2026-08-21, 부하 조건에서 발견</td><td>후보자마다 요약 조회를 따로 호출하는 N+1 조회. 지역 전체 매칭을 요청 스레드에서 계산</td><td>일괄 조회, 개수 전용 쿼리, 등록 티켓 기준 즉시 매칭과 60초 주기 지역 배치 분리</td><td>요청당 SQL 1,259개 → <b>25개</b>, 응답 6.30초 → <b>0.51초</b>(테스트 데이터, 매칭 성립 시 1.27초)</td></tr>
-      <tr><td class="k">커뮤니티 글 상세 500<br>2026-11-07</td><td>조회 기록 쿼리의 <code>@Modifying(clearAutomatically = true)</code>로 먼저 조회한 게시글이 준영속 상태가 되어 지연 로딩 실패</td><td>조회 기록 후 게시글 조회로 순서 변경, 통합 테스트 추가, 리뷰 기준을 장애 기록에 추가</td><td>로그인 회원 글 상세 500 → <b>200</b>, 영향 약 20시간</td></tr>
-      <tr><td class="k">스탠바이 서버 기동 실패<br>2026-11-14</td><td>서버 시작 시 백필의 <code>SELECT ... FOR UPDATE</code>가 읽기 전용 복제본에서 실패</td><td><code>SHOW transaction_read_only</code>가 on이면 백필 생략. <code>pg_is_in_recovery()</code>는 복제 상태만 판별해 제외</td><td>재시작 2,973회 → <b>0회</b>, 기동 <b>17.1초</b>. 경고를 3일 넘게 놓쳐 스탠바이 응답 5분 주기 점검 추가</td></tr>
-      <tr><td class="k">다른 기기 로그인 시<br>세션 덮어쓰기<br>2026-10-30</td><td>계정당 리프레시 토큰 1개만 저장. 운영 Redis는 AOF 꺼짐 상태</td><td>저장 키를 기기 세션 단위(<code>refresh_token:&lt;userId&gt;:&lt;sid&gt;</code>)로 분리, Redis AOF <code>everysec</code> 전환</td><td>갱신 거부 7건 해소, 배포 전후 세션 키 24개 유지</td></tr>
+      <tr><td class="k">큐 매칭 요청 6초 대기<br>2026-08-21, 부하 조건에서 발견</td><td>원인: 후보자마다 요약 조회를 따로 호출하는 N+1 조회. 지역 전체 매칭을 요청 스레드에서 계산<br>조치: 일괄 조회, 개수 전용 쿼리, 등록 티켓 기준 즉시 매칭과 60초 주기 지역 배치 분리</td><td>요청당 SQL 1,259개 → <b>25개</b>, 응답 6.30초 → <b>0.51초</b>(테스트 데이터, 매칭 성립 시 1.27초)</td></tr>
+      <tr><td class="k">커뮤니티 글 상세 500<br>2026-11-07</td><td>원인: 조회 기록 쿼리의 <code>@Modifying(clearAutomatically = true)</code>로 먼저 조회한 게시글이 준영속 상태가 되어 지연 로딩 실패<br>조치: 조회 기록 후 게시글 조회로 순서 변경, 통합 테스트 추가, 리뷰 기준을 장애 기록에 추가</td><td>로그인 회원 글 상세 500 → <b>200</b>, 영향 약 20시간</td></tr>
+      <tr><td class="k">스탠바이 서버 기동 실패<br>2026-11-14</td><td>원인: 서버 시작 시 백필의 <code>SELECT ... FOR UPDATE</code>가 읽기 전용 복제본에서 실패<br>조치: <code>SHOW transaction_read_only</code>가 on이면 백필 생략. <code>pg_is_in_recovery()</code>는 복제 상태만 판별해 제외</td><td>재시작 2,973회 → <b>0회</b>, 기동 <b>17.1초</b>. 경고를 3일 넘게 놓쳐 스탠바이 응답 5분 주기 점검 추가</td></tr>
+      <tr><td class="k">다른 기기 로그인 시<br>세션 덮어쓰기<br>2026-10-30</td><td>원인: 계정당 리프레시 토큰 1개만 저장. 운영 Redis는 AOF 꺼짐 상태<br>조치: 저장 키를 기기 세션 단위(<code>refresh_token:&lt;userId&gt;:&lt;sid&gt;</code>)로 분리, Redis AOF <code>everysec</code> 전환</td><td>갱신 거부 7건 해소, 배포 전후 세션 키 24개 유지</td></tr>
     </tbody>
   </table>
 </section>
 
 <!-- 2. 에게 -->
-<section class="break">
+<section class="project">
   <h2 id="ege">2. 에게</h2>
   <p>LG전자 ES사업본부(BECON 빌딩 제어 솔루션)가 출제한 과제는 "건물 운영자가 공간과 설비 상태를 직관적으로 파악하기 어렵다"였습니다.<br>구현 전에 운영자 문제 자료 155건을 조사해 이 문제를 검증했습니다.</p>
   <p>3일 해커톤에서 도면 기반 3D 트윈과 AI 운영 도우미를 만들어 배포까지 마쳤고, PNU × AWS Maestro AI 해커톤 최우수상(2026-11-21)을 받았습니다.</p>
-  <table class="links">
-    <tr><td>시연 영상</td><td><a href="https://taehun2123.github.io/assets/video/ege-demo.mp4">https://taehun2123.github.io/assets/video/ege-demo.mp4</a> (3분 59초)</td></tr>
-    <tr><td>소스 코드</td><td><a href="https://github.com/Energy-gate">https://github.com/Energy-gate</a> (Frontend, Lambda, docs 공개)</td></tr>
-  </table>
+  <div class="kpis three sec-kpis">
+    <div class="kpi"><b>최우수상</b><span>PNU × AWS Maestro AI 해커톤<br>2026-11-21</span></div>
+    <div class="kpi"><b>35/35</b><span>AI 도구 선택 정답<br>평가 35문항</span></div>
+    <div class="kpi"><b>0.758</b><span>처음 보는 건물 실내기 재현율<br>6동 평균, 기존 0.339</span></div>
+  </div>
+  <dl class="linklist">
+    <div><dt>시연 영상</dt><dd><a href="https://taehun2123.github.io/assets/video/ege-demo.mp4">taehun2123.github.io</a> (3분 59초)</dd></div>
+    <div><dt>소스 코드</dt><dd><a href="https://github.com/Energy-gate">github.com/Energy-gate</a> (Frontend, Lambda, docs 공개)</dd></div>
+  </dl>
 
   <div class="shots wide">
     <img src="img/ege-1.jpg" alt="에게 전체 현황 대시보드">
@@ -239,10 +271,8 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
       <tr><td class="k">정비 기술자<br>(확장 사용자)</td><td>고장 의심 설비를 현장에서 찾아야 함</td><td>고장 의심 HVAC를 트윈 위에 겹쳐 표시</td></tr>
     </tbody>
   </table>
-</section>
 
-<section class="break">
-  <h3 style="margin-top:0">2-3. 기업 도입 구조</h3>
+  <h3>2-3. 기업 도입 구조</h3>
   <table>
     <thead><tr><th style="width:24mm">항목</th><th>선택</th><th style="width:42mm">다른 선택지</th></tr></thead>
     <tbody>
@@ -277,15 +307,20 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 </section>
 
 <!-- 3. 버스트래커 -->
-<section class="break">
+<section class="project">
   <h2 id="bustracker">3. 버스트래커</h2>
   <p>학생은 통학버스 지연과 정류장 변경을 미리 확인하기 어려웠습니다.<br>기존 위치 서비스는 버스마다 단말기를 설치해야 해서 대여 버스에는 적용하기 어려웠습니다.</p>
   <p>2024년 버스 탑재 IoT 단말기 방식으로 시작해 2025년 운전자 앱 GPS 방식으로 전환했습니다.<br>2025-11 CoShow 2025에서 차세대통신단장상을 받고 Android 앱 v1.0.6을 배포했습니다.</p>
-  <table class="links">
-    <tr><td>2024 백엔드</td><td><a href="https://github.com/Hardware-BBB-App/BackEnd">https://github.com/Hardware-BBB-App/BackEnd</a></td></tr>
-    <tr><td>2025 백엔드</td><td><a href="https://github.com/BBB-bus-buddy-buddy/App-Backend">https://github.com/BBB-bus-buddy-buddy/App-Backend</a></td></tr>
-    <tr><td>시연 영상</td><td><a href="https://taehun2123.github.io/assets/video/bbb-demo.mp4">https://taehun2123.github.io/assets/video/bbb-demo.mp4</a> (4분)</td></tr>
-  </table>
+  <div class="kpis three sec-kpis">
+    <div class="kpi"><b>수상 5건</b><span>2024-10 ~ 2025-11</span></div>
+    <div class="kpi"><b>차세대통신단장상</b><span>CoShow 2025<br>2025-11-21</span></div>
+    <div class="kpi"><b>은상 2건</b><span>캡스톤디자인 경진대회<br>소프트웨어 부문, 일반 부문</span></div>
+  </div>
+  <dl class="linklist">
+    <div><dt>2024 백엔드</dt><dd><a href="https://github.com/Hardware-BBB-App/BackEnd">github.com</a></dd></div>
+    <div><dt>2025 백엔드</dt><dd><a href="https://github.com/BBB-bus-buddy-buddy/App-Backend">github.com</a></dd></div>
+    <div><dt>시연 영상</dt><dd><a href="https://taehun2123.github.io/assets/video/bbb-demo.mp4">taehun2123.github.io</a> (4분)</dd></div>
+  </dl>
 
   <div class="shots">
     <img src="img/bbb-1.jpg" alt="버스트래커 앱 홍보 이미지 1">
@@ -312,10 +347,8 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
     </tbody>
   </table>
 
-</section>
 
-<section class="break">
-  <h3 style="margin-top:0">3-3. 사용자 문제와 변경</h3>
+  <h3>3-3. 사용자 문제와 변경</h3>
   <table>
     <thead><tr><th style="width:40mm">문제</th><th>변경</th></tr></thead>
     <tbody>

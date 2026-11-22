@@ -27,20 +27,22 @@
 | 경로 | 내용 |
 |---|---|
 | `index.html` | 포트폴리오 본문(요약, 프로젝트 3개, 이력, 연락처) |
-| `assets/site.css` | 디자인 토큰(빨강 1색, 잉크, 회색 단계), IBM Plex Sans KR, 반응형 규칙 |
+| `assets/site.css` | 디자인 토큰(강조색 #0070CC, 잉크, 회색 단계), IBM Plex Sans KR, 반응형 규칙(1024px 미만 상단 가로 스크롤 구역 줄) |
 | `assets/video/` | 시연 영상 3개(`nuktu-demo.mp4`, `ege-demo.mp4`, `bbb-demo.mp4`) |
 | `assets/taehun-blue-clay.svg` | 가로형 워드마크 로고. 웹 상단 바, 이력서, 포트폴리오 PDF 머리에 사용 |
 | `assets/th-blue-clay.svg` | 정사각형 심볼 로고. 파비콘에 사용 |
-| `assets/img/` | 영상 포스터 이미지 3개, 프로젝트 아이콘 3개, 프로필 사진 `profile.webp`(480px, 메타데이터 제거) |
+| `assets/img/` | 영상 포스터 이미지 3개, 프로젝트 아이콘 3개, 프로필 사진 `profile.webp`(480px, 메타데이터 제거), 넉터 서버 구성도 `nuktu-architecture.svg`(가로형), `nuktu-architecture-tall.svg`(모바일 세로형). 구성도는 웹과 PDF에 SVG 본문을 직접 넣어 사용 |
 | `assets/kim-taehun-resume.pdf` | 다운로드용 이력서 |
-| `assets/kim-taehun-portfolio.pdf` | 당근 제출용 서비스 소개 PDF(A4 6쪽). 팀 구성과 담당, 지표, 사용자 문제와 변경, 기술 선택 순서 |
+| `assets/kim-taehun-portfolio.pdf` | 당근 제출용 서비스 소개 PDF(A4 8쪽, 쪽 번호 포함). 팀 구성과 담당, 지표, 사용자 문제와 변경, 기술 선택 순서 |
 | `_resume/portfolio.html` | 서비스 소개 PDF 원본. 밑줄 폴더라 배포 대상에서 제외됨 |
-| `_resume/resume.html` | 이력서 원본. 밑줄 폴더라 Jekyll 배포 대상에서 제외됨 |
+| `_resume/resume.html` | 이력서 원본(A4 2쪽). 밑줄 폴더라 Jekyll 배포 대상에서 제외됨 |
+| `_resume/build_portfolio.py` | 포트폴리오 PDF 생성 스크립트. 목차 쪽 번호를 채우려고 2회 생성 |
 | `google*.html`, `naver*.html`, `robots.txt`, `sitemap.xml` | 검색 엔진 소유 확인 파일 |
 
 **1-2. 페이지에는 드롭다운, 토글, 모달을 넣지 않습니다.**
 
 모든 내용은 펼친 상태로 배치합니다. 상호작용 요소는 링크와 영상 재생 컨트롤뿐입니다.
+모바일 상단의 구역 이동 줄은 링크 목록이며 펼침, 접힘 동작이 없습니다.
 
 ## 2. 이력서 PDF 생성: Chrome 인쇄
 
@@ -52,7 +54,8 @@
   --print-to-pdf=assets/kim-taehun-resume.pdf "file://$PWD/_resume/resume.html"
 ```
 
-서비스 소개 PDF는 같은 명령에서 입력을 `_resume/portfolio.html`, 출력을 `assets/kim-taehun-portfolio.pdf`로 바꿔 생성하십시오.
+서비스 소개 PDF는 `python3 _resume/build_portfolio.py`로 생성하십시오.
+스크립트는 1쪽 목차 표의 쪽 번호 자리표시(`@P1`~`@P3`)를 실제 쪽으로 채우려고 Chrome 인쇄를 2회 실행합니다.
 
 생성 후 `pdffonts`로 IBM Plex Sans KR 포함 여부를 확인하십시오.
 

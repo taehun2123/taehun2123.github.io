@@ -10,11 +10,12 @@
 /* 이력서 인쇄 규칙
  - 용지: A4 세로, 여백 13mm
  - 구성: 머리, 프로젝트(조직, 역할, 블록), 오픈소스, 학력, 수상, 자격증
- - 색: 잉크 본문, 회색 보조, 빨강은 로고에만 사용 */
+ - 색: 잉크 본문, 회색 보조(대비 4.5:1 이상)
+ - 글자: 본문 10pt, 보조 9pt 이상 */
 @page { size: A4; margin: 13mm; }
-:root { --ink: #25282b; --body: #4b4f53; --mute: #7d8186; --hair: #dcdcdc; --soft: #f2f2f2; }
+:root { --ink: #25282b; --body: #4b4f53; --mute: #5f6368; --hair: #dcdcdc; --soft: #f2f2f2; }
 * { box-sizing: border-box; }
-body { margin: 0; font-family: "IBM Plex Sans KR", sans-serif; color: var(--ink); font-size: 8.6pt; line-height: 1.55; word-break: keep-all; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font-family: "IBM Plex Sans KR", sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.55; word-break: keep-all; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 h1, h2, h3, h4, h5, p, ul { margin: 0; }
 a { color: inherit; }
 ul { padding-left: 1.15em; }
@@ -25,18 +26,20 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 .head { display: grid; grid-template-columns: 21mm 1fr auto; gap: 7mm; align-items: start; }
 .mark { width: 21mm; height: 21mm; border-radius: 50%; object-fit: cover; }
 .name { font-size: 17pt; font-weight: 700; line-height: 1.1; }
-.name span { font-size: 9pt; font-weight: 500; color: var(--mute); margin-left: 6px; }
+.name span { font-size: 10pt; font-weight: 500; color: var(--mute); margin-left: 6px; }
 .intro { margin-top: 6px; color: var(--body); }
-.contact { font-size: 8.4pt; line-height: 1.75; white-space: nowrap; }
+.contact { font-size: 9.2pt; line-height: 1.75; white-space: nowrap; }
 .contact b { font-weight: 700; margin-right: 4px; }
 .contact a { text-decoration: none; }
 
 /* 프로젝트: 조직 → 역할 → 블록 */
 .org { margin-top: 9mm; display: flex; align-items: baseline; gap: 8px; break-after: avoid; }
 .org h2 { font-size: 15pt; font-weight: 700; }
-.period { font-size: 8.6pt; color: var(--body); font-variant-numeric: tabular-nums; }
+.period { font-size: 9pt; color: var(--body); font-variant-numeric: tabular-nums; }
 .role { margin-top: 4mm; display: flex; align-items: baseline; gap: 8px; break-after: avoid; }
 .role h3 { font-size: 11.5pt; font-weight: 700; }
+.role .period { color: var(--ink); font-weight: 700; }
+.edu { margin-top: 5px; font-weight: 600; }
 .role-desc { margin-top: 3px; color: var(--body); }
 .blk { margin-top: 5.5mm; break-inside: avoid-page; }
 .role-desc + .stack { margin-top: 4px; }
@@ -55,7 +58,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 .sec { margin-top: 9mm; display: flex; align-items: baseline; gap: 8px; break-after: avoid; }
 .sec h2 { font-size: 13pt; font-weight: 700; }
 .sec span { color: var(--mute); }
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm 9mm; margin-top: 4mm; break-inside: avoid-page; }
+.grid2 { margin-top: 4mm; }
 .item h5 { font-size: 9pt; font-weight: 700; }
 .item h5 .period { font-weight: 400; margin-left: 6px; }
 .item p { color: var(--body); }
@@ -74,6 +77,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
   <img class="mark" src="../assets/img/profile.webp" alt="김태훈 프로필 사진">
   <div>
     <h1 class="name">김태훈<span>풀스택 개발자</span></h1>
+    <p class="edu">부산대학교 정보컴퓨터공학부 컴퓨터공학과 재학(학사 편입, 2028.02 졸업 예정)</p>
     <div class="intro">
       <p>Spring Boot 서버를 중심으로 React Native 앱, 웹까지 개발합니다.</p>
       <p>동네 농구 커뮤니티 앱 넉터를 5명 팀에서 개발해 운영하고 있습니다.</p>
@@ -82,16 +86,16 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
     </div>
   </div>
   <div class="contact">
-    <div><b>Email.</b>taehun@pusan.ac.kr</div>
-    <div><b>Phone.</b>010-3343-8636</div>
-    <div><b>GitHub.</b><a href="https://github.com/taehun2123">taehun2123</a></div>
-    <div><b>Portfolio.</b><a href="https://taehun2123.github.io/">taehun2123.github.io</a></div>
-    <div><b>Blog.</b><a href="https://taehun2123.github.io/blog/">taehun2123.github.io/blog</a></div>
+    <div><b>이메일</b>taehun@pusan.ac.kr</div>
+    <div><b>전화</b>010-3343-8636</div>
+    <div><b>GitHub</b><a href="https://github.com/taehun2123">taehun2123</a></div>
+    <div><b>포트폴리오</b><a href="https://taehun2123.github.io/">taehun2123.github.io</a></div>
+    <div><b>블로그</b><a href="https://taehun2123.github.io/blog/">taehun2123.github.io/blog</a></div>
   </div>
 </div>
 
 <!-- 넉터 -->
-<div class="org"><h2>넉터</h2><span class="period">2026.08 - NOW</span></div>
+<div class="org"><h2>넉터</h2><span class="period">2026.08 ~ 현재</span></div>
 <div class="role"><h3>5명(개발 3, 디자인 2), 앱, 웹, 서버 개발, 배포, 장애 대응</h3><span class="period">운영 중</span></div>
 <p class="role-desc">농구 동호회 운영진이 게스트 모집, 친선전 섭외, 체육관 대관을 단톡방과 전화로 조율하던 문제를 다룹니다.<br>2026-08-19 App Store, Google Play, 웹에 출시했고 가입 회원은 485명입니다.<br>최근 7일 활동 회원은 40명이고 출시 후 완료 경기는 11건입니다.</p>
 <p class="stack">React Native(Expo), TypeScript, Java 17, Spring Boot 3.2, PostgreSQL 17, Redis, Cloudflare Workers, Docker, GitHub Actions</p>
@@ -105,7 +109,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 </ul>
 
 <!-- 에게 -->
-<div class="org"><h2>에게(에너지게이트)</h2><span class="period">2026.11.19 - 2026.11.21</span></div>
+<div class="org"><h2>에게(에너지게이트)</h2><span class="period">2026.11.19 ~ 2026.11.21</span></div>
 <div class="role"><h3>PNU × AWS Maestro AI 해커톤, LG전자 ES사업본부 출제, 4명 팀의 팀장</h3><span class="period">최우수상</span></div>
 <p class="role-desc">LG전자 ES사업본부(BECON 빌딩 제어 솔루션)가 출제한 건물 운영 3D 디지털트윈 과제입니다.<br>3일 동안 웹, 서버리스 API, 도면 인식 모델을 맡아 배포까지 마쳤습니다.</p>
 <p class="stack">React 19, three.js, AWS Lambda(Python), API Gateway, DynamoDB, Amazon Bedrock, S3 Vectors, SageMaker, YOLO11s</p>
@@ -117,7 +121,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 </ul>
 
 <!-- 버스트래커 -->
-<div class="org"><h2>버스트래커(BBB)</h2><span class="period">2024.03 - 2025.11</span></div>
+<div class="org" style="break-before: page; margin-top: 0"><h2>버스트래커(BBB)</h2><span class="period">2024.03 ~ 2025.11</span></div>
 <div class="role"><h3>캡스톤디자인, 5명(2024), 3명(2025)</h3><span class="period">수상 5건</span></div>
 <p class="role-desc">학생이 통학버스 지연과 정류장 변경을 미리 확인하기 어려웠던 문제를 다룹니다.<br>2025년 운전자 앱 GPS 방식으로 전환해 버스 설치 기기를 없앴고 CoShow 2025에서 차세대통신단장상을 받았습니다.</p>
 <p class="stack">Java 21, Spring Boot 3.3, MongoDB, WebSocket, OAuth2, JWT, React Native, Docker, GitHub Actions</p>
@@ -129,24 +133,24 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 </ul>
 
 <!-- 오픈소스 -->
-<div class="sec"><h2>Open Source</h2></div>
+<div class="sec"><h2>오픈소스</h2></div>
 <ul class="oss">
   <li><b>devdog-docs</b> 여러 저장소 문서를 위키 사이트 1곳으로 모으고 문서 검사를 설치하는 Claude Code 플러그인(github.com/taehun2123/devdog)</li>
 </ul>
 
 <!-- 학력, 수상, 자격증 -->
-<div class="sec"><h2>Experience</h2></div>
+<div class="sec"><h2>학력, 자격, 수상</h2></div>
 <div class="grid2">
   <div>
     <p class="cat">학력</p>
     <ul class="rows">
-      <li>부산대학교 정보컴퓨터공학부 컴퓨터공학과 학사 편입<span>2026.03 - 2028.02 예정</span></li>
-      <li>울산과학대학교 컴퓨터IT학부 전문학사, 수석 졸업(GPA 4.5/4.5)<span>2023.03 - 2026.02</span></li>
+      <li>부산대학교 정보컴퓨터공학부 컴퓨터공학과 학사 편입<span>2026.03 ~ 2028.02 예정</span></li>
+      <li>울산과학대학교 컴퓨터IT학부 전문학사, 수석 졸업(GPA 4.5/4.5)<span>2023.03 ~ 2026.02</span></li>
     </ul>
     <p class="cat gap">교육</p>
     <ul class="rows">
-      <li>부산대학교 AI 분야 첨단산업 인재양성 부트캠프 1기<span>2026.06 - 2026.08</span></li>
-      <li>UIPA 보안솔루션 소프트웨어 개발 과정 80시간<span>2024.07 - 2024.08</span></li>
+      <li>부산대학교 AI 분야 첨단산업 인재양성 부트캠프 1기<span>2026.06 ~ 2026.08</span></li>
+      <li>UIPA 보안솔루션 소프트웨어 개발 과정 80시간<span>2024.07 ~ 2024.08</span></li>
     </ul>
     <p class="cat gap">자격증</p>
     <ul class="rows">
@@ -154,9 +158,8 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
       <li>ADsP<span>한국데이터산업진흥원</span></li>
       <li>ISTQB CTFL<span>Foundation Level</span></li>
     </ul>
-  </div>
-  <div>
-    <p class="cat">수상</p>
+
+    <p class="cat gap">수상</p>
     <ul class="rows">
       <li>PNU × AWS Maestro AI 해커톤 최우수상(에게)<span>2026.11</span></li>
       <li>클라우드 AI PBL 최우수상(부산대 AI융합교육원장)<span>2026.07</span></li>

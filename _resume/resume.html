@@ -39,6 +39,11 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 .role h3 { font-size: 11.5pt; font-weight: 700; }
 .role-desc { margin-top: 3px; color: var(--body); }
 .blk { margin-top: 5.5mm; break-inside: avoid-page; }
+.role-desc + .stack { margin-top: 4px; }
+.org ~ ul { margin-top: 3px; }
+.oss { list-style: none; padding: 0; margin-top: 3mm; }
+.oss li { margin: 2px 0; }
+.oss b { margin-right: 8px; }
 .blk h4 { font-size: 9.6pt; font-weight: 700; margin-bottom: 4px; }
 .blk h4::before { content: "| "; }
 .blk .desc { color: var(--body); }
@@ -86,129 +91,51 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 
 <!-- 넉터 -->
 <div class="org"><h2>넉터</h2><span class="period">2026.08 - NOW</span></div>
-<div class="role"><h3>5명(개발 3, 디자인 2), 앱·웹·서버·운영</h3><span class="period">2026.08 - NOW</span></div>
-<p class="role-desc">농구 동호회 운영진이 게스트 모집, 친선전 섭외, 체육관 대관을 단톡방과 전화로 조율하던 문제를 다룹니다.<br>App Store, Google Play, 웹(app.nuktu.com)에 출시해 운영 중입니다.<br>앱·웹 커밋의 87.5%, 서버 커밋의 72.8%를 작성했습니다.</p>
-
-<div class="blk">
-  <h4>앱·웹과 서버 개발</h4>
-  <p class="desc">매칭, 대관, 클럽, 커뮤니티, 채팅 기능을 앱·웹 화면과 서버 API로 구현했습니다.<br>화면 58개를 iOS, Android, 웹에 같은 코드로 배포합니다.</p>
-  <p class="stack">React Native 0.86(Expo SDK 57), TypeScript, Zustand, Java 17, Spring Boot 3.2, PostgreSQL 17, Redis 7.4, Flyway, STOMP WebSocket, FCM</p>
-  <p class="sub">앱·웹</p>
-  <ul>
-    <li>화면 58개를 iOS, Android, 웹에 동시 배포하고 EAS Update로 스토어 심사 없는 OTA 배포를 적용했습니다.</li>
-    <li>3Mbps 이하 회선에서 웹 첫 화면이 90초 넘게 스플래시 상태로 유지되던 문제를 글꼴 woff2 부분 집합과 화면별 코드 분할로 해결했습니다. 첫 화면 전송량은 <span class="num">9,384KB → 2,360KB</span>입니다.</li>
-  </ul>
-  <p class="sub">서버</p>
-  <ul>
-    <li>매칭 큐, 모집글, 클럽, 대관, 채팅, 푸시 알림 API를 구현하고 스키마를 Flyway 마이그레이션 V0~V190으로 관리했습니다.</li>
-    <li>큐 매칭의 N+1 조회와 요청 스레드 계산을 분리했습니다. 요청당 SQL은 <span class="num">1,259개 → 25개</span>, 응답은 <span class="num">6.30초 → 0.51초</span>입니다.</li>
-  </ul>
-  <p class="sub">제휴 체육관 파트너 앱·웹</p>
-  <ul>
-    <li>대관 예약, 입금 확인, 기기별 푸시를 구현했습니다(커밋 97.9%).</li>
-    <li>체육관이 엑셀 표 사진으로 관리하던 장기 대관을 사진 업로드로 주간 일정에 등록하도록 만들었습니다. 인식 모델 11개를 비교해 17/17 정확한 모델 중 최저가(장당 $0.0144)를 선택했습니다.</li>
-  </ul>
-</div>
-
-<div class="blk">
-  <h4>팀 문서 협업 자동화</h4>
-  <p class="desc">팀원이 서버, 앱, 마케팅 문서를 저장소마다 찾아야 했습니다.<br>저장소 4곳의 문서를 docs.nuktu.com 1곳으로 모으고 빌드, 배포, 검사를 자동화했습니다.</p>
-  <p class="stack">VitePress, GitHub Actions, Cloudflare Access, Python</p>
-  <ul>
-    <li>main 반영, 코드 저장소의 문서 변경 알림, 매시 예약 실행으로 빌드하고 서버가 300초마다 최신 빌드를 설치합니다.</li>
-    <li>PR마다 링크·앵커·병합 충돌과 스타일 규칙 5종을 검사합니다.</li>
-    <li>저장소 6곳의 AGENTS.md에 문서 형식을 정해 팀원과 AI 에이전트가 같은 형식으로 작성합니다. 팀원 문서 커밋은 77건입니다.</li>
-    <li>장애 기록 82건과 기술 선택 기록 56건을 작성했습니다.</li>
-  </ul>
-</div>
-
-<div class="blk">
-  <h4>운영 장애 대응</h4>
-  <p class="desc">운영 중 장애는 원인, 검토한 대안, 해결, 전후 수치 순서로 기록했습니다.</p>
-  <p class="stack">Mac mini blue/green 배포, PostgreSQL 스트리밍 복제, Cloudflare Workers, 자체 CI 러너 4대</p>
-  <ul>
-    <li>스탠바이 서버가 읽기 전용 복제본에서 기동 백필의 <code>SELECT ... FOR UPDATE</code>로 재시작을 2,973회 반복했습니다. 쓰기 가능 여부를 확인하도록 바꿔 재시작 0회, 기동 17.1초로 복구했습니다.</li>
-    <li>웹 API를 같은 도메인 Worker 경유로 바꿔 CORS 사전 요청을 없앴습니다. 로그인 요청 중앙값은 <span class="num">276ms → 139ms</span>입니다.</li>
-    <li>커뮤니티 글 조회 수 중복을 회원당 1회 집계로 고쳤습니다. 이 수정의 <code>clearAutomatically</code>로 생긴 글 상세 500은 조회 순서 변경과 통합 테스트로 해결했습니다.</li>
-    <li>다른 기기에서 로그인하면 세션이 덮어써지던 문제를 기기 세션 단위 저장 키와 Redis AOF 적용으로 해결했습니다.</li>
-  </ul>
-</div>
-
-<div class="blk">
-  <h4>기술 선택</h4>
-  <p class="desc">후보가 2개 이상이면 비용과 성능을 비교하고 선택 이유를 기록했습니다.</p>
-  <ul>
-    <li>사용자 글 자동 번역은 Papago(최소 월 2만 원), Google 번역과 비교해 기존 키를 재사용하는 Gemini(월 $1 미만 추정)를 선택했습니다.</li>
-    <li>길찾기 API 5개를 요금과 약관으로 비교해 TMAP 단일 사용(월 약 7,000원)을 추천안으로 정했습니다. 대안 조합은 최대 약 20만 원입니다.</li>
-    <li>앱 OTA는 자체 호스팅 서버 대신 EAS Update Free(월 $0, MAU 1,000명)를 선택했습니다.</li>
-  </ul>
-</div>
+<div class="role"><h3>5명(개발 3, 디자인 2), 앱·웹·서버·운영</h3><span class="period">운영 중</span></div>
+<p class="role-desc">농구 동호회 운영진이 게스트 모집, 친선전 섭외, 체육관 대관을 단톡방과 전화로 조율하던 문제를 다룹니다.<br>2026-08-19 App Store, Google Play, 웹에 출시했고 가입 회원은 485명입니다.<br>앱·웹 커밋의 87.5%, 서버 커밋의 72.8%를 작성했습니다.</p>
+<p class="stack">React Native(Expo), TypeScript, Java 17, Spring Boot 3.2, PostgreSQL 17, Redis, Cloudflare Workers, Docker, GitHub Actions</p>
+<ul>
+  <li>큐 매칭 N+1 조회와 요청 스레드 계산 분리: SQL <span class="num">1,259개 → 25개</span>, 응답 <span class="num">6.30초 → 0.51초</span></li>
+  <li>웹 API 같은 도메인 경유로 CORS 사전 요청 제거: 로그인 요청 <span class="num">276ms → 139ms</span></li>
+  <li>웹 글꼴 부분 집합과 화면 분할: 첫 화면 전송량 <span class="num">9,384KB → 2,360KB</span></li>
+  <li>읽기 전용 복제본의 기동 실패 수정: 스탠바이 재시작 <span class="num">2,973회 → 0회</span></li>
+  <li>체육관 대관현황표 사진 등록: 인식 모델 11개 비교, 장당 <span class="num">$0.0144</span> 모델 선택</li>
+  <li>팀 문서 사이트 docs.nuktu.com: 저장소 4곳 문서 통합, 빌드·배포·PR 문서 검사 자동화</li>
+</ul>
 
 <!-- 에게 -->
 <div class="org"><h2>에게(에너지게이트)</h2><span class="period">2026.11.19 - 2026.11.21</span></div>
 <div class="role"><h3>PNU × AWS Maestro AI 해커톤, LG전자 ES사업본부 출제, 4명 중 팀장</h3><span class="period">최우수상</span></div>
-<p class="role-desc">LG전자 ES사업본부(BECON 빌딩 제어 솔루션)가 출제한 과제는 "건물 운영자가 공간과 설비 상태를 직관적으로 파악하기 어렵다"였습니다.<br>3일 동안 도면 기반 3D 트윈과 AI 운영 도우미를 운영 사이트까지 배포했습니다.<br>Frontend 커밋의 77.9%, Lambda 커밋의 66.7%를 작성했습니다.</p>
-
-<div class="blk">
-  <h4>문제 정의 검증</h4>
-  <p class="desc">구현 전에 운영자 문제 자료 155건을 검토해 99건을 수록했습니다.<br>핵심 문장 35건은 원문과 대조했습니다.</p>
-  <ul>
-    <li>운영자는 BMS보다 재실자 민원으로 문제를 파악했습니다. 온도가 최대 민원이라는 시설관리자 응답은 68%입니다.</li>
-    <li>3D 화면과 자연어 질의를 직접 요구한 조사는 없었습니다. 2D 평면 보기를 요구사항 검토 항목에 넣고 검증 지표를 민원 호실 확인 시간과 빈 공간 운전 탐지량으로 정했습니다.</li>
-  </ul>
-</div>
-
-<div class="blk">
-  <h4>사용 대상과 기업 도입 구조</h4>
-  <ul>
-    <li>하루 종일 화면을 보는 40~50대 운영자를 기준으로 본문 16px, 상태 2중 표시, AI 답변 3문장(결론, 근거, 조치)을 적용했습니다.</li>
-    <li>판매사가 기업과 건물을 등록하고 고객사 운영자가 기업 코드로 가입하는 구조를 만들었습니다. 대기업 보안 요구 기준으로 보완 8항목을 정리했습니다.</li>
-  </ul>
-</div>
-
-<div class="blk">
-  <h4>서버리스 API와 AI</h4>
-  <p class="stack">React 19, TypeScript, three.js, AWS Lambda(Python 3.12), API Gateway, DynamoDB, Amazon Bedrock(Claude Sonnet 5.5), S3 Vectors, SageMaker, YOLO11s</p>
-  <ul>
-    <li>규정 문서 검색 저장소는 S3 Vectors(월 1센트 미만)를 OpenSearch Serverless(최소 월 214달러), Aurora pgvector(최소 월 73달러)와 비교해 선택했습니다.</li>
-    <li>Bedrock 구조화 응답으로 3문장 초과 답변을 <span class="num">3~12건 → 0건</span>으로 줄이고 평가 정답 35/35를 유지했습니다.</li>
-    <li>도면 실내기 인식 모델(YOLO11s)을 v1~v9로 개선해 처음 보는 건물 6동 평균 재현율을 <span class="num">0.339 → 0.758</span>로 올렸습니다.</li>
-  </ul>
-</div>
+<p class="role-desc">LG전자 ES사업본부(BECON 빌딩 제어 솔루션)가 출제한 건물 운영 3D 디지털트윈 과제입니다.<br>3일 동안 운영 사이트까지 배포했고 Frontend 커밋의 77.9%, Lambda 커밋의 66.7%를 작성했습니다.</p>
+<p class="stack">React 19, three.js, AWS Lambda(Python), API Gateway, DynamoDB, Amazon Bedrock, S3 Vectors, SageMaker, YOLO11s</p>
+<ul>
+  <li>문제 정의 검증: 운영자 문제 자료 <span class="num">155건</span> 전수조사, 핵심 문장 35건 원문 대조</li>
+  <li>규정 문서 검색 저장소: S3 Vectors 월 <span class="num">1센트 미만</span> 선택(OpenSearch Serverless 최소 월 214달러)</li>
+  <li>AI 답변 구조화 응답: 3문장 초과 <span class="num">3~12건 → 0건</span>, 평가 정답 35/35</li>
+  <li>도면 실내기 인식 YOLO11s: 처음 보는 건물 6동 재현율 <span class="num">0.339 → 0.758</span></li>
+</ul>
 
 <!-- 버스트래커 -->
 <div class="org"><h2>버스트래커(BBB)</h2><span class="period">2024.03 - 2025.11</span></div>
 <div class="role"><h3>캡스톤디자인, 5명(2024)·3명(2025)</h3><span class="period">은상</span></div>
-<p class="role-desc">학생은 통학버스 지연과 정류장 변경을 미리 확인하기 어려웠습니다.<br>2024년 학교 건물 단말기 방식으로 시작해 2025년 운전자 앱 GPS 방식으로 전환했고 CoShow 2025에 전시했습니다.</p>
-
-<div class="blk">
-  <h4>서버와 승객 앱</h4>
-  <p class="stack">Java 21, Spring Boot 3.3, MongoDB, WebSocket, OAuth2, JWT, React Native 0.78, Docker, GitHub Actions</p>
-  <ul>
-    <li>Google OAuth2·JWT 인증과 학교 이메일 인증 후 권한 승급을 구현했습니다. 실패 응답에도 200을 반환하는 외부 API는 응답 본문의 <code>success</code> 값으로 판정하도록 고쳤습니다.</li>
-    <li>버스 위치 미저장 원인 3개(<code>@Transactional</code> 내부 호출, 스케줄링 누락, 컬렉션 이름)를 찾아 버스별 최신값 5초 배치 저장으로 바꿨습니다.</li>
-    <li>React Native 승객 앱 전체와 자동 탑승 감지 서버 로직(50m 이내 2회 연속 탑승, 100m 초과 2회 연속 하차)을 구현했습니다.</li>
-    <li>이벤트 발행만 있고 리스너가 없어 2개월간 승객 앱에 버스 상태가 전달되지 않던 결함을 수정했습니다.</li>
-  </ul>
-</div>
+<p class="role-desc">학생이 통학버스 지연과 정류장 변경을 미리 확인하기 어려웠던 문제를 다룹니다.<br>2025년 운전자 앱 GPS 방식으로 전환해 버스 설치 기기를 없앴고 CoShow 2025에 전시했습니다.</p>
+<p class="stack">Java 21, Spring Boot 3.3, MongoDB, WebSocket, OAuth2, JWT, React Native, Docker, GitHub Actions</p>
+<ul>
+  <li>버스 위치 미저장 원인 3개 수정: 버스별 최신값 <span class="num">5초</span> 배치 저장</li>
+  <li>자동 탑승 감지: <span class="num">50m</span> 이내 2회 연속 탑승, <span class="num">100m</span> 초과 2회 연속 하차</li>
+  <li>React Native 승객 앱 전체(커밋 <span class="num">100%</span>), Google OAuth2·JWT 인증</li>
+  <li>버스 상태 이벤트 리스너 누락 수정: 승객 앱 상태 전달 없음 → <span class="num">3초</span> 주기 전달</li>
+</ul>
 
 <!-- 오픈소스 -->
-<div class="sec"><h2>Open Source</h2><span>직접 만들어 공개한 도구입니다.</span></div>
-<div class="grid2">
-  <div class="item">
-    <h5>devdog<span class="period">2026.09 - NOW</span></h5>
-    <p>한국어 기술 문서·커밋·주석 문체를 작성 규칙, 검사기, 훅으로 맞추는 Claude Code 플러그인</p>
-    <ul><li><a href="https://github.com/taehun2123/devdog">github.com/taehun2123/devdog</a></li></ul>
-  </div>
-  <div class="item">
-    <h5>devdog-docs</h5>
-    <p>넉터 문서 자동화를 일반화한 문서 구조·검사·위키 사이트 플러그인</p>
-    <ul><li>여러 저장소 문서를 사이트 1곳으로 모으고 재빌드 알림 워크플로 설치</li></ul>
-  </div>
-</div>
+<div class="sec"><h2>Open Source</h2></div>
+<ul class="oss">
+  <li><b>devdog</b> 한국어 기술 문서·커밋·주석 문체를 규칙, 검사기, 훅으로 맞추는 Claude Code 플러그인(github.com/taehun2123/devdog)</li>
+  <li><b>devdog-docs</b> 여러 저장소 문서를 위키 사이트 1곳으로 모으고 문서 검사를 설치하는 플러그인</li>
+</ul>
 
 <!-- 학력·수상·자격증 -->
-<div class="sec"><h2>Experience</h2><span>학력, 교육, 수상, 자격증입니다.</span></div>
+<div class="sec"><h2>Experience</h2></div>
 <div class="grid2">
   <div>
     <p class="cat">학력</p>

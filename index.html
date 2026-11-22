@@ -289,7 +289,7 @@
               <dt>문제</dt><dd>울산 스탠바이 백엔드가 재시작을 2,973회 반복했습니다.<br>약 3일 21시간 동안 장애 전환 대상 서버가 없었습니다.</dd>
               <dt>원인</dt><dd>서버 시작 시 실행되는 전적 백필이 <code>SELECT ... FOR UPDATE</code>를 실행했습니다.<br>스트리밍 복제본은 읽기 전용이라 SQLSTATE 25006으로 실패했습니다.<br>이 백필은 Flyway와 스케줄러 비활성화 설정과 무관하게 실행됐습니다.</dd>
               <dt>대안</dt><dd><code>pg_is_in_recovery()</code>는 복제 상태만 판별해 제외했습니다.<br>스케줄러 설정 연동은 DB 쓰기 가능 여부와 무관하고 승격 전 재기동 시 재발해 제외했습니다.</dd>
-              <dt>해결</dt><dd>트랜잭션 시작 직후 <code>SHOW transaction_read_only</code>가 on이면 백필을 건너뜁니다.<br>로컬 PostgreSQL 17 복제 환경에서 실패를 재현했습니다. <code>pg_promote()</code> 승격 후 백필이 실행되는 것까지 확인했습니다.</dd>
+              <dt>해결</dt><dd>트랜잭션 시작 직후 <code>SHOW transaction_read_only</code>가 on이면 백필을 건너뜁니다.<br>로컬 PostgreSQL 17 복제 환경에서 실패를 재현했습니다.<br><code>pg_promote()</code> 승격 후 백필이 실행되는 것까지 확인했습니다.</dd>
               <dt>담당</dt><dd>장애 분석, 수정, 회귀 테스트 2건 추가를 담당했습니다.</dd>
             </dl>
           </article>
@@ -334,7 +334,7 @@
               <dt>1차 해결</dt><dd>조회자당 1행인 조회 기록 표(<code>post_views</code>)를 추가했습니다.<br>처음 기록될 때만 조회 수를 올리고 작성자, 운영진, 비로그인 조회는 제외합니다.</dd>
               <dt>후속 장애</dt><dd>반영 후 약 20시간 동안 작성자와 재조회 회원의 글 상세가 500을 반환했습니다.<br>조회 기록 쿼리의 <code>@Modifying(clearAutomatically = true)</code>가 영속성 컨텍스트를 비웠습니다.<br>먼저 조회한 게시글이 준영속 상태가 되어 지연 로딩에서 <code>LazyInitializationException</code>이 발생했습니다.</dd>
               <dt>해결</dt><dd>조회 기록을 먼저 실행하고 게시글을 조회하도록 순서를 바꿨습니다.<br>개발 서버에서 수정 전 500, 수정 후 200을 확인하고 통합 테스트를 추가했습니다.</dd>
-              <dt>재발 방지</dt><dd>같은 원인의 장애가 2회째였습니다. <code>clearAutomatically</code> 사용 시 쿼리 전에 조회한 엔티티를 다시 쓰는지 확인하는 리뷰 기준을 장애 기록에 추가했습니다.</dd>
+              <dt>재발 방지</dt><dd>같은 원인의 장애가 2회째였습니다.<br><code>clearAutomatically</code> 사용 시 쿼리 전에 조회한 엔티티를 다시 쓰는지 확인하는 리뷰 기준을 장애 기록에 추가했습니다.</dd>
             </dl>
           </article>
 

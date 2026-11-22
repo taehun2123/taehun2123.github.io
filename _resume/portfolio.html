@@ -194,7 +194,6 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
   <p class="note">기본 스택: Java 17, Spring Boot 3.2, PostgreSQL 17(스트리밍 복제), Redis 7.4, Flyway(V0~V190), STOMP WebSocket, React Native 0.86(Expo SDK 57), TypeScript, Cloudflare Workers·Pages, Docker, GitHub Actions, Sentry.</p>
 
   <h3>1-6. 운영 장애 대응</h3>
-  <p>운영 중 장애는 문제, 원인, 검토한 대안, 해결, 전후 수치 순서로 기록했습니다.<br>아래는 운영 중 서버 장애 4건입니다.</p>
   <table>
     <thead><tr><th style="width:30mm">장애</th><th>원인</th><th>조치</th><th style="width:38mm">전후 수치</th></tr></thead>
     <tbody>
@@ -204,7 +203,6 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
       <tr><td class="k">다른 기기 로그인 시<br>세션 덮어쓰기<br>2026-10-30</td><td>계정당 리프레시 토큰 1개만 저장. 운영 Redis는 AOF 꺼짐 상태</td><td>저장 키를 기기 세션 단위(<code>refresh_token:&lt;userId&gt;:&lt;sid&gt;</code>)로 분리, Redis AOF <code>everysec</code> 전환</td><td>갱신 거부 7건 해소, 배포 전후 세션 키 24개 유지</td></tr>
     </tbody>
   </table>
-  <p class="note">장애 기록과 기술 선택 기록은 비공개 문서 사이트(docs.nuktu.com)에 있습니다.<br>포트폴리오 웹의 넉터 구역에 트러블슈팅 5건의 상세 내용이 있습니다: <a href="https://taehun2123.github.io/#nuktu">https://taehun2123.github.io/#nuktu</a></p>
 </section>
 
 <!-- 2. 에게 -->

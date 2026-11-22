@@ -21,7 +21,8 @@ a { color: inherit; text-decoration: none; }
 .name span { font-size: 12pt; font-weight: 400; margin-left: 10px; letter-spacing: 0; }
 .logo { height: 12mm; width: auto; }
 .contact { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 8.8pt; color: var(--body); }
-.contact b { color: var(--ink); font-weight: 600; margin-right: 4px; }
+.contact b, .apply b { color: var(--ink); font-weight: 600; margin-right: 6px; }
+.apply { margin-top: 6px; font-size: 9pt; }
 h2 { font-size: 11pt; font-weight: 700; margin: 16px 0 6px; padding-bottom: 4px; border-bottom: 1px solid var(--ink); }
 .summary li { margin: 2px 0; }
 ul { padding-left: 1.05em; }
@@ -56,18 +57,19 @@ ul { padding-left: 1.05em; }
       <span><b>Portfolio</b>taehun2123.github.io</span>
       <span><b>Blog</b>taehun2123.github.io/blog</span>
     </div>
+    <div class="apply"><b>지원</b>당근 2027 프로덕트 빌더 인턴십, 커뮤니티 팀(Software Engineer, Backend)</div>
   </div>
   <img class="logo" src="../assets/taehun-clay-bold.svg" alt="태훈">
 </div>
 
 <h2>요약</h2>
 <ul class="summary">
-  <li>농구 매칭 앱 넉터를 App Store·Google Play에 출시하고 회원 <span class="num">428명</span>(2026-11-18) 규모로 운영했습니다.</li>
-  <li>React Native 앱·웹, Spring Boot 백엔드, 서버리스 AWS API를 개발하고 배포했습니다.</li>
-  <li>사용자 조건을 먼저 정의합니다. 넉터 페르소나 8명 사용 테스트로 불편 216건을 102건으로 정리해 수정했습니다.</li>
+  <li>동네 농구 커뮤니티 앱 넉터를 직접 개발해 App Store·Google Play·웹에 출시했습니다. 가입 회원은 <span class="num">485명</span>(2026-11-22)입니다.</li>
+  <li>Spring Boot 서버(API 251개, PostgreSQL, Redis)를 설계·운영하고 React Native 앱·웹 화면 58개를 개발했습니다.</li>
+  <li>직접 사용하며 찾은 불편을 고칩니다. 커뮤니티 글 조회 수 중복을 회원당 1회 집계로 바꾸고 웹 로그인 요청을 <span class="num">276ms → 139ms</span>로 단축했습니다.</li>
   <li>기술은 비용과 성능 기준으로 비교한 뒤 선택합니다. 넉터 기술 선택 기록 62건 중 56건을 작성했습니다.</li>
-  <li>장애·개선 기록 <span class="num">122건</span>을 문제, 원인, 해결, 전후 수치 순서로 작성했습니다.</li>
-  <li>세 프로젝트에서 직접 작성해 병합한 PR은 <span class="num">2,025건</span>입니다.</li>
+  <li>Claude Code 플러그인 devdog를 만들어 공개했습니다. 코딩 에이전트 최대 4개를 worktree로 분리해 병렬로 운용합니다.</li>
+  <li>장애·개선 기록 <span class="num">122건</span>을 작성했고, 세 프로젝트에서 직접 작성해 병합한 PR은 <span class="num">2,025건</span>입니다.</li>
 </ul>
 
 <h2>프로젝트</h2>

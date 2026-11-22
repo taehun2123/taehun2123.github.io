@@ -29,8 +29,8 @@
 | `index.html` | 포트폴리오 본문(요약, 프로젝트 3개, 이력, 연락처) |
 | `assets/site.css` | 디자인 토큰(빨강 1색, 잉크, 회색 단계), IBM Plex Sans KR, 반응형 규칙 |
 | `assets/video/` | 시연 영상 3개(`nuktu-demo.mp4`, `ege-demo.mp4`, `bbb-demo.mp4`) |
-| `assets/taehun-single-clay.svg` | 가로형 워드마크 로고. 웹 상단 바, 이력서·포트폴리오 PDF 머리에 사용 |
-| `assets/th-single-clay.svg` | 정사각형 심볼 로고. 파비콘에 사용 |
+| `assets/taehun-blue-clay.svg` | 가로형 워드마크 로고. 웹 상단 바, 이력서·포트폴리오 PDF 머리에 사용 |
+| `assets/th-blue-clay.svg` | 정사각형 심볼 로고. 파비콘에 사용 |
 | `assets/img/` | 영상 포스터 이미지 3개 |
 | `assets/kim-taehun-resume.pdf` | 다운로드용 이력서 |
 | `assets/kim-taehun-portfolio.pdf` | 당근 제출용 서비스 소개 PDF(A4 6쪽). 팀 구성과 담당, 지표, 사용자 문제와 변경, 기술 선택 순서 |

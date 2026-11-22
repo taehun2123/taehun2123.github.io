@@ -4,9 +4,9 @@
  <feGaussianBlur in="SourceAlpha" stdDeviation="22" result="soft"/>
  <feOffset in="soft" dx="10" dy="15" result="down"/>
  <feComposite in="SourceAlpha" in2="down" operator="out" result="lit"/>
- <feFlood flood-color="#ff376f" flood-opacity=".48"/><feComposite in2="lit" operator="in" result="shine"/>
+ <feFlood flood-color="#469FEE" flood-opacity=".48"/><feComposite in2="lit" operator="in" result="shine"/>
  <feOffset in="soft" dx="-10" dy="-15" result="up"/>
  <feComposite in="SourceAlpha" in2="up" operator="out" result="rim"/>
- <feFlood flood-color="#98052f" flood-opacity=".54"/><feComposite in2="rim" operator="in" result="shade"/>
+ <feFlood flood-color="#004886" flood-opacity=".54"/><feComposite in2="rim" operator="in" result="shade"/>
  <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="shade"/><feMergeNode in="shine"/></feMerge>
- </filter></defs><use xlink:href="#mark" color="#e00b41" filter="url(#clay)"/></svg>
+ </filter></defs><use xlink:href="#mark" color="#0070CC" filter="url(#clay)"/></svg>

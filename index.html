@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>김태훈 포트폴리오</title>
+<meta name="description" content="백엔드 개발자 김태훈의 포트폴리오입니다. 넉터, 에게, 버스트래커 3개 프로젝트의 트러블슈팅과 기여도를 정리했습니다.">
+<meta property="og:title" content="김태훈 포트폴리오">
+<meta property="og:description" content="넉터, 에게, 버스트래커 3개 프로젝트의 트러블슈팅과 기여도">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://taehun2123.github.io/">
+<meta property="og:image" content="https://taehun2123.github.io/assets/img/ege-poster.jpg">
+<meta name="theme-color" content="#25282b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="맨 위로">TK</a>
+    <nav class="nav-links" aria-label="구역">
+      <a href="#summary">요약</a>
+      <a href="#nuktu">넉터</a>
+      <a href="#ege">에게</a>
+      <a href="#bustracker">버스트래커</a>
+      <a href="#history">이력</a>
+      <a href="#contact">연락처</a>
+    </nav>
+    <a class="pill pill-primary pill-sm" href="assets/kim-taehun-resume.pdf" download><svg><use href="#i-down"/></svg>이력서 PDF</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 첫 화면 -->
+<section class="band-dark hero">
+  <div class="wrap">
+    <h1 class="hero-name">Taehun<br>Kim</h1>
+    <p class="hero-statement"><strong>백엔드 개발자 김태훈</strong>입니다. 출시한 서비스의 장애를 원인과 전후 수치로 기록하고 해결합니다.</p>
+    <dl class="hero-facts">
+      <div><dt>닉네임</dt><dd><a href="https://github.com/taehun2123">taehun2123</a></dd></div>
+      <div><dt>관심 분야</dt><dd>백엔드 API 설계<br>서비스 운영과 장애 대응<br>AI 기능 통합</dd></div>
+      <div><dt>학력</dt><dd>부산대학교 정보컴퓨터공학부 편입<br>울산과학대학교 수석 졸업</dd></div>
+      <div><dt>연락처</dt><dd><a href="mailto:taehun@pusan.ac.kr">taehun@pusan.ac.kr</a><br><a href="tel:01033438636">010-3343-8636</a></dd></div>
+    </dl>
+    <div class="pill-row">
+      <a class="pill pill-primary" href="assets/kim-taehun-resume.pdf" download><svg><use href="#i-down"/></svg>이력서 PDF 다운로드</a>
+      <a class="pill pill-on-dark" href="https://github.com/taehun2123">GitHub<svg><use href="#i-out"/></svg></a>
+      <a class="pill pill-on-dark" href="https://taehun2123.github.io/blog/">기술 블로그<svg><use href="#i-out"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- 요약 -->
+<section class="band-light section" id="summary">
+  <div class="wrap">
+    <h2 class="h-section">프로젝트 요약</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-value">428<small>명</small></div><div class="kpi-label">넉터 운영 회원 수</div><div class="kpi-note">2026-11-18 운영 DB 기준</div></div>
+      <div class="kpi"><div class="kpi-value">2,025<small>건</small></div><div class="kpi-label">직접 작성해 병합한 PR</div><div class="kpi-note">3개 프로젝트 저장소 합계</div></div>
+      <div class="kpi"><div class="kpi-value">122<small>건</small></div><div class="kpi-label">장애·개선 기록 문서</div><div class="kpi-note">넉터 82건, 에게 40건</div></div>
+      <div class="kpi"><div class="kpi-value">6<small>건</small></div><div class="kpi-label">수상</div><div class="kpi-note">캡스톤디자인 은상 2회 포함</div></div>
+    </div>
+
+    <table class="table summary-table" style="margin-top:72px">
+      <thead><tr><th>프로젝트</th><th>기간</th><th>팀</th><th>담당</th><th>기여(비병합 커밋)</th><th>결과</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="#nuktu">넉터</a></td>
+          <td data-label="기간" class="num">2026.08 ~ 운영 중</td>
+          <td data-label="팀">개발 3명</td>
+          <td data-label="담당">백엔드, 앱·웹, 인프라 운영</td>
+          <td data-label="기여" class="num">Backend 72.8%, App 87.5%</td>
+          <td data-label="결과">App Store·Google Play 출시, 회원 428명</td>
+        </tr>
+        <tr>
+          <td><a href="#ege">에게</a></td>
+          <td data-label="기간" class="num">2026.11.19 ~ 11.21</td>
+          <td data-label="팀">4명</td>
+          <td data-label="담당">웹, 서버리스 API, 도면 인식 모델, 배포</td>
+          <td data-label="기여" class="num">Frontend 77.9%, Lambda 66.7%</td>
+          <td data-label="결과">해커톤 최종 발표, AI 평가 35/35</td>
+        </tr>
+        <tr>
+          <td><a href="#bustracker">버스트래커</a></td>
+          <td data-label="기간" class="num">2024.03 ~ 2025.11</td>
+          <td data-label="팀">5명(2024), 3명(2025)</td>
+          <td data-label="담당">백엔드, 앱, CI/CD</td>
+          <td data-label="기여" class="num">Backend 71.0%(2024), 50.0%(2025), 승객 앱 100%</td>
+          <td data-label="결과">캡스톤 은상, CoShow 2025 전시, Android 앱 배포</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 넉터 -->
+<section id="nuktu">
+  <div class="band-dark project-head">
+    <div class="wrap">
+      <h2 class="project-title">Nuktu</h2>
+      <dl class="project-meta">
+        <div><dt>서비스</dt><dd>농구 매칭 앱 넉터</dd></div>
+        <div><dt>기간</dt><dd>2026.08 ~ 운영 중</dd></div>
+        <div><dt>팀</dt><dd>개발 3명</dd></div>
+        <div><dt>담당</dt><dd>백엔드, 앱·웹, 인프라 운영</dd></div>
+        <div><dt>상태</dt><dd>App Store, Google Play 출시</dd></div>
+      </dl>
+      <div class="project-intro portrait">
+        <figure>
+          <div class="video-frame portrait">
+            <video controls muted playsinline preload="metadata" poster="assets/img/nuktu-poster.jpg" aria-label="넉터 앱 화면 녹화">
+              <source src="assets/video/nuktu-demo.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="video-cap">실제 앱 화면 녹화 10개, 119초, 소리 없음. 모집글, 빠른 매칭, 경기장, 대관, 클럽, 클럽 운영, 티어, 오픈채팅, 넉넉이, 챌린지 순서입니다.</figcaption>
+        </figure>
+        <div>
+          <div class="intro-block">
+            <div class="intro-label">문제 정의</div>
+            <div class="lead">
+              <p>농구 동호회 운영진은 게스트 모집, 친선전 상대 섭외, 체육관 대관을 단톡방과 전화로 처리합니다.</p>
+              <p>창업팀 조사에서 운영진 1명은 경기 1회를 조율하는 데 1~2시간 이상을 사용했습니다.</p>
+              <p>넉터는 매칭, 대관, 클럽 운영, 경기 기록을 앱 하나에서 처리합니다.</p>
+            </div>
+          </div>
+          <div class="intro-block">
+            <div class="intro-label">운영 지표</div>
+            <div class="kpis two" style="margin-top:12px">
+              <div class="kpi"><div class="kpi-value">428<small>명</small></div><div class="kpi-label">가입 회원</div><div class="kpi-note">2026-11-18 운영 DB</div></div>
+              <div class="kpi"><div class="kpi-value">139<small>곳</small></div><div class="kpi-label">등록 경기장</div><div class="kpi-note">2026-11-18 운영 DB</div></div>
+              <div class="kpi"><div class="kpi-value">41<small>개</small></div><div class="kpi-label">개설 클럽</div><div class="kpi-note">2026-11-18 운영 DB</div></div>
+              <div class="kpi"><div class="kpi-value">53<small>위</small></div><div class="kpi-label">App Store 스포츠 일간 순위</div><div class="kpi-note">2026-09-02</div></div>
+            </div>
+          </div>
+          <div class="intro-block">
+            <div class="intro-label">링크</div>
+            <div class="pill-row" style="margin-top:4px">
+              <a class="pill pill-on-dark pill-sm" href="https://apps.apple.com/kr/app/id6801552960">App Store<svg><use href="#i-out"/></svg></a>
+              <a class="pill pill-on-dark pill-sm" href="https://play.google.com/store/apps/details?id=com.pnu.basketball">Google Play<svg><use href="#i-out"/></svg></a>
+              <a class="pill pill-on-dark pill-sm" href="https://app.nuktu.com">웹 앱<svg><use href="#i-out"/></svg></a>
+              <a class="pill pill-on-dark pill-sm" href="https://nuktu.com">서비스 소개<svg><use href="#i-out"/></svg></a>
+            </div>
+            <p class="video-cap">소스 코드는 NUKTU 조직의 비공개 저장소에 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band-light section">
+    <div class="wrap">
+      <div class="block contrib">
+        <div>
+          <h3 class="h-sub">기여도</h3>
+          <ul class="meters">
+            <li class="meter"><span class="meter-name">Backend</span><span class="meter-track"><span class="meter-fill" style="width:72.8%"></span></span><span class="meter-fig"><b>72.8%</b><span>643 / 883 커밋</span></span></li>
+            <li class="meter"><span class="meter-name">App·Web</span><span class="meter-track"><span class="meter-fill" style="width:87.5%"></span></span><span class="meter-fig"><b>87.5%</b><span>1,098 / 1,255 커밋</span></span></li>
+            <li class="meter"><span class="meter-name">Partner</span><span class="meter-track"><span class="meter-fill" style="width:97.9%"></span></span><span class="meter-fig"><b>97.9%</b><span>137 / 140 커밋</span></span></li>
+            <li class="meter"><span class="meter-name">Docs</span><span class="meter-track"><span class="meter-fill" style="width:88%"></span></span><span class="meter-fig"><b>88.0%</b><span>586 / 666 커밋</span></span></li>
+          </ul>
+          <p class="meter-note">병합 커밋을 제외한 수치입니다. 직접 작성해 병합한 PR은 1,520건입니다. 장애 전환 서버 최초 구축과 CI 초기 구성은 팀원이 담당했습니다.</p>
+        </div>
+        <div>
+          <h3 class="h-sub">담당 업무</h3>
+          <ul class="did">
+            <li>Spring Boot 백엔드에서 매칭 큐, 모집글, 클럽, 대관, 채팅, 푸시 알림 도메인을 구현했습니다.</li>
+            <li>React Native(Expo) 앱과 웹을 개발했습니다. 화면 58개를 iOS, Android, 웹에 같은 코드로 배포합니다.</li>
+            <li>제휴 체육관용 파트너 앱·웹에서 대관 예약, 입금 확인, 기기별 푸시를 구현했습니다.</li>
+            <li>Mac mini blue/green 배포, 울산 스탠바이 복제 서버, 자체 CI 러너 4대를 운영했습니다.</li>
+            <li>장애 기록 82건과 기술 선택 기록 62건을 문서 저장소에서 관리했습니다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3 class="h-sub">기술</h3>
+        <dl class="stack">
+          <dt>백엔드</dt><dd><span class="chip">Java 17</span><span class="chip">Spring Boot 3.2</span><span class="chip">JPA</span><span class="chip">PostgreSQL 17</span><span class="chip">Redis 7.4</span><span class="chip">Flyway</span><span class="chip">STOMP WebSocket</span><span class="chip">FCM</span></dd>
+          <dt>앱·웹</dt><dd><span class="chip">React Native 0.86</span><span class="chip">Expo SDK 57</span><span class="chip">TypeScript</span><span class="chip">Zustand</span><span class="chip">네이버 지도</span></dd>
+          <dt>인프라</dt><dd><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">GHCR</span><span class="chip">nginx</span><span class="chip">Cloudflare Workers·Pages</span><span class="chip">PostgreSQL 스트리밍 복제</span></dd>
+          <dt>관측</dt><dd><span class="chip">Sentry</span><span class="chip">Prometheus</span><span class="chip">PostHog</span></dd>
+        </dl>
+      </div>
+
+      <div class="block">
+        <h3 class="h-sub">트러블슈팅</h3>
+        <div class="cases">
+
+          <article class="case">
+            <div class="case-side">
+              <div class="case-no">1</div>
+              <h4 class="h-card">큐 매칭 요청 6초 대기</h4>
+              <div class="case-tags"><span class="chip">2026-08-21</span><span class="chip">Backend</span><span class="chip">N+1 조회</span></div>
+              <div class="case-result">
+                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
+                  <tr><td>요청당 SQL</td><td>1,259개</td><td class="after">25개</td></tr>
+                  <tr><td>응답 시간</td><td>6.30초</td><td class="after">0.51초</td></tr>
+                  <tr><td>기존 테스트</td><td>197건 통과</td><td class="after">197건 통과</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <dl class="case-body">
+              <dt>문제</dt><dd>빠른 매칭 큐 등록 1회에 SQL 1,259개가 실행됐습니다. 사용자는 등록 버튼을 누른 뒤 6.30초를 기다렸습니다. 기능 추가 후 SQL 로그를 집계해 발견했습니다.</dd>
+              <dt>원인</dt><dd>후보자 변환 코드가 사용자마다 요약 조회를 따로 호출했습니다. 1명당 쿼리 3개가 실행됐고 실제 사용 값은 <code>playScore</code> 1개였습니다. 지역 전체 매칭 계산도 요청 스레드에서 처리했습니다.</dd>
+              <dt>판단</dt><dd>쿼리 수만 감소시키면 대기 1,000건에서 매칭 계산 시간이 그대로 남습니다. 따라서 조회 방식과 작업 위치를 함께 바꿨습니다.</dd>
+              <dt>해결</dt><dd>사용자 요약을 일괄 조회로 바꾸고 대기 인원은 개수 전용 쿼리로 셉니다. 매칭은 등록 티켓 1건 기준 즉시 매칭과 60초 주기 지역 배치로 분리했습니다.</dd>
+              <dt>측정</dt><dd>사용자 200명, 대기 티켓 60건, 모집글 15건 조건에서 측정했습니다. 매칭이 성립하는 요청은 201쿼리, 1.27초입니다.</dd>
+            </dl>
+          </article>
+
+          <article class="case">
+            <div class="case-side">
+              <div class="case-no">2</div>
+              <h4 class="h-card">웹 API 응답 지연과 CORS 사전 요청</h4>
+              <div class="case-tags"><span class="chip">2026-11-18</span><span class="chip">Frontend #802~#804</span><span class="chip">Cloudflare Worker</span></div>
+              <div class="case-result">
+                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
+                  <tr><td>로그인 요청 중앙값</td><td>276ms</td><td class="after">139ms</td></tr>
+                  <tr><td>사전 요청</td><td>요청마다 1회</td><td class="after">0회</td></tr>
+                  <tr><td>사용자 IP 기록</td><td>유지</td><td class="after">유지</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <dl class="case-body">
+              <dt>문제</dt><dd>웹 사용자가 체감 응답 약 1.5초를 보고했습니다. 같은 기능의 앱 응답은 약 1.0초였습니다.</dd>
+              <dt>원인</dt><dd>웹(app.nuktu.com)이 다른 도메인(api.nuktu.com)을 호출했습니다. 인증 헤더가 있는 요청마다 OPTIONS 사전 요청이 291~375ms 추가됐습니다. 사전 요청 캐시는 주소별로 저장되어 페이지 번호가 바뀌면 다시 발생했습니다.</dd>
+              <dt>대안</dt><dd>Pages 함수 경유는 사용자 IP가 Cloudflare 주소로 바뀝니다. 이 경우 비로그인 IP 제한이 웹 사용자 전체에 함께 적용되어 제외했습니다. API 도메인 프록시 해제는 서버 공인 IP가 노출되어 제외했습니다.</dd>
+              <dt>해결</dt><dd>Cloudflare Worker를 <code>app.nuktu.com/api/*</code> 경로에 배치했습니다. 웹은 접속 호스트가 운영 도메인일 때 같은 도메인 <code>/api</code>로 요청합니다.</dd>
+              <dt>측정</dt><dd>운영 브라우저에서 매번 다른 주소로 10회씩 2번 측정했습니다. 중앙값은 276·289ms에서 139·147ms로 감소했습니다.</dd>
+            </dl>
+          </article>
+
+          <article class="case">
+            <div class="case-side">
+              <div class="case-no">3</div>
+              <h4 class="h-card">스탠바이 서버 기동 실패와 장애 전환 공백</h4>
+              <div class="case-tags"><span class="chip">2026-11-14</span><span class="chip">Backend #548, #549</span><span class="chip">PostgreSQL 복제</span></div>
+              <div class="case-result">
+                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
+                  <tr><td>컨테이너 재시작</td><td>2,973회</td><td class="after">0회</td></tr>
+                  <tr><td>기동</td><td>실패 반복</td><td class="after">17.1초</td></tr>
+                  <tr><td>ERROR 로그</td><td>기동마다 발생</td><td class="after">0건</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <dl class="case-body">
+              <dt>문제</dt><dd>울산 스탠바이 백엔드가 재시작을 2,973회 반복했습니다. 약 3일 21시간 동안 장애 전환 대상 서버가 없었습니다.</dd>
+              <dt>원인</dt><dd>서버 시작 시 실행되는 전적 백필이 <code>SELECT ... FOR UPDATE</code>를 실행했습니다. 스트리밍 복제본은 읽기 전용이라 SQLSTATE 25006으로 실패했습니다. 이 백필은 Flyway와 스케줄러 비활성화 설정과 무관하게 실행됐습니다.</dd>
+              <dt>대안</dt><dd><code>pg_is_in_recovery()</code>는 복제 상태만 판별해 제외했습니다. 스케줄러 설정 연동은 DB 쓰기 가능 여부와 무관하고 승격 전 재기동 시 재발해 제외했습니다.</dd>
+              <dt>해결</dt><dd>트랜잭션 시작 직후 <code>SHOW transaction_read_only</code>가 on이면 백필을 건너뜁니다. 로컬 PostgreSQL 17 복제 환경에서 실패를 재현했습니다. <code>pg_promote()</code> 승격 후 백필이 실행되는 것까지 확인했습니다.</dd>
+              <dt>담당</dt><dd>장애 분석, 수정, 회귀 테스트 2건 추가를 담당했습니다.</dd>
+            </dl>
+          </article>
+
+          <article class="case">
+            <div class="case-side">
+              <div class="case-no">4</div>
+              <h4 class="h-card">느린 회선의 웹 스플래시 고정</h4>
+              <div class="case-tags"><span class="chip">2026-11-15</span><span class="chip">Frontend #721, #724</span><span class="chip">웹 성능</span></div>
+              <div class="case-result">
+                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
+                  <tr><td>첫 화면 전송량</td><td>9,384KB</td><td class="after">2,360KB</td></tr>
+                  <tr><td>글꼴 용량</td><td>5,388KB</td><td class="after">789KB</td></tr>
+                  <tr><td>1.6Mbps 첫 글자</td><td>120초 내 미표시</td><td class="after">12.0초</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <dl class="case-body">
+              <dt>문제</dt><dd>3Mbps 이하 회선에서 웹 첫 화면이 90초 넘게 스플래시 상태로 유지됐습니다. 첫 화면 9,384KB 중 글꼴이 5,388KB(57%)였습니다.</dd>
+              <dt>원인</dt><dd>웹 글꼴 로더(<code>expo-font</code>)는 12초가 지나면 실패를 반환합니다. 앱 시작 코드는 글꼴 로딩 완료만 확인해 실패 시 화면에 진입하지 못했습니다. 글꼴 5종을 12초 안에 받으려면 약 3.5Mbps가 필요합니다.</dd>
+              <dt>대안</dt><dd>언어 설정과 로그인 복원 대기 가설은 6Mbps에서 정상 동작해 제외했습니다. Metro 자산으로 woff2를 제공하는 안은 기본 자산 확장자에 woff2가 없어 제외했습니다.</dd>
+              <dt>해결</dt><dd>글꼴 오류 시에도 화면에 진입하도록 시작 조건을 바꿨습니다. 글꼴은 woff2 3종, 한글 2,350자 부분 집합으로 축소하고 preload했습니다. 화면별 코드 분할과 HTML 스플래시를 추가했습니다.</dd>
+              <dt>측정</dt><dd>Playwright Chrome 390×844, 캐시 끔, 지연 150ms, CPU 4배 감속 조건에서 운영 웹을 측정했습니다.</dd>
+            </dl>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 에게 -->
+<section id="ege">
+  <div class="band-dark project-head">
+    <div class="wrap">
+      <h2 class="project-title">Energy Gate</h2>
+      <dl class="project-meta">
+        <div><dt>서비스</dt><dd>에게(에너지게이트), 건물 운영 3D 디지털트윈</dd></div>
+        <div><dt>기간</dt><dd>2026.11.19 ~ 11.21, 3일 해커톤</dd></div>
+        <div><dt>팀</dt><dd>4명</dd></div>
+        <div><dt>담당</dt><dd>웹, 서버리스 API, 도면 인식 모델, 배포</dd></div>
+        <div><dt>결과</dt><dd>최종 발표, 운영 사이트 배포</dd></div>
+      </dl>
+      <div class="project-intro">
+        <figure>
+          <div class="video-frame">
+            <video controls playsinline preload="metadata" poster="assets/img/ege-poster.jpg" aria-label="에게 시연 영상">
+              <source src="assets/video/ege-demo.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="video-cap">시연 영상 3분 59초, 음성 포함. 기업 등록, 도면 업로드, 3D 트윈 생성, AI 운영 도우미, 운전 시뮬레이션, 전력 분석 순서입니다.</figcaption>
+        </figure>
+        <div>
+          <div class="intro-block">
+            <div class="intro-label">문제 정의</div>
+            <div class="lead">
+              <p>건물 운영자는 공간 현황과 냉난방 설비 상태를 서로 다른 화면에서 확인합니다.</p>
+              <p>빈 회의실 냉방 같은 낭비는 운영자가 직접 찾아 조치해야 합니다.</p>
+              <p>에게는 PDF·CAD 도면으로 3D 트윈을 만듭니다. 운영자는 트윈에서 호실 상태를 보고 자연어로 조회와 제어 예약을 요청합니다.</p>
+            </div>
+          </div>
+          <div class="intro-block">
+            <div class="intro-label">링크</div>
+            <div class="pill-row" style="margin-top:4px">
+              <a class="pill pill-on-dark pill-sm" href="https://d2y0m857hv27mz.cloudfront.net">운영 사이트<svg><use href="#i-out"/></svg></a>
+            </div>
+            <p class="video-cap">운영 사이트는 로그인이 필요합니다. 소스 코드는 해커톤 팀 조직의 비공개 저장소에 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band-light section">
+    <div class="wrap">
+      <div class="block">
+        <h3 class="h-sub">핵심 수치</h3>
+        <div class="kpis">
+          <div class="kpi"><div class="kpi-value">35/35</div><div class="kpi-label">AI 운영 도우미 평가 정답</div><div class="kpi-note">단일 턴 31문항, 다중 턴 4문항</div></div>
+          <div class="kpi"><div class="kpi-value">0.758</div><div class="kpi-label">처음 보는 건물 실내기 재현율</div><div class="kpi-note">평가 전용 6동 평균, 기존 0.339</div></div>
+          <div class="kpi"><div class="kpi-value">40<small>건</small></div><div class="kpi-label">장애·개선 기록</div><div class="kpi-note">3일 동안 작성</div></div>
+          <div class="kpi"><div class="kpi-value">13<small>개</small></div><div class="kpi-label">Lambda 함수</div><div class="kpi-note">AWS SAM 스택 5개</div></div>
+        </div>
+      </div>
+
+      <div class="block contrib">
+        <div>
+          <h3 class="h-sub">기여도</h3>
+          <ul class="meters">
+            <li class="meter"><span class="meter-name">Frontend</span><span class="meter-track"><span class="meter-fill" style="width:77.9%"></span></span><span class="meter-fig"><b>77.9%</b><span>95 / 122 커밋</span></span></li>
+            <li class="meter"><span class="meter-name">Lambda</span><span class="meter-track"><span class="meter-fill" style="width:66.7%"></span></span><span class="meter-fig"><b>66.7%</b><span>50 / 75 커밋</span></span></li>
+            <li class="meter"><span class="meter-name">ML 모델</span><span class="meter-track"><span class="meter-fill" style="width:93.3%"></span></span><span class="meter-fig"><b>93.3%</b><span>14 / 15 커밋</span></span></li>
+            <li class="meter"><span class="meter-name">Docs</span><span class="meter-track"><span class="meter-fill" style="width:99.3%"></span></span><span class="meter-fig"><b>99.3%</b><span>133 / 134 커밋</span></span></li>
+          </ul>
+          <p class="meter-note">병합 커밋을 제외한 수치입니다. 직접 작성해 병합한 PR은 141건입니다. 3D 트윈 외관, EnergyPlus 계산 서버, 기상청 연동은 팀원이 담당했습니다.</p>
+        </div>
+        <div>
+          <h3 class="h-sub">담당 업무</h3>
+          <ul class="did">
+            <li>React 웹에서 전체 현황, 건물 운영, 전력 분석, 운전 시뮬레이션, 도면 편집 화면을 구현했습니다.</li>
+            <li>Lambda(Python 3.12) 조회·관리 API와 WebSocket AI 응답 스트리밍을 구현했습니다.</li>
+            <li>Bedrock Claude Sonnet 5.5 운영 도우미의 구조화 응답과 평가 세트 35문항을 만들었습니다.</li>
+            <li>도면 실내기 기호 인식 모델(YOLO11s)을 SageMaker에서 v1~v9까지 학습하고 배포했습니다.</li>
+            <li>AWS SAM 배포와 장애·개선 기록 40건 작성을 담당했습니다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3 class="h-sub">기술</h3>
+        <dl class="stack">
+          <dt>웹</dt><dd><span class="chip">React 19</span><span class="chip">TypeScript</span><span class="chip">Vite</span><span class="chip">three.js</span><span class="chip">pdf.js</span></dd>
+          <dt>서버</dt><dd><span class="chip">AWS Lambda (Python 3.12)</span><span class="chip">API Gateway HTTP·WebSocket</span><span class="chip">Cognito</span><span class="chip">DynamoDB</span><span class="chip">S3</span><span class="chip">CloudFront</span><span class="chip">Step Functions</span><span class="chip">AWS SAM</span></dd>
+          <dt>AI</dt><dd><span class="chip">Amazon Bedrock</span><span class="chip">Claude Sonnet 5.5</span><span class="chip">Bedrock Knowledge Base</span><span class="chip">SageMaker</span><span class="chip">YOLO11s</span><span class="chip">ONNX</span></dd>
+        </dl>
+      </div>
+
+      <div class="block">
+        <h3 class="h-sub">트러블슈팅</h3>
+        <div class="cases">
+
+          <article class="case">
+            <div class="case-side">
+              <div class="case-no">1</div>
+              <h4 class="h-card">트윈 로딩 중 이전 화면 노출과 지연</h4>
+              <div class="case-tags"><span class="chip">2026-11-20</span><span class="chip">Frontend #33</span><span class="chip">Lambda #51</span></div>
+              <div class="case-result">
+                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
+                  <tr><td>자체 화면 노출</td><td>14회</td><td class="after">0회</td></tr>
+                  <tr><td>준비 시각(새 건물)</td><td>1.8초</td><td class="after">1.4초</td></tr>
+                  <tr><td>앱 JS 전송량</td><td>451KB</td><td class="after">133KB</td></tr>
+                  <tr><td>트윈 없는 건물 요청</td><td>18건</td><td class="after">0건</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <dl class="case-body">
+              <dt>문제</dt><dd>트윈을 여는 동안 트윈 자체 도구 줄과 0kW 지표가 잠깐 표시됐습니다. 시뮬레이션 입력과 층 카드 값도 로딩 중에 바뀌었습니다. 0.1초 간격 8초 측정에서 자체 화면이 14회 노출됐습니다.</dd>
+              <dt>원인</dt><dd>트윈 iframe은 앱의 첫 상태 메시지를 받은 뒤에 임베드 모드로 전환했습니다. 첫 보고는 호실 데이터 반영 전에 전송됐습니다. CloudFront 압축 설정이 없었고, 트윈 도면이 없는 건물도 트윈 파일 18건을 요청했습니다.</dd>
+              <dt>배제</dt><dd>CloudFront가 이전 HTML을 응답한다는 가설은 무효화 완료로 제외했습니다. API 처리 지연은 예열 상태 128ms 이하라 주원인에서 제외했습니다.</dd>
+              <dt>해결</dt><dd>트윈 주소에 <code>host=1</code>을 넣어 첫 표시부터 임베드 모드로 시작합니다. 앱 데이터 반영 후에만 보고합니다. 건물 목록에 <code>hasTwin</code>을 추가해 도면이 없으면 트윈을 불러오지 않습니다. CloudFront 압축을 켜고 캐시 헤더를 해시 파일과 HTML로 나눴습니다.</dd>
+              <dt>측정</dt><dd>지연 80ms, 10Mbps, API 300ms 조건에서 측정했습니다. 배포 후 응답 헤더의 <code>Content-Encoding: br</code>을 확인했습니다.</dd>
+            </dl>
+          </article>
+
+          <article class="case">
+            <div class="case-side">
+              <div class="case-no">2</div>
+              <h4 class="h-card">AI 답변 길이 편차</h4>
+              <div class="case-tags"><span class="chip">2026-11-20</span><span class="chip">Lambda #17, #18</span><span class="chip">Frontend #12</span></div>
+              <div class="case-result">
+                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
+                  <tr><td>3문장 초과 답변</td><td>3~12건</td><td class="after">0건</td></tr>
+                  <tr><td>평가 정답</td><td>35/35</td><td class="after">35/35</td></tr>
+                  <tr><td>응답 시간 중앙값</td><td>3.6~4.3초</td><td class="after">4.2초</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <dl class="case-body">
+              <dt>문제</dt><dd>운영 도우미 답변을 3문장 이하로 지시했습니다. 평가 35문항 중 3문장 초과 답변이 실행마다 3건, 8건, 12건으로 달랐습니다. 주 사용자인 40~50대 운영자가 읽는 분량이 일정하지 않았습니다.</dd>
+              <dt>원인</dt><dd>프롬프트 지침만으로는 모델 출력의 문장 수를 제한할 수 없었습니다.</dd>
+              <dt>대안</dt><dd>초과 답변 재작성은 해당 답변이 1~2초 지연되고 긴 답변이 먼저 표시되어 제외했습니다. 4문장으로 완화하는 안은 읽기 부담이 그대로라 제외했습니다.</dd>
+              <dt>해결</dt><dd>Bedrock 구조화 응답으로 결론, 근거, 조치 3칸을 받습니다. 서버가 칸마다 첫 문장만 화면에 전송합니다. 층을 지정하지 않은 제어 요청은 서버 검증 후 되묻습니다.</dd>
+              <dt>검증</dt><dd>실제 Bedrock 호출로 35문항을 평가했습니다. 응답 형식 테스트와 스트리밍 순서 테스트를 추가했습니다.</dd>
+            </dl>
+          </article>
+
+          <article class="case">
+            <div class="case-side">
+              <div class="case-no">3</div>
+              <h4 class="h-card">실내기 인식 모델의 실제 도면 일반화 실패</h4>
+              <div class="case-tags"><span class="chip">2026-11-20 ~ 21</span><span class="chip">YOLO11s</span><span class="chip">SageMaker</span></div>
+              <div class="case-result">
+                <table><thead><tr><th>항목</th><th>v7</th><th>v9</th></tr></thead><tbody>
+                  <tr><td>건물 평균 재현율</td><td>0.339</td><td class="after">0.758</td></tr>
+                  <tr><td>대수 합계 재현율</td><td>0.288</td><td class="after">0.566</td></tr>
+                  <tr><td>정밀도</td><td>0.381</td><td class="after">0.632</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <dl class="case-body">
+              <dt>문제</dt><dd>합성 도면으로 학습한 v1은 합성 평가에서 mAP50 0.995였습니다. 실제 초등학교 도면에서는 0.006이었습니다. 교실 카세트 6대를 모두 놓쳤고 계단을 실내기로 검출했습니다.</dd>
+              <dt>원인</dt><dd>모델이 합성 기호 모양에 과적합됐습니다. 평가 데이터를 학습과 같은 그리기 코드로 만들어 일반화를 측정하지 못했습니다. 2방향 카세트 클래스도 없었습니다.</dd>
+              <dt>대안</dt><dd>비전 언어 모델은 좌표 정밀도가 낮고 호출마다 비용이 발생해 제외했습니다. 공개 IFC만으로 학습하는 안은 공개 도면이 1동 수준이라 제외했습니다.</dd>
+              <dt>해결</dt><dd>학습 건물과 평가 건물을 분리했습니다. v9에 실제 도면 타일 425장과 기호 변형 3종을 추가했습니다. 모델 교체 기준을 대수 기준 재현율과 정밀도로 바꿨습니다.</dd>
+              <dt>한계</dt><dd>평가 전용 6동, 신뢰도 0.5 이상 기준입니다. 6동 중 1동은 재현율 0.124로 남아 있습니다.</dd>
+            </dl>
+          </article>
+
+          <article class="case">
+            <div class="case-side">
+              <div class="case-no">4</div>
+              <h4 class="h-card">운영 시작 0시 건물로 전력 분석 전체 400 오류</h4>
+              <div class="case-tags"><span class="chip">2026-11-21</span><span class="chip">Lambda #85</span><span class="chip">장애 대응</span></div>
+              <div class="case-result">
+                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
+                  <tr><td>전력 분석 API</td><td>400</td><td class="after">200</td></tr>
+                  <tr><td>영향 건물</td><td>10곳 전체</td><td class="after">0곳</td></tr>
+                  <tr><td>테스트</td><td>216개</td><td class="after">218개</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <dl class="case-body">
+              <dt>문제</dt><dd>운영 시간 00~24시 건물 4곳을 등록하자 전력 분석 API가 모든 건물에서 400을 반환했습니다. 약 25분 동안 등록 건물 10곳 전체의 전력 분석 화면이 오류였습니다.</dd>
+              <dt>원인</dt><dd>빈 공간 운전 판정이 운영 시작 1시간 전 시각을 <code>dt.time(h0 - 1, 30)</code>으로 만들었습니다. 운영 시작이 0시면 -1시가 되어 <code>ValueError</code>가 발생했습니다. 이 계산은 전체 건물을 한 번에 처리해 건물 1곳의 오류가 API 전체를 중단시켰습니다.</dd>
+              <dt>조사</dt><dd>핸들러가 내부 <code>ValueError</code>를 400으로 변환해 서버 결함이 요청 오류로 표시됐습니다. 인자가 없는 API도 같은 오류를 반환해 화면 요청 가설을 제외했습니다.</dd>
+              <dt>조치</dt><dd>06:25 해당 건물의 운영 시작을 01시로 바꿔 임시 복구했습니다. 판정 함수를 시각 조회 없이 계산하도록 수정했습니다. 06:40 배포 후 06:41 운영 시간을 원래 값으로 복원했습니다.</dd>
+              <dt>재발 방지</dt><dd>운영 시작 0시 건물을 포함한 회귀 테스트 2개를 추가했습니다. 수정 전 코드에서 운영 서버와 같은 오류 문구로 실패하는 것을 확인했습니다.</dd>
+            </dl>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 버스트래커 -->
+<section id="bustracker">
+  <div class="band-dark project-head">
+    <div class="wrap">
+      <h2 class="project-title">Bustracker</h2>
+      <dl class="project-meta">
+        <div><dt>서비스</dt><dd>통학·통근 버스 실시간 위치 서비스 BBB(Bus Buddy Buddy)</dd></div>
+        <div><dt>기간</dt><dd>2024.03 ~ 2025.11</dd></div>
+        <div><dt>팀</dt><dd>5명(2024 하드웨어 버전), 3명(2025 소프트웨어 버전)</dd></div>
+        <div><dt>담당</dt><dd>백엔드, 승객 앱, CI/CD</dd></div>
+        <div><dt>결과</dt><dd>캡스톤 은상(2024), CoShow 2025 전시</dd></div>
+      </dl>
+      <div class="project-intro">
+        <figure>
+          <div class="video-frame">
+            <video controls playsinline preload="metadata" poster="assets/img/bbb-poster.jpg" aria-label="버스트래커 발표와 시연 영상">
+              <source src="assets/video/bbb-demo.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="video-cap">발표·시연 영상 2분 41초, 음성 포함. 과제 개요, 관리자 웹 운행 배치, 운전자 앱 운행 시작, 승객 앱 실시간 위치 순서입니다.</figcaption>
+        </figure>
+        <div>
+          <div class="intro-block">
+            <div class="intro-label">문제 정의</div>
+            <div class="lead">
+              <p>학교·기업 통학버스 이용자는 버스 지연과 정류장 변경을 미리 확인하기 어렵습니다.</p>
+              <p>기존 버스 위치 서비스는 버스마다 GPS 단말기와 통신 장비를 설치해야 해서 도입 비용이 큽니다.</p>
+              <p>2024 하드웨어 버전은 IoT 단말기로 위치를 수집했습니다. 2025 소프트웨어 버전은 운전자 앱 GPS만 사용해 버스에 설치하는 기기를 없앴습니다.</p>
+            </div>
+          </div>
+          <div class="intro-block">
+            <div class="intro-label">링크</div>
+            <div class="pill-row" style="margin-top:4px">
+              <a class="pill pill-on-dark pill-sm" href="https://taehun2123.github.io/BBB-Download/">앱 다운로드 페이지<svg><use href="#i-out"/></svg></a>
+              <a class="pill pill-on-dark pill-sm" href="https://github.com/Hardware-BBB-App/BackEnd">2024 백엔드 코드<svg><use href="#i-out"/></svg></a>
+              <a class="pill pill-on-dark pill-sm" href="https://github.com/BBB-bus-buddy-buddy/App-Backend">2025 백엔드 코드<svg><use href="#i-out"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band-light section">
+    <div class="wrap">
+      <div class="block">
+        <h3 class="h-sub">핵심 수치</h3>
+        <div class="kpis">
+          <div class="kpi"><div class="kpi-value">0<small>대</small></div><div class="kpi-label">버스에 설치하는 기기</div><div class="kpi-note">2025 소프트웨어 버전</div></div>
+          <div class="kpi"><div class="kpi-value">10<small>초</small></div><div class="kpi-label">자동 탑승 감지 위치 확인 주기</div><div class="kpi-note">탑승 50m 이내, 하차 100m 초과, 각 2회 연속</div></div>
+          <div class="kpi"><div class="kpi-value">364<small>건</small></div><div class="kpi-label">직접 작성해 병합한 PR</div><div class="kpi-note">2024 백엔드 243건, 2025 백엔드 107건, 승객 앱 14건</div></div>
+          <div class="kpi"><div class="kpi-value">은상</div><div class="kpi-label">소프트웨어개발 캡스톤디자인 경진대회</div><div class="kpi-note">울산과학대학교 총장, 2024-11-08</div></div>
+        </div>
+      </div>
+
+      <div class="block contrib">
+        <div>
+          <h3 class="h-sub">기여도</h3>
+          <ul class="meters">
+            <li class="meter"><span class="meter-name">2024 Backend</span><span class="meter-track"><span class="meter-fill" style="width:71%"></span></span><span class="meter-fig"><b>71.0%</b><span>181 / 255 커밋</span></span></li>
+            <li class="meter"><span class="meter-name">2025 Backend</span><span class="meter-track"><span class="meter-fill" style="width:50%"></span></span><span class="meter-fig"><b>50.0%</b><span>65 / 130 커밋</span></span></li>
+            <li class="meter"><span class="meter-name">2025 승객 앱</span><span class="meter-track"><span class="meter-fill" style="width:100%"></span></span><span class="meter-fig"><b>100%</b><span>23 / 23 커밋</span></span></li>
+          </ul>
+          <p class="meter-note">병합 커밋을 제외한 수치입니다. 2025 백엔드는 2024-12 이후 커밋 기준입니다. 운전자 앱과 관리자 웹은 팀원이 담당했습니다.</p>
+        </div>
+        <div>
+          <h3 class="h-sub">담당 업무</h3>
+          <ul class="did">
+            <li>Google OAuth2 로그인, JWT 인증, 학교 이메일 인증 후 권한 승급을 구현했습니다.</li>
+            <li>IoT 단말기의 WebSocket 위치 수신, CSV 파싱, 배치 저장을 구현했습니다.</li>
+            <li>GitHub Actions 배포를 Elastic Beanstalk에서 Docker Hub 이미지와 웹훅 방식으로 전환했습니다.</li>
+            <li>2025년 백엔드를 조직, 노선, 관리자 대시보드 구조로 재구성했습니다. 825줄 BusService는 위치 처리 서비스를 분리해 283줄로 축소했습니다.</li>
+            <li>React Native 승객 앱 전체와 자동 탑승 감지 서버 로직을 구현했습니다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3 class="h-sub">기술</h3>
+        <dl class="stack">
+          <dt>백엔드</dt><dd><span class="chip">Java 21</span><span class="chip">Spring Boot 3.3</span><span class="chip">Spring Security</span><span class="chip">OAuth2 (Google, Apple)</span><span class="chip">JWT</span><span class="chip">MongoDB</span><span class="chip">WebSocket</span></dd>
+          <dt>앱</dt><dd><span class="chip">React Native 0.78</span><span class="chip">TypeScript</span><span class="chip">Zustand</span><span class="chip">네이버 지도</span></dd>
+          <dt>배포</dt><dd><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Docker Hub</span><span class="chip">AWS Elastic Beanstalk(2024 초기)</span></dd>
+        </dl>
+      </div>
+
+      <div class="block">
+        <h3 class="h-sub">트러블슈팅</h3>
+        <div class="cases">
+
+          <article class="case">
+            <div class="case-side">
+              <div class="case-no">1</div>
+              <h4 class="h-card">수신한 버스 위치의 DB 미반영</h4>
+              <div class="case-tags"><span class="chip">2024-10-15</span><span class="chip">Spring</span><span class="chip">MongoDB</span></div>
+              <div class="case-result">
+                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
+                  <tr><td>위치 DB 반영</td><td>미반영</td><td class="after">5초 주기 반영</td></tr>
+                  <tr><td>DB 쓰기</td><td>수신마다 1회</td><td class="after">버스당 5초 1회</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <dl class="case-body">
+              <dt>문제</dt><dd>단말기가 WebSocket으로 보낸 버스 위치가 MongoDB에 저장되지 않았습니다. 승객 앱 지도의 버스 위치가 갱신되지 않았습니다.</dd>
+              <dt>원인</dt><dd>원인은 3개였습니다. 같은 클래스 내부에서 호출하는 메서드의 <code>@Transactional</code>은 Spring 프록시를 거치지 않아 적용되지 않았습니다. 배치 저장 스케줄러는 <code>@EnableScheduling</code> 누락으로 실행되지 않았습니다. 갱신 쿼리의 컬렉션 이름 <code>bus</code>가 엔티티 선언 <code>Bus</code>와 대소문자가 달랐습니다.</dd>
+              <dt>해결</dt><dd>수신한 위치는 <code>ConcurrentHashMap</code>에 버스별 최신값 1개만 보관합니다. 5초 주기 배치가 보관한 값을 저장합니다. 스케줄링 설정과 컬렉션 이름도 수정했습니다.</dd>
+              <dt>판단</dt><dd>Spring Data MongoDB에는 JPA 변경 감지가 없습니다. 따라서 갱신 로직에서 저장 호출을 명시적으로 유지했습니다.</dd>
+            </dl>
+          </article>
+
+          <article class="case">
+            <div class="case-side">
+              <div class="case-no">2</div>
+              <h4 class="h-card">학교 인증 코드 오판정</h4>
+              <div class="case-tags"><span class="chip">2024-11-20</span><span class="chip">외부 API</span><span class="chip">권한</span></div>
+              <div class="case-result">
+                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
+                  <tr><td>틀린 인증 코드</td><td>인증 완료</td><td class="after">거부</td></tr>
+                  <tr><td>판정 기준</td><td>HTTP 상태 코드</td><td class="after">응답 본문 <code>success</code></td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <dl class="case-body">
+              <dt>문제</dt><dd>틀린 인증 코드를 입력해도 학교 인증이 완료됐습니다. 이 경우 GUEST 사용자가 USER 권한으로 승급됐습니다.</dd>
+              <dt>원인</dt><dd>외부 학교 이메일 인증 API(univcert)는 실패 응답에도 상태 코드 200을 반환했습니다. 기존 코드는 상태 코드 200만 확인했습니다.</dd>
+              <dt>해결</dt><dd>응답 본문의 <code>success</code> 값으로 성공 여부를 판정합니다. 권한 승급은 <code>success</code>가 true일 때만 실행합니다.</dd>
+              <dt>판단</dt><dd>외부 API의 성공 여부는 HTTP 상태 코드가 아니라 응답 본문 필드로 확인하도록 기준을 바꿨습니다.</dd>
+            </dl>
+          </article>
+
+          <article class="case">
+            <div class="case-side">
+              <div class="case-no">3</div>
+              <h4 class="h-card">버스 상태 이벤트 리스너 누락</h4>
+              <div class="case-tags"><span class="chip">2025-06-16</span><span class="chip">App-Backend #73</span><span class="chip">Spring Event</span></div>
+              <div class="case-result">
+                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
+                  <tr><td>이벤트 리스너</td><td>0개</td><td class="after">1개</td></tr>
+                  <tr><td>승객 앱 상태 전달</td><td>없음</td><td class="after">3초 주기</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <dl class="case-body">
+              <dt>문제</dt><dd>버스 위치는 서버에 저장됐지만 승객 앱에 버스 상태가 전달되지 않았습니다. 이 상태가 약 2개월 지속됐습니다.</dd>
+              <dt>원인</dt><dd>2025-04에 서비스 간 순환 참조(승객 → BusService → 운전자 → BusService)를 끊으려고 직접 호출을 이벤트 발행으로 바꿨습니다. 이때 발행 코드만 추가됐고 <code>@EventListener</code>는 코드에 없었습니다.</dd>
+              <dt>해결</dt><dd><code>BusStatusEventListener</code>(<code>@EventListener</code>, <code>@Async</code>)를 추가했습니다. 리스너는 같은 조직의 승객 WebSocket 세션에 <code>busUpdate</code>를 전송합니다.</dd>
+              <dt>영향</dt><dd>이벤트 방식은 발행자와 구독자의 연결을 컴파일 단계에서 확인하지 않습니다. 그래서 빌드와 기동은 정상이었고 결함이 약 2개월 동안 발견되지 않았습니다.</dd>
+            </dl>
+          </article>
+
+          <article class="case">
+            <div class="case-side">
+              <div class="case-no">4</div>
+              <h4 class="h-card">전시 대비 WebSocket 연결 관리</h4>
+              <div class="case-tags"><span class="chip">2025-11-24</span><span class="chip">App-Backend #147, #149, #151</span></div>
+              <div class="case-result">
+                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
+                  <tr><td>IP당 연결 한도</td><td>10개</td><td class="after">100개</td></tr>
+                  <tr><td>사용자당 세션</td><td>제한 없음</td><td class="after">1개</td></tr>
+                  <tr><td>운전자 연결 종료 시 승객</td><td>탑승 유지</td><td class="after">자동 하차</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+            <dl class="case-body">
+              <dt>배경</dt><dd>CoShow 2025 전시 전에 다수 관람객의 동시 접속을 기준으로 연결 처리 코드를 점검했습니다.</dd>
+              <dt>원인</dt><dd>핸드셰이크 실패와 전송 오류 경로에서 IP별 연결 수를 차감하지 않아 카운트가 남았습니다. 같은 사용자가 재접속하면 이전 세션이 남았습니다. 운전자 연결이 끊겨도 승객의 탑승 상태가 유지됐습니다.</dd>
+              <dt>해결</dt><dd>오류 경로에서도 IP별 연결 수를 차감합니다. 사용자와 세션을 맵으로 연결하고 새 연결이 오면 이전 세션을 GOING_AWAY로 종료합니다. 운전자 연결이 끊기면 해당 버스 승객을 모두 하차 처리합니다.</dd>
+              <dt>설정</dt><dd>MongoDB 연결 풀 최대 200개, Tomcat 최대 스레드 500개, 응답 gzip 압축을 적용했습니다.</dd>
+            </dl>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 이력 -->
+<section class="band-soft section" id="history">
+  <div class="wrap">
+    <h2 class="h-section">이력</h2>
+    <div class="resume-grid">
+      <div>
+        <h3 class="h-sub">학력·교육</h3>
+        <ul class="list-rows">
+          <li>부산대학교 정보컴퓨터공학부 컴퓨터공학과 학사 편입<span>2026.03 ~ 2028.02 예정</span></li>
+          <li>울산과학대학교 컴퓨터IT학부 전문학사, 수석 졸업(GPA 4.5/4.5)<span>2023.03 ~ 2026.02</span></li>
+          <li>부산대학교 AI 분야 첨단산업 인재양성 부트캠프 1기, AWS 기반 AI·Cloud PBL<span>2026.06 ~ 2026.08</span></li>
+          <li>UIPA 보안솔루션 소프트웨어 개발 과정 80시간<span>2024.07 ~ 2024.08</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h-sub">수상</h3>
+        <ul class="list-rows">
+          <li>클라우드 AI PBL 팀 프로젝트 최우수상<span>부산대학교 AI융합교육원장, 2026.07</span></li>
+          <li>소프트웨어개발 캡스톤디자인 경진대회 은상(버스트래커)<span>울산과학대학교 총장, 2024.11</span></li>
+          <li>지산학 캡스톤디자인 경진대회 은상, 일반 부문<span>울산과학대학교 총장</span></li>
+          <li>AI Techday 해커톤 경진대회 우수상<span>울산정보산업진흥원장</span></li>
+          <li>창의혁신융합 창업 경진대회 우수상<span>(사)창업보육협회장</span></li>
+          <li>디지텍 캡스톤디자인 경진대회 디지텍상</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="h-sub">자격증</h3>
+        <ul class="list-rows">
+          <li>SQLD<span>SQL 개발자, 한국데이터산업진흥원</span></li>
+          <li>ADsP<span>데이터분석 준전문가, 한국데이터산업진흥원</span></li>
+          <li>ISTQB CTFL<span>소프트웨어 테스팅 Foundation Level</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="band-dark footer" id="contact">
+  <div class="wrap">
+    <h2 class="footer-title">Contact</h2>
+    <dl class="footer-grid">
+      <div><dt>Email</dt><dd><a href="mailto:taehun@pusan.ac.kr">taehun@pusan.ac.kr</a></dd></div>
+      <div><dt>Phone</dt><dd><a href="tel:01033438636">010-3343-8636</a></dd></div>
+      <div><dt>GitHub</dt><dd><a href="https://github.com/taehun2123">github.com/taehun2123</a></dd></div>
+      <div><dt>Blog</dt><dd><a href="https://taehun2123.github.io/blog/">taehun2123.github.io/blog</a></dd></div>
+    </dl>
+    <div class="pill-row" style="margin-top:40px">
+      <a class="pill pill-primary" href="assets/kim-taehun-resume.pdf" download><svg><use href="#i-down"/></svg>이력서 PDF 다운로드</a>
+    </div>
+    <div class="footer-base"><span>© 2026 김태훈</span><span>최종 수정 2026-11-22</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

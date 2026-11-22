@@ -18,6 +18,10 @@ body { margin: 0; font-family: "IBM Plex Sans KR", sans-serif; color: var(--ink)
 h1, h2, h3, p, ul, table { margin: 0; }
 a { color: inherit; text-decoration: none; }
 .break { break-before: page; }
+/* 대표 이미지: 세로 화면 3장 또는 가로 화면 2장 */
+.shots { display: flex; gap: 3mm; margin-top: 5mm; break-inside: avoid; }
+.shots img { height: 46mm; width: auto; border-radius: 2mm; border: 0.3mm solid var(--hair); }
+.shots.wide img { height: 46mm; width: auto; }
 .top { display: grid; grid-template-columns: 1fr auto; align-items: end; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
 .name { font-size: 28pt; font-weight: 700; line-height: 1; letter-spacing: -0.5px; }
 .name span { font-size: 12pt; font-weight: 400; margin-left: 10px; letter-spacing: 0; }
@@ -108,6 +112,12 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
     <tr><td>시연 영상</td><td><a href="https://taehun2123.github.io/assets/video/nuktu-demo.mp4">https://taehun2123.github.io/assets/video/nuktu-demo.mp4</a> (앱 화면 녹화 109초, 기능 설명 자막)</td></tr>
     <tr><td>소스 코드</td><td>NUKTU 조직 비공개 저장소(Backend, Frontend, Partner, docs)</td></tr>
   </table>
+
+  <div class="shots">
+    <img src="img/nuktu-1.jpg" alt="넉터 모집글 목록 화면">
+    <img src="img/nuktu-2.jpg" alt="넉터 체육관 대관 화면">
+    <img src="img/nuktu-3.jpg" alt="넉터 클럽 순위 화면">
+  </div>
 
   <h3>1-1. 팀 구성과 담당</h3>
   <table>
@@ -209,6 +219,11 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
     <tr><td>소스 코드</td><td>해커톤 팀 조직 비공개 저장소</td></tr>
   </table>
 
+  <div class="shots wide">
+    <img src="img/ege-1.jpg" alt="에게 전체 현황 대시보드">
+    <img src="img/ege-2.jpg" alt="에게 층별 3D 도면">
+  </div>
+
   <h3>2-1. 문제 정의 검증</h3>
   <table>
     <thead><tr><th style="width:26mm">항목</th><th>조사 결과</th></tr></thead>
@@ -279,6 +294,12 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
     <tr><td>2025 백엔드</td><td><a href="https://github.com/BBB-bus-buddy-buddy/App-Backend">https://github.com/BBB-bus-buddy-buddy/App-Backend</a></td></tr>
     <tr><td>시연 영상</td><td><a href="https://taehun2123.github.io/assets/video/bbb-demo.mp4">https://taehun2123.github.io/assets/video/bbb-demo.mp4</a> (4분)</td></tr>
   </table>
+
+  <div class="shots">
+    <img src="img/bbb-1.jpg" alt="버스트래커 앱 홍보 이미지 1">
+    <img src="img/bbb-2.jpg" alt="버스트래커 앱 홍보 이미지 2">
+    <img src="img/bbb-4.jpg" alt="버스트래커 앱 홍보 이미지 3">
+  </div>
 
   <h3>3-1. 팀 구성과 담당</h3>
   <table>

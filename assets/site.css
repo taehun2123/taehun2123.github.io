@@ -89,7 +89,7 @@ strong { font-weight: 600; }
 }
 .hero-statement strong { font-weight: 600; }
 .hero-facts {
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 64px; border-top: 1px solid var(--divider-dark);
 }
 .hero-facts > div { padding: 20px 24px 0 0; }

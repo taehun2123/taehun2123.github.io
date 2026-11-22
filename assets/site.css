@@ -39,6 +39,7 @@ code { font-size: 0.88em; background: var(--soft); padding: 1px 6px; border-radi
 .nav-links { display: flex; gap: 24px; margin-left: auto; font-size: 14px; }
 .nav-links a { text-decoration: none; color: var(--body); }
 .nav-links a:hover { color: var(--accent); }
+.nav-links a.active { color: var(--accent); font-weight: 600; box-shadow: inset 0 -2px 0 var(--accent); padding-bottom: 4px; }
 
 /* 버튼
  - 주 버튼: 잉크 채움

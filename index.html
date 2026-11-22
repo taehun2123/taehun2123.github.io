@@ -786,5 +786,32 @@
   </div>
 </footer>
 
+<script>
+// 상단 탭 현재 구역 표시
+// - 기준: 구역 머리가 상단 바 아래(이동 시 여백 76px 포함)에 닿으면 해당 탭 활성화
+// - 페이지 끝: 마지막 구역(연락처) 활성화
+(() => {
+  const items = [...document.querySelectorAll('.nav-links a[href^="#"]')]
+    .map(a => [a, document.querySelector(a.getAttribute('href'))])
+    .filter(([, section]) => section);
+  if (!items.length) return;
+  const edge = () => document.querySelector('.nav').offsetHeight + 20;
+  let queued = false;
+  const update = () => {
+    queued = false;
+    let current = null;
+    for (const [a, section] of items) if (section.getBoundingClientRect().top <= edge()) current = a;
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) current = items[items.length - 1][0];
+    for (const [a] of items) {
+      const on = a === current;
+      a.classList.toggle('active', on);
+      if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+    }
+  };
+  addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+  addEventListener('resize', update);
+  update();
+})();
+</script>
 </body>
 </html>

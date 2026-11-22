@@ -87,7 +87,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
     <div class="kpi"><b>485명</b><span>넉터 가입 회원(2026-11-22)</span></div>
     <div class="kpi"><b>95일</b><span>운영 기간(2026-08-19 출시)</span></div>
     <div class="kpi"><b>87.5%</b><span>앱·웹 비병합 커밋 비율</span></div>
-    <div class="kpi"><b>12배</b><span>큐 매칭 응답 단축(6.30초 → 0.51초)</span></div>
+    <div class="kpi"><b>12배</b><span>큐 매칭 응답 속도(6.30초 → 0.51초, 매칭 성립 시 1.27초)</span></div>
   </div>
 </div>
 
@@ -171,7 +171,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
       <tr><td class="k">대관 문의 채널 분산·답변 지연 문제</td><td>매체에 링크 1개를 올리면 예약, 결제, 일정 배정을 한 페이지에서 처리하는 대관 신청 페이지를 만들었습니다.</td><td>운영 반영 2026-11-13, 앱 대관 신청과 화면·단계 통일</td></tr>
       <tr><td class="k">장기 대관 일정 엑셀 사진 관리 문제</td><td>표 사진을 올리면 주간 일정으로 등록되는 기능을 만들었습니다.<br>인식 모델은 11개를 같은 사진으로 비교했습니다.</td><td>바로 선 사진 <b>17/17</b> 정확, 장당 $0.0144</td></tr>
       <tr><td class="k">저속 회선 웹 첫 화면 90초 정지 문제</td><td>글꼴 로딩 오류 시에도 진입하도록 시작 조건을 바꿨습니다.<br>글꼴은 woff2 3종 부분 집합으로 축소하고 화면별 코드 분할을 추가했습니다.</td><td>첫 화면 9,384KB → <b>2,360KB</b>, 1.6Mbps 첫 글자 120초 내 미표시 → 12.0초</td></tr>
-      <tr><td class="k">가입·정착 과정 사용 불편 216건 문제</td><td>중복을 합쳐 102건으로 정리했습니다.<br>바로 고칠 항목을 위험도 순으로 PR 6건에 나눠 반영했습니다.</td><td>PR 6건 병합</td></tr>
+      <tr><td class="k">AI 페르소나 점검 불편 216건 문제</td><td>가입·정착 과정을 AI 페르소나 8명으로 점검했습니다.<br>중복을 합쳐 102건으로 정리했습니다.<br>바로 고칠 항목을 위험도 순으로 PR 6건에 나눠 반영했습니다.</td><td>102건 중 우선 항목 PR 6건 병합</td></tr>
     </tbody>
   </table>
 
@@ -197,7 +197,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
   <table>
     <thead><tr><th style="width:30mm">장애</th><th>원인</th><th>조치</th><th style="width:38mm">전후 수치</th></tr></thead>
     <tbody>
-      <tr><td class="k">큐 매칭 요청 6초 대기<br>2026-08-21</td><td>후보자마다 요약 조회를 따로 호출하는 N+1 조회. 지역 전체 매칭을 요청 스레드에서 계산</td><td>일괄 조회, 개수 전용 쿼리, 등록 티켓 기준 즉시 매칭과 60초 주기 지역 배치 분리</td><td>요청당 SQL 1,259개 → <b>25개</b>, 응답 6.30초 → <b>0.51초</b></td></tr>
+      <tr><td class="k">큐 매칭 요청 6초 대기<br>2026-08-21</td><td>후보자마다 요약 조회를 따로 호출하는 N+1 조회. 지역 전체 매칭을 요청 스레드에서 계산</td><td>일괄 조회, 개수 전용 쿼리, 등록 티켓 기준 즉시 매칭과 60초 주기 지역 배치 분리</td><td>요청당 SQL 1,259개 → <b>25개</b>, 응답 6.30초 → <b>0.51초</b>(테스트 데이터, 매칭 성립 시 1.27초)</td></tr>
       <tr><td class="k">커뮤니티 글 상세 500<br>2026-11-07</td><td>조회 기록 쿼리의 <code>@Modifying(clearAutomatically = true)</code>로 먼저 조회한 게시글이 준영속 상태가 되어 지연 로딩 실패</td><td>조회 기록 후 게시글 조회로 순서 변경, 통합 테스트 추가, 리뷰 기준을 장애 기록에 추가</td><td>로그인 회원 글 상세 500 → <b>200</b>, 영향 약 20시간</td></tr>
       <tr><td class="k">스탠바이 서버 기동 실패<br>2026-11-14</td><td>서버 시작 시 백필의 <code>SELECT ... FOR UPDATE</code>가 읽기 전용 복제본에서 실패</td><td><code>SHOW transaction_read_only</code>가 on이면 백필 생략. <code>pg_is_in_recovery()</code>는 복제 상태만 판별해 제외</td><td>재시작 2,973회 → <b>0회</b>, 기동 <b>17.1초</b></td></tr>
       <tr><td class="k">다른 기기 로그인 시<br>세션 덮어쓰기<br>2026-10-30</td><td>계정당 리프레시 토큰 1개만 저장. 운영 Redis는 AOF 꺼짐 상태</td><td>저장 키를 기기 세션 단위(<code>refresh_token:&lt;userId&gt;:&lt;sid&gt;</code>)로 분리, Redis AOF <code>everysec</code> 전환</td><td>갱신 거부 7건 해소, 배포 전후 세션 키 24개 유지</td></tr>

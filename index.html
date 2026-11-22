@@ -72,7 +72,7 @@
     <div class="kpis">
       <div class="kpi"><div class="kpi-value">485<small>명</small></div><div class="kpi-label">넉터 가입 회원 수</div></div>
       <div class="kpi"><div class="kpi-value">95<small>일</small></div><div class="kpi-label">넉터 운영 기간</div><div class="kpi-note">2026-08-19 출시</div></div>
-      <div class="kpi"><div class="kpi-value">12<small>배</small></div><div class="kpi-label">넉터 큐 매칭 응답 단축</div><div class="kpi-note">6.30초 → 0.51초</div></div>
+      <div class="kpi"><div class="kpi-value">12<small>배</small></div><div class="kpi-label">넉터 큐 매칭 응답 속도</div><div class="kpi-note">6.30초 → 0.51초, 매칭 성립 시 1.27초</div></div>
       <div class="kpi"><div class="kpi-value">8<small>건</small></div><div class="kpi-label">수상</div><div class="kpi-note">최우수상 2회, 은상 2회 포함</div></div>
     </div>
 
@@ -115,12 +115,12 @@
     <div class="approach">
       <article class="approach-card">
         <h3 class="h-card">사용자 불편 발견과 개선</h3>
-        <p class="approach-lead">직접 사용과 사용자 미팅에서 찾은 불편을 측정한 뒤 고칩니다.</p>
+        <p class="approach-lead">직접 사용, 사용자 미팅, AI 페르소나 점검으로 찾은 불편을 측정한 뒤 고칩니다.</p>
         <ul class="evidence">
-          <li><span class="chip">넉터</span>웹 체감 응답 1.5초 → 로그인 요청 <b>276ms → 139ms</b></li>
+          <li><span class="chip">넉터</span>웹 CORS 사전 요청 제거 → 로그인 요청 중앙값 <b>276ms → 139ms</b></li>
           <li><span class="chip">넉터</span>글 재조회마다 조회 수 증가 → 회원당 <b>1회</b> 집계</li>
-          <li><span class="chip">넉터</span>체육관 엑셀 표 사진 → 사진 업로드 일정 등록, 인식 <b>17/17</b></li>
-          <li><span class="chip">넉터</span>AI 페르소나 8명 점검 → 불편 <b>216건</b> 발견, <b>102건</b>으로 정리해 수정</li>
+          <li><span class="chip">넉터</span>체육관 엑셀 표 사진 → 사진 업로드 일정 등록, 바로 선 사진 인식 <b>17/17</b></li>
+          <li><span class="chip">넉터</span>AI 페르소나 8명 점검 → 불편 <b>216건</b>을 <b>102건</b>으로 정리, 우선 항목 PR <b>6건</b> 반영</li>
           <li><span class="chip">에게</span>40~50대 운영자 기준 → 본문 <b>16px</b>, AI 답변 <b>3문장</b></li>
         </ul>
       </article>
@@ -129,8 +129,8 @@
         <p class="approach-lead">후보 기술이 2개 이상이면 비용과 성능으로 비교해 선택합니다.</p>
         <ul class="evidence">
           <li><span class="chip">비용</span>대관현황표 인식 모델 11개 비교 → 장당 <b>$0.0144</b>(대안 $0.0344)</li>
-          <li><span class="chip">비용</span>자동 번역 Papago 최소 월 2만 원 → Gemini 월 <b>$1 미만</b></li>
-          <li><span class="chip">비용</span>길찾기 API 5개 비교 → TMAP 월 <b>약 7,000원</b>(대안 최대 20만 원)</li>
+          <li><span class="chip">비용</span>자동 번역 Papago 최소 월 2만 원 → Gemini 월 <b>$1 미만</b>(추정)</li>
+          <li><span class="chip">비용</span>길찾기 API 5개 비교 → TMAP 추천안 월 <b>약 7,000원</b>(대안 최대 20만 원)</li>
           <li><span class="chip">비용</span>규정 문서 검색 OpenSearch 월 214달러 → S3 Vectors 월 <b>1센트 미만</b></li>
           <li><span class="chip">성능</span>웹 API 경유 3안 비교 → Worker 채택, 사전 요청 <b>0회</b></li>
         </ul>
@@ -242,7 +242,7 @@
               </div>
             </div>
             <dl class="case-body">
-              <dt>문제</dt><dd>빠른 매칭 큐 등록 1회에 SQL 1,259개가 실행됐습니다.<br>사용자는 등록 버튼을 누른 뒤 6.30초를 기다렸습니다.<br>기능 추가 후 SQL 로그를 집계해 발견했습니다.</dd>
+              <dt>문제</dt><dd>빠른 매칭 큐 등록 1회에 SQL 1,259개가 실행됐습니다.<br>테스트 데이터 기준 등록 요청 응답은 6.30초였습니다.<br>기능 추가 후 SQL 로그를 집계해 발견했습니다.</dd>
               <dt>원인</dt><dd>후보자 변환 코드가 사용자마다 요약 조회를 따로 호출했습니다.<br>1명당 쿼리 3개가 실행됐고 실제 사용 값은 <code>playScore</code> 1개였습니다.<br>지역 전체 매칭 계산도 요청 스레드에서 처리했습니다.</dd>
               <dt>판단</dt><dd>쿼리 수만 감소시키면 대기 1,000건에서 매칭 계산 시간이 그대로 남습니다.<br>따라서 조회 방식과 작업 위치를 함께 바꿨습니다.</dd>
               <dt>해결</dt><dd>사용자 요약을 일괄 조회로 바꾸고 대기 인원은 개수 전용 쿼리로 셉니다.<br>매칭은 등록 티켓 1건 기준 즉시 매칭과 60초 주기 지역 배치로 분리했습니다.</dd>

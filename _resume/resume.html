@@ -79,6 +79,7 @@ ul { padding-left: 1.05em; }
   <div class="proj-meta"><b>개발 3명</b> · 백엔드, 앱·웹, 인프라 운영 · 비병합 커밋 Backend 72.8%, App 87.5% · Java 17, Spring Boot 3.2, PostgreSQL 17, Redis, React Native(Expo), Cloudflare</div>
   <ul>
     <li>큐 매칭 N+1 조회와 요청 스레드 계산을 분리해 요청당 SQL <span class="num">1,259개 → 25개</span>, 응답 <span class="num">6.30초 → 0.51초</span>로 단축했습니다.</li>
+    <li>팀원 문서 협업용 docs.nuktu.com을 구축했습니다. 저장소 4곳의 문서를 모으고 예약·알림 빌드, 300초 주기 자동 설치, PR 문서 검사를 자동화했습니다.</li>
     <li>웹 API를 Cloudflare Worker 같은 도메인 경유로 바꿔 CORS 사전 요청을 없앴습니다. 로그인 요청 중앙값은 <span class="num">276ms → 139ms</span>입니다.</li>
     <li>읽기 전용 복제본에서 기동 시 백필이 실패해 재시작 <span class="num">2,973회</span>가 반복됐습니다. 쓰기 가능 여부 확인으로 재시작 0회, 기동 17.1초로 복구했습니다.</li>
     <li>웹 글꼴을 woff2 부분 집합으로 교체해 첫 화면 전송량을 <span class="num">9,384KB → 2,360KB</span>로 축소했습니다. 1.6Mbps 첫 글자는 120초 내 미표시에서 12.0초가 됐습니다.</li>
@@ -89,6 +90,8 @@ ul { padding-left: 1.05em; }
   <div class="proj-head"><div class="proj-name">에게(에너지게이트)<span>건물 운영 3D 디지털트윈, PNU × AWS Maestro AI 해커톤 최우수상</span></div><div class="proj-date">2026.11.19 ~ 11.21</div></div>
   <div class="proj-meta"><b>4명</b> · 웹, 서버리스 API, 도면 인식 모델, 배포 · 비병합 커밋 Frontend 77.9%, Lambda 66.7% · React 19, three.js, AWS Lambda, Bedrock, SageMaker</div>
   <ul>
+    <li>과제 문제 정의를 검증하려고 운영자 문제 자료 155건을 전수조사했습니다. 민원 중심의 상태 파악 경로를 근거로 검증 지표를 정했습니다.</li>
+    <li>규정 문서 검색 저장소는 S3 Vectors(월 1센트 미만)를 OpenSearch Serverless(최소 월 214달러)와 비교해 선택했습니다.</li>
     <li>Bedrock 구조화 응답으로 AI 답변의 3문장 초과를 <span class="num">3~12건 → 0건</span>으로 감소시키고 평가 정답 <span class="num">35/35</span>를 유지했습니다.</li>
     <li>도면 실내기 인식 모델(YOLO11s)을 v1~v9로 개선해 처음 보는 건물 6동 평균 재현율을 <span class="num">0.339 → 0.758</span>로 올렸습니다.</li>
     <li>트윈 iframe 첫 표시 모드와 CloudFront 압축을 고쳐 이전 화면 노출 <span class="num">14회 → 0회</span>, 앱 JS <span class="num">451KB → 133KB</span>로 축소했습니다.</li>

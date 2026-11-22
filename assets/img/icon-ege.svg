@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 35 840 840">
+<defs><linearGradient id="c" x1=".18" y1="0" x2=".72" y2="1"><stop stop-color="#f52151"/><stop offset=".42" stop-color="#e00b41"/><stop offset=".84" stop-color="#d20739"/><stop offset="1" stop-color="#b90032"/></linearGradient></defs>
+<g fill="url(#c)" fill-rule="evenodd">
+<path d="M530 376 Q530 307 537 223 C544 116 691 102 695 223 L689 670 C689 780 543 795 531 676 L527 527 Q519 516 512 537 C484 669 409 729 303 728 C163 727 81 634 81 475 C80 309 173 209 304 202 C407 194 485 255 518 377 Q524 380 530 376 Z M310 374 C264 374 239 415 239 466 C238 516 267 550 307 549 C348 548 378 505 375 455 C372 402 347 373 310 374 Z"/>
+<path d="M729 217 C731 106 878 100 883 214 Q880 442 880 674 C881 799 718 808 715 683 Q714 458 729 217 Z"/>
+</g></svg>

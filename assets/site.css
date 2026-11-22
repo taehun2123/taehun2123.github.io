@@ -54,8 +54,10 @@ code { font-size: 0.88em; background: var(--soft); padding: 1px 6px; border-radi
 
 /* 첫 화면 */
 .hero { padding: 132px 0 96px; }
-.hero-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 56px; align-items: center; }
-.hero-photo { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+/* 사진 카드: 본문과 폭 1:2, 높이는 본문 높이에 맞춤(이미지는 높이 계산에서 제외) */
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 48px; align-items: stretch; }
+.hero-photo { position: relative; min-height: 240px; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--soft); }
+.hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
 .hero-title { font-size: clamp(28px, 3.6vw, 42px); font-weight: 700; line-height: 1.28; letter-spacing: -0.025em; }
 .hero-title span { color: var(--accent); }
 .hero-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
@@ -183,8 +185,7 @@ code { font-size: 0.88em; background: var(--soft); padding: 1px 6px; border-radi
  - 1024px 미만: 2열, 상단 링크 숨김, 요약 표는 줄마다 블록
  - 720px 미만: 1열, 간격 16px */
 @media (max-width: 1023px) {
-  .hero-grid { grid-template-columns: 160px minmax(0, 1fr); gap: 36px; }
-  .hero-photo { width: 160px; height: 160px; }
+  .hero-grid { gap: 32px; }
   .nav-links { display: none; }
   .nav .pill { margin-left: auto; }
   .project-meta { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -207,7 +208,7 @@ code { font-size: 0.88em; background: var(--soft); padding: 1px 6px; border-radi
   :root { --gutter: 16px; }
   .hero { padding: 72px 0 64px; }
   .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-  .hero-photo { width: 112px; height: 112px; }
+  .hero-photo { width: 144px; min-height: 0; aspect-ratio: 4 / 5; }
   .hero-facts, .project-meta { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .section { padding-bottom: 64px; }
   .h-section, .project-head > .wrap { padding-top: 52px; }

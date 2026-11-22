@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=20261122e">
 <script>
 /* 움직임 준비
  - 조건: 동작 줄이기 설정이 아니고 IntersectionObserver 지원
@@ -663,7 +663,7 @@
 <script>
 /* 움직임
  - 기준: 넉터 마케팅 사이트의 제목 타이핑, 등장, 숫자 증가와 에게 움직임 토큰
- - 타이핑: 첫 화면 제목을 글자당 55ms로 표시. 글자 칸을 먼저 잡아 두어 줄바꿈 위치 고정
+ - 타이핑: 첫 화면 제목을 글자당 55ms로 쓰고 2.4초 유지, 30ms로 지운 뒤 다시 쓰기 반복. 글자 칸을 먼저 잡아 두어 줄바꿈 위치 고정
  - 등장: 화면 하단 12% 안쪽에 들어오면 1회 실행. 같은 묶음의 형제 요소는 60ms 간격(최대 8개)
  - 숫자: 화면 진입 시 0에서 최종값까지 1.2초, 감속 곡선. 최종 폭을 먼저 고정해 주변 이동 방지
  - 동작 줄이기 설정이면 머리 스크립트가 data-motion을 설정하지 않아 전부 생략 */
@@ -696,14 +696,29 @@
     caret.className = 'tw-caret';
     caret.setAttribute('aria-hidden', 'true');
     root.removeAttribute('data-typing');
+    // 반복: 글자당 55ms로 쓰고 2.4초 유지, 글자당 30ms로 지우고 0.5초 뒤 다시 쓰기
+    const TYPE = 55, ERASE = 30, HOLD = 2400, GAP = 500;
     let i = 0;
+    let typing = true;
+    const pause = (ms) => { caret.classList.add('idle'); setTimeout(() => { caret.classList.remove('idle'); step(); }, ms); };
     const step = () => {
-      chars[i].classList.add('on');
-      chars[i].after(caret);
-      i += 1;
-      if (i < chars.length) setTimeout(step, 55);
-      else { caret.classList.add('done'); setTimeout(() => caret.remove(), 3200); }
+      if (typing) {
+        chars[i].classList.add('on');
+        chars[i].after(caret);
+        i += 1;
+        if (i < chars.length) { setTimeout(step, TYPE); return; }
+        typing = false;
+        pause(HOLD);
+        return;
+      }
+      i -= 1;
+      chars[i].classList.remove('on');
+      if (i > 0) { chars[i - 1].after(caret); setTimeout(step, ERASE); return; }
+      chars[0].before(caret);
+      typing = true;
+      pause(GAP);
     };
+    chars[0].before(caret);
     setTimeout(step, 250);
   }
 

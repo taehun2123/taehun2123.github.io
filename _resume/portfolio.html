@@ -38,7 +38,7 @@ h2 + p, h2 + p + p { break-before: avoid; }
 .contact div { display: grid; grid-template-columns: 22mm minmax(0, 1fr); }
 .contact dt { font-weight: 600; }
 .contact dd { margin: 0; }
-.bullets { padding-left: 1.05em; margin-top: 6px; }
+.bullets { margin-top: 6px; }
 .bullets li { margin: 2px 0; }
 .top { display: grid; grid-template-columns: 1fr auto; align-items: end; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
 .name { font-size: 28pt; font-weight: 700; line-height: 1; letter-spacing: -0.5px; }
@@ -52,7 +52,9 @@ h3 { font-size: 11pt; font-weight: 700; margin: 16px 0 6px; break-after: avoid; 
 p + p { margin-top: 4px; }
 .summary { margin-top: 14px; padding: 12px 14px; background: var(--soft); border-radius: 4px; }
 .summary-title { font-weight: 700; margin-bottom: 4px; }
-.summary ul { padding-left: 1.05em; }
+.summary ul, .bullets { list-style: none; padding-left: 0; }
+.summary li, .bullets li { position: relative; padding-left: 12px; }
+.summary li::before, .bullets li::before { content: ""; position: absolute; left: 2px; top: 0.7em; width: 4px; height: 4px; border-radius: 50%; background: var(--ink); }
 .summary li { margin: 2px 0; }
 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
 .kpi { border-top: 2px solid var(--accent); padding-top: 8px; }

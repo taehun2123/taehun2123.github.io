@@ -16,6 +16,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<script>
+/* 움직임 준비
+ - 조건: 동작 줄이기 설정이 아니고 IntersectionObserver 지원
+ - 첫 화면 제목: 타이핑 시작 전 깜빡임 방지로 숨김, 3초 안에 본문 스크립트가 해제하지 못하면 그대로 표시 */
+(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  const root = document.documentElement;
+  root.setAttribute('data-motion', '');
+  root.setAttribute('data-typing', '');
+  setTimeout(() => root.removeAttribute('data-typing'), 3000);
+})();
+</script>
 </head>
 <body>
 
@@ -48,7 +60,7 @@
     <div class="hero-grid">
       <div class="hero-photo"><img src="assets/img/profile.webp" alt="김태훈 프로필 사진" width="480" height="480"></div>
       <div class="hero-main">
-        <h1 class="hero-title">서버를 중심으로 웹과 앱까지 만드는 풀스택 개발자,<br><span>김태훈입니다.</span></h1>
+        <h1 class="hero-title">서버를 중심으로 웹과 앱까지 만드는 풀스택 개발자,<br><span class="accent">김태훈입니다.</span></h1>
         <dl class="hero-facts">
           <div><dt>운영 서비스</dt><dd>넉터(App Store, Google Play, 웹)</dd></div>
           <div><dt>관심 분야</dt><dd>웹, 앱 풀스택 개발</dd></div>
@@ -648,6 +660,108 @@
   </div>
 </footer>
 
+<script>
+/* 움직임
+ - 기준: 넉터 마케팅 사이트의 제목 타이핑, 등장, 숫자 증가와 에게 움직임 토큰
+ - 타이핑: 첫 화면 제목을 글자당 55ms로 표시. 글자 칸을 먼저 잡아 두어 줄바꿈 위치 고정
+ - 등장: 화면 하단 12% 안쪽에 들어오면 1회 실행. 같은 묶음의 형제 요소는 60ms 간격(최대 8개)
+ - 숫자: 화면 진입 시 0에서 최종값까지 1.2초, 감속 곡선. 최종 폭을 먼저 고정해 주변 이동 방지
+ - 동작 줄이기 설정이면 머리 스크립트가 data-motion을 설정하지 않아 전부 생략 */
+(() => {
+  const root = document.documentElement;
+  if (!root.hasAttribute('data-motion')) return;
+
+  const title = document.querySelector('.hero-title');
+  if (title) {
+    title.setAttribute('aria-label', [...title.childNodes].map((n) => (n.nodeName === 'BR' ? ' ' : n.textContent)).join('').replace(/\s+/g, ' ').trim());
+    const chars = [];
+    const split = (node) => {
+      for (const child of [...node.childNodes]) {
+        if (child.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          for (const ch of child.textContent) {
+            const span = document.createElement('span');
+            span.className = 'tw-char';
+            span.setAttribute('aria-hidden', 'true');
+            span.textContent = ch;
+            frag.appendChild(span);
+            chars.push(span);
+          }
+          child.replaceWith(frag);
+        } else if (child.nodeType === 1 && child.tagName !== 'BR') split(child);
+      }
+    };
+    split(title);
+    const caret = document.createElement('span');
+    caret.className = 'tw-caret';
+    caret.setAttribute('aria-hidden', 'true');
+    root.removeAttribute('data-typing');
+    let i = 0;
+    const step = () => {
+      chars[i].classList.add('on');
+      chars[i].after(caret);
+      i += 1;
+      if (i < chars.length) setTimeout(step, 55);
+      else { caret.classList.add('done'); setTimeout(() => caret.remove(), 3200); }
+    };
+    setTimeout(step, 250);
+  }
+
+  const groups = ['.h-section', '.summary-table', '.approach-card', '.project-title', '.project-meta', '.project-intro', '.project-links', '.section .block', '.case', '.resume-grid > div', '.contact-box'];
+  const targets = [...document.querySelectorAll(groups.join(','))];
+  targets.forEach((el) => {
+    const peers = [...el.parentElement.children].filter((c) => targets.includes(c));
+    el.style.setProperty('--i', Math.min(peers.indexOf(el), 7));
+    el.setAttribute('data-reveal', '');
+  });
+  const reveal = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.setAttribute('data-revealed', '');
+      reveal.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  targets.forEach((el) => reveal.observe(el));
+  addEventListener('scroll', () => {
+    if (innerHeight + scrollY < document.documentElement.scrollHeight - 2) return;
+    document.querySelectorAll('[data-reveal]:not([data-revealed])').forEach((el) => { el.setAttribute('data-revealed', ''); reveal.unobserve(el); });
+  }, { passive: true });
+
+  const ease = (t) => 1 - (1 - t) ** 3;
+  const counter = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      counter.unobserve(entry.target);
+      const el = entry.target;
+      const end = Number(el.dataset.to);
+      const digits = Number(el.dataset.digits);
+      const t0 = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - t0) / 1200);
+        el.textContent = (end * ease(t)).toFixed(digits);
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  document.querySelectorAll('.kpi-value').forEach((value) => {
+    const node = value.firstChild;
+    if (!node || node.nodeType !== 3) return;
+    const m = node.textContent.match(/^(\d+(?:\.(\d+))?)(.*)$/s);
+    if (!m) return;
+    const num = document.createElement('span');
+    num.className = 'count';
+    num.textContent = m[1];
+    num.dataset.to = m[1];
+    num.dataset.digits = m[2] ? m[2].length : 0;
+    node.replaceWith(num);
+    if (m[3]) num.after(document.createTextNode(m[3]));
+    num.style.minWidth = num.getBoundingClientRect().width + 'px';
+    num.textContent = (0).toFixed(num.dataset.digits);
+    counter.observe(num);
+  });
+})();
+</script>
 <script>
 // 상단 탭 현재 구역 표시
 // - 기준: 구역 머리가 상단 바 아래(이동 시 여백 76px 포함)에 닿으면 해당 탭 활성화

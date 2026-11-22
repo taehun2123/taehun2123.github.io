@@ -18,8 +18,11 @@
 body { margin: 0; font-family: "IBM Plex Sans KR", sans-serif; color: var(--ink); font-size: 10pt; line-height: 1.55; word-break: keep-all; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 h1, h2, h3, h4, h5, p, ul { margin: 0; }
 a { color: inherit; }
-ul { padding-left: 1.15em; }
-li { margin: 1.2px 0; }
+ul { list-style: none; padding-left: 0; }
+ul > li { position: relative; padding-left: 12px; margin: 1.5px 0; }
+ul > li::before { content: ""; position: absolute; left: 2px; top: 0.66em; width: 4px; height: 4px; border-radius: 50%; background: var(--ink); }
+.rows > li::before, .oss > li::before { display: none; }
+.rows > li, .oss > li { padding-left: 0; }
 code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius: 2px; }
 
 /* 머리 */
@@ -33,7 +36,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 .contact a { text-decoration: none; }
 
 /* 프로젝트: 조직 → 역할 → 블록 */
-.org { margin-top: 9mm; display: flex; align-items: baseline; gap: 8px; break-after: avoid; }
+.org { margin-top: 7mm; display: flex; align-items: baseline; gap: 8px; break-after: avoid; }
 .org h2 { font-size: 15pt; font-weight: 700; }
 .period { font-size: 9pt; color: var(--body); font-variant-numeric: tabular-nums; }
 .role { margin-top: 4mm; display: flex; align-items: baseline; gap: 8px; break-after: avoid; }
@@ -41,7 +44,10 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 .role .period { color: var(--ink); font-weight: 700; }
 .edu { margin-top: 5px; font-weight: 600; }
 .role-desc { margin-top: 3px; color: var(--body); }
-.blk { margin-top: 5.5mm; break-inside: avoid-page; }
+.blk { margin-top: 2.8mm; break-inside: avoid-page; }
+.blk p, .blk ul { color: var(--body); }
+.blk ul .num { color: var(--ink); }
+.intro-list { margin-top: 6px; color: var(--body); }
 .role-desc + .stack { margin-top: 4px; }
 .org ~ ul { margin-top: 3px; }
 .oss { list-style: none; padding: 0; margin-top: 3mm; }
@@ -50,12 +56,12 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 .blk h4 { font-size: 9.6pt; font-weight: 700; margin-bottom: 4px; }
 .blk h4::before { content: "| "; }
 .blk .desc { color: var(--body); }
-.stack { margin: 5px 0; color: var(--mute); }
+.stack { margin: 3px 0 0; color: var(--mute); font-size: 9pt; }
 .sub { margin-top: 4px; font-weight: 500; }
 .num { font-weight: 600; }
 
 /* 하단 구역 */
-.sec { margin-top: 9mm; display: flex; align-items: baseline; gap: 8px; break-after: avoid; }
+.sec { margin-top: 7mm; display: flex; align-items: baseline; gap: 8px; break-after: avoid; }
 .sec h2 { font-size: 13pt; font-weight: 700; }
 .sec span { color: var(--mute); }
 .grid2 { margin-top: 4mm; }
@@ -65,9 +71,10 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 .cat { font-weight: 700; margin-bottom: 3px; }
 .cat + .rows { border-top: 1px solid var(--ink); }
 .rows { list-style: none; padding: 0; }
-.rows li { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 2.5px 0; margin: 0; border-bottom: 1px solid var(--hair); }
+.rows li { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 1.5px 0; margin: 0; border-bottom: 1px solid var(--hair); }
 .rows li span { color: var(--mute); white-space: nowrap; }
-.gap { margin-top: 4mm; }
+.gap { margin-top: 3mm; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0 9mm; }
 </style>
 </head>
 <body>
@@ -77,13 +84,13 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
   <img class="mark" src="../assets/img/profile.webp" alt="김태훈 프로필 사진">
   <div>
     <h1 class="name">김태훈<span>풀스택 개발자</span></h1>
-    <p class="edu">부산대학교 정보컴퓨터공학부 컴퓨터공학과 재학(학사 편입, 2028.02 졸업 예정)</p>
-    <div class="intro">
-      <p>Spring Boot 서버를 중심으로 React Native 앱, 웹까지 개발합니다.</p>
-      <p>동네 농구 커뮤니티 앱 넉터를 5명 팀에서 개발해 운영하고 있습니다.</p>
-      <p>기술은 비용과 성능을 비교해 선택하고, 장애와 결정 과정은 문서로 남깁니다.</p>
-      <p>설계와 코드 리뷰는 직접 하고, 구현은 AI 코딩 도구(Claude Code)로 보조합니다.</p>
-    </div>
+    <p class="edu">부산대학교 정보컴퓨터공학부 컴퓨터공학과 재학<br>(학사 편입, 2028.02 졸업 예정)</p>
+    <ul class="intro-list">
+      <li>Spring Boot 서버를 중심으로 React Native 앱, 웹까지 개발합니다.</li>
+      <li>동네 농구 커뮤니티 앱 넉터를 5명 팀에서 개발해 운영하고 있습니다.</li>
+      <li>기술은 비용과 성능을 비교해 선택하고, 장애와 결정 과정은 문서로 남깁니다.</li>
+      <li>설계와 코드 리뷰는 직접 하고, 구현은 AI 코딩 도구(Claude Code)로 보조합니다.</li>
+    </ul>
   </div>
   <div class="contact">
     <div><b>이메일</b>taehun@pusan.ac.kr</div>
@@ -97,40 +104,70 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 <!-- 넉터 -->
 <div class="org"><h2>넉터</h2><span class="period">2026.08 ~ 현재</span></div>
 <div class="role"><h3>5명(개발 3, 디자인 2), 앱, 웹, 서버 개발, 배포, 장애 대응</h3><span class="period">운영 중</span></div>
-<p class="role-desc">농구 동호회 운영진이 게스트 모집, 친선전 섭외, 체육관 대관을 단톡방과 전화로 조율하던 문제를 다룹니다.<br>2026-08-19 App Store, Google Play, 웹에 출시했고 가입 회원은 485명입니다.<br>최근 7일 활동 회원은 40명이고 출시 후 완료 경기는 11건입니다.</p>
 <p class="stack">React Native(Expo), TypeScript, Java 17, Spring Boot 3.2, PostgreSQL 17, Redis, Cloudflare Workers, Docker, GitHub Actions</p>
-<ul>
-  <li>큐 매칭 N+1 조회와 요청 스레드 계산 분리: SQL <span class="num">1,259개 → 25개</span>, 응답 <span class="num">6.30초 → 0.51초</span>(테스트 데이터)</li>
-  <li>웹 API 같은 도메인 경유로 CORS 사전 요청 제거: 로그인 요청 <span class="num">276ms → 139ms</span></li>
-  <li>웹 글꼴 부분 집합과 화면 분할: 첫 화면 전송량 <span class="num">9,384KB → 2,360KB</span></li>
-  <li>읽기 전용 복제본의 기동 실패 수정: 스탠바이 재시작 <span class="num">2,973회 → 0회</span></li>
-  <li>체육관 대관현황표 사진 등록: 인식 모델 11개 비교, 장당 <span class="num">$0.0144</span> 모델 선택</li>
-  <li>팀 문서 사이트 docs.nuktu.com: 저장소 4곳 문서 통합, 빌드, 배포, PR 문서 검사 자동화</li>
-</ul>
+<div class="blk"><h4>문제</h4>
+  <p>농구 동호회 운영진이 게스트 모집, 친선전 섭외, 체육관 대관을 단톡방과 전화로 조율하던 문제를 다룹니다.</p>
+</div>
+<div class="blk"><h4>운영</h4>
+  <ul>
+    <li>2026-08-19 App Store, Google Play, 웹 출시</li>
+    <li>가입 회원 <span class="num">485명</span>, 최근 7일 활동 회원 <span class="num">40명</span>, 출시 후 완료 경기 <span class="num">11건</span></li>
+  </ul>
+</div>
+<div class="blk"><h4>주요 작업</h4>
+  <ul>
+    <li>큐 매칭 N+1 조회와 요청 스레드 계산 분리: SQL <span class="num">1,259개 → 25개</span>, 응답 <span class="num">6.30초 → 0.51초</span>(테스트 데이터)</li>
+    <li>웹 API 같은 도메인 경유로 CORS 사전 요청 제거: 로그인 요청 <span class="num">276ms → 139ms</span></li>
+    <li>웹 글꼴 부분 집합과 화면 분할: 첫 화면 전송량 <span class="num">9,384KB → 2,360KB</span></li>
+    <li>읽기 전용 복제본의 기동 실패 수정: 스탠바이 재시작 <span class="num">2,973회 → 0회</span></li>
+    <li>체육관 대관현황표 사진 등록: 인식 모델 11개 비교, 장당 <span class="num">$0.0144</span> 모델 선택</li>
+    <li>팀 문서 사이트 docs.nuktu.com: 저장소 4곳 문서 통합, 빌드, 배포, PR 문서 검사 자동화</li>
+  </ul>
+</div>
 
 <!-- 에게 -->
 <div class="org"><h2>에게(에너지게이트)</h2><span class="period">2026.11.19 ~ 2026.11.21</span></div>
 <div class="role"><h3>PNU × AWS Maestro AI 해커톤, LG전자 ES사업본부 출제, 4명 팀의 팀장</h3><span class="period">최우수상</span></div>
-<p class="role-desc">LG전자 ES사업본부(BECON 빌딩 제어 솔루션)가 출제한 건물 운영 3D 디지털트윈 과제입니다.<br>3일 동안 웹, 서버리스 API, 도면 인식 모델을 맡아 배포까지 마쳤습니다.</p>
 <p class="stack">React 19, three.js, AWS Lambda(Python), API Gateway, DynamoDB, Amazon Bedrock, S3 Vectors, SageMaker, YOLO11s</p>
-<ul>
-  <li>문제 정의 검증: 운영자 문제 자료 <span class="num">155건</span> 검토(AI 수집), 99건 수록, 핵심 문장 35건 원문 대조</li>
-  <li>규정 문서 검색 저장소: S3 Vectors 월 <span class="num">$0.01 미만</span> 선택(OpenSearch Serverless 최소 월 $214)</li>
-  <li>AI 답변 구조화 응답: 3문장 초과 <span class="num">3~12건 → 0건</span>, 도구 선택 정답 35/35</li>
-  <li>도면 실내기 인식 YOLO11s: 처음 보는 건물 6동 재현율 <span class="num">0.339 → 0.758</span>(대수 합계 0.288 → 0.566)</li>
-</ul>
+<div class="blk"><h4>과제</h4>
+  <p>LG전자 ES사업본부(BECON 빌딩 제어 솔루션)가 출제한 건물 운영 3D 디지털트윈 과제입니다.</p>
+</div>
+<div class="blk"><h4>결과</h4>
+  <ul>
+    <li>3일 동안 웹, 서버리스 API, 도면 인식 모델을 맡아 배포 완료</li>
+    <li>PNU × AWS Maestro AI 해커톤 <span class="num">최우수상</span></li>
+  </ul>
+</div>
+<div class="blk"><h4>주요 작업</h4>
+  <ul>
+    <li>문제 정의 검증: 운영자 문제 자료 <span class="num">155건</span> 검토(AI 수집), 99건 수록, 핵심 문장 35건 원문 대조</li>
+    <li>규정 문서 검색 저장소: S3 Vectors 월 <span class="num">$0.01 미만</span> 선택(OpenSearch Serverless 최소 월 $214)</li>
+    <li>AI 답변 구조화 응답: 3문장 초과 <span class="num">3~12건 → 0건</span>, 도구 선택 정답 35/35</li>
+    <li>도면 실내기 인식 YOLO11s: 처음 보는 건물 6동 재현율 <span class="num">0.339 → 0.758</span>(대수 합계 0.288 → 0.566)</li>
+  </ul>
+</div>
 
 <!-- BBB -->
-<div class="org" style="break-before: page; margin-top: 0"><h2>BBB(BusBuddyBuddy)</h2><span class="period">2024.03 ~ 2025.11</span></div>
+<div class="org"><h2>BBB(BusBuddyBuddy)</h2><span class="period">2024.03 ~ 2025.11</span></div>
 <div class="role"><h3>캡스톤디자인, 5명(2024), 3명(2025)</h3><span class="period">수상 5건</span></div>
-<p class="role-desc">학생이 통학버스 지연과 정류장 변경을 미리 확인하기 어려웠던 문제를 다룹니다.<br>2025년 운전자 앱 GPS 방식으로 전환해 버스 설치 기기를 없앴고 CoShow 2025에서 차세대통신단장상을 받았습니다.</p>
 <p class="stack">Java 21, Spring Boot 3.3, MongoDB, WebSocket, OAuth2, JWT, React Native, Docker, GitHub Actions</p>
-<ul>
-  <li>버스 위치 미저장 원인 3개 수정: 버스별 최신값 <span class="num">5초</span> 배치 저장</li>
-  <li>자동 탑승 감지: <span class="num">50m</span> 이내 2회 연속 탑승, <span class="num">100m</span> 초과 2회 연속 하차</li>
-  <li>React Native 승객 앱 전체 개발, Google OAuth2, JWT 인증</li>
-  <li>버스 상태 이벤트 리스너 누락 수정: 승객 앱 상태 전달 없음 → <span class="num">3초</span> 주기 전달</li>
-</ul>
+<div class="blk"><h4>문제</h4>
+  <p>학생이 통학버스 지연과 정류장 변경을 미리 확인하기 어려웠던 문제를 다룹니다.</p>
+</div>
+<div class="blk"><h4>결과</h4>
+  <ul>
+    <li>2025년 운전자 앱 GPS 방식으로 전환해 버스 설치 기기 제거</li>
+    <li>수상 <span class="num">5건</span>: CoShow 2025 차세대통신단장상, 캡스톤디자인 은상 2건, 디지텍상, 창업창직 우수상</li>
+  </ul>
+</div>
+<div class="blk"><h4>주요 작업</h4>
+  <ul>
+    <li>버스 위치 미저장 원인 3개 수정: 버스별 최신값 <span class="num">5초</span> 배치 저장</li>
+    <li>자동 탑승 감지: <span class="num">50m</span> 이내 2회 연속 탑승, <span class="num">100m</span> 초과 2회 연속 하차</li>
+    <li>React Native 승객 앱 전체 개발, Google OAuth2, JWT 인증</li>
+    <li>버스 상태 이벤트 리스너 누락 수정: 승객 앱 상태 전달 없음 → <span class="num">3초</span> 주기 전달</li>
+  </ul>
+</div>
 
 <!-- 오픈소스 -->
 <div class="sec"><h2>오픈소스</h2></div>
@@ -152,12 +189,6 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
       <li>부산대학교 AI 분야 첨단산업 인재양성 부트캠프 1기<span>2026.06 ~ 2026.08</span></li>
       <li>UIPA 보안솔루션 소프트웨어 개발 과정 80시간<span>2024.07 ~ 2024.08</span></li>
     </ul>
-    <p class="cat gap">자격증</p>
-    <ul class="rows">
-      <li>SQLD<span>한국데이터산업진흥원</span></li>
-      <li>ADsP<span>한국데이터산업진흥원</span></li>
-      <li>ISTQB CTFL<span>Foundation Level</span></li>
-    </ul>
 
     <p class="cat gap">수상</p>
     <ul class="rows">
@@ -170,10 +201,22 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
       <li>AI TechDay 해커톤 우수상<span>2024.11</span></li>
       <li>창업창직 경진대회 우수상(BBB)<span>2024.10</span></li>
     </ul>
+    <div class="pair">
+      <div>
+    <p class="cat gap">자격증</p>
+    <ul class="rows">
+      <li>SQLD<span>한국데이터산업진흥원</span></li>
+      <li>ADsP<span>한국데이터산업진흥원</span></li>
+      <li>ISTQB CTFL<span>Foundation Level</span></li>
+    </ul>
+      </div>
+      <div>
     <p class="cat gap">대회 참가</p>
     <ul class="rows">
       <li>International CanSat Competition 2025 32위<span>2025.06</span></li>
     </ul>
+      </div>
+    </div>
   </div>
 </div>
 

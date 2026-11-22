@@ -37,7 +37,7 @@
 | `_resume/portfolio.html` | 서비스 소개 PDF 원본. 밑줄 폴더라 배포 대상에서 제외됨 |
 | `_resume/resume.html` | 이력서 원본(A4 2쪽). 밑줄 폴더라 Jekyll 배포 대상에서 제외됨 |
 | `_resume/build_portfolio.py` | 포트폴리오 PDF 생성 스크립트. 목차 쪽 번호를 채우려고 2회 생성 |
-| `google*.html`, `naver*.html` | 검색 엔진 소유 확인 파일 |
+| `google*.html`, `naver*.html` | 검색 엔진 소유 확인 파일. 네이버는 `index.html` 머리의 `naver-site-verification` 메타 태그로도 확인 |
 | `robots.txt` | 전체 허용, 사이트맵 2개(루트, `/blog/`) 안내 |
 | `sitemap.xml` | 첫 페이지, 포트폴리오 PDF, 이력서 PDF 3개 주소. 내용을 바꾸면 `lastmod` 날짜를 갱신 |
 | `301a4763aac1fcfe66eba3aeded16807.txt` | IndexNow 키 파일(Bing, 네이버 등에 변경 주소 알림용). 파일 이름과 내용이 같아야 함 |

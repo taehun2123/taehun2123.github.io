@@ -160,7 +160,7 @@
           <div class="intro-block">
             <div class="intro-label">문제 정의</div>
             <div class="lead">
-              <p>농구 동호회 운영진은 게스트 모집, 친선전 상대 섭외, 체육관 대관을 단톡방과 전화로 조율합니다.<br>창업팀 조사에서 운영진 1명이 경기 1회 일정을 확정하는 데 1~2시간 이상을 썼습니다.</p>
+              <p>농구 동호회 운영진은 게스트 모집, 친선전 상대 섭외, 체육관 대관을 단톡방과 전화로 조율합니다.<br>창업팀 조사에서 운영진 1명이 경기 1회 일정을 확정하는 데 1시간 이상을 썼습니다.</p>
               <p>2026-08-19 App Store와 Google Play에 출시해 95일째 운영 중입니다.<br>가입 회원은 485명입니다.</p>
             </div>
           </div>
@@ -172,7 +172,6 @@
               <div class="kpi"><div class="kpi-value">11<small>건</small></div><div class="kpi-label">완료 경기</div><div class="kpi-note">출시 후, 수락된 참가 신청 22건</div></div>
               <div class="kpi"><div class="kpi-value">139<small>곳</small></div><div class="kpi-label">등록 경기장</div><div class="kpi-note">2026-11-18 운영 DB</div></div>
               <div class="kpi"><div class="kpi-value">41<small>개</small></div><div class="kpi-label">개설 클럽</div><div class="kpi-note">2026-11-18 운영 DB</div></div>
-              <div class="kpi"><div class="kpi-value">53<small>위</small></div><div class="kpi-label">App Store 스포츠 일간 순위</div><div class="kpi-note">2026-09-02</div></div>
             </div>
           </div>
           <div class="intro-block">
@@ -206,6 +205,7 @@
           <h3 class="h-sub">담당 업무</h3>
           <ul class="did">
             <li>Spring Boot 서버: 매칭 큐, 모집글, 클럽, 대관, 채팅, 푸시 알림 API</li>
+            <li>개발 방식: 설계와 코드 리뷰는 직접, 구현은 AI 코딩 도구(Claude Code) 보조, 병합 전 테스트·CI 통과</li>
             <li>React Native(Expo) 앱·웹: 화면 <b>58개</b>, iOS·Android·웹 동시 배포</li>
             <li>제휴 체육관 파트너 앱·웹: 대관 예약, 입금 확인, 기기별 푸시</li>
             <li>운영: Mac mini blue/green 배포, 울산 스탠바이 복제 서버, CI 러너 <b>4대</b></li>
@@ -252,28 +252,6 @@
           <article class="case">
             <div class="case-side">
               <div class="case-no">2</div>
-              <h4 class="h-card">웹 API 응답 지연과 CORS 사전 요청</h4>
-              <div class="case-tags"><span class="chip">2026-11-18</span><span class="chip">Cloudflare Worker</span></div>
-              <div class="case-result">
-                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
-                  <tr><td>로그인 요청 중앙값</td><td>276ms</td><td class="after">139ms</td></tr>
-                  <tr><td>사전 요청</td><td>요청마다 1회</td><td class="after">0회</td></tr>
-                  <tr><td>사용자 IP 기록</td><td>유지</td><td class="after">유지</td></tr>
-                </tbody></table>
-              </div>
-            </div>
-            <dl class="case-body">
-              <dt>문제</dt><dd>운영 웹을 직접 사용하며 체감 응답 약 1.5초를 확인했습니다.<br>같은 기능의 앱 응답은 약 1.0초였습니다.</dd>
-              <dt>원인</dt><dd>웹(app.nuktu.com)이 다른 도메인(api.nuktu.com)을 호출했습니다.<br>인증 헤더가 있는 요청마다 OPTIONS 사전 요청이 291~375ms 추가됐습니다.<br>사전 요청 캐시는 주소별로 저장되어 페이지 번호가 바뀌면 다시 발생했습니다.</dd>
-              <dt>대안</dt><dd>Pages 함수 경유는 사용자 IP가 Cloudflare 주소로 바뀝니다.<br>이 경우 비로그인 IP 제한이 웹 사용자 전체에 함께 적용되어 제외했습니다.<br>API 도메인 프록시 해제는 서버 공인 IP가 노출되어 제외했습니다.</dd>
-              <dt>해결</dt><dd>Cloudflare Worker를 <code>app.nuktu.com/api/*</code> 경로에 배치했습니다.<br>웹은 접속 호스트가 운영 도메인일 때 같은 도메인 <code>/api</code>로 요청합니다.</dd>
-              <dt>측정</dt><dd>운영 브라우저에서 매번 다른 주소로 10회씩 2번 측정했습니다.<br>중앙값은 276·289ms에서 139·147ms로 감소했습니다.</dd>
-            </dl>
-          </article>
-
-          <article class="case">
-            <div class="case-side">
-              <div class="case-no">3</div>
               <h4 class="h-card">스탠바이 서버 기동 실패와 장애 전환 공백</h4>
               <div class="case-tags"><span class="chip">2026-11-14</span><span class="chip">PostgreSQL 복제</span></div>
               <div class="case-result">
@@ -285,39 +263,17 @@
               </div>
             </div>
             <dl class="case-body">
-              <dt>문제</dt><dd>약 3일 21시간 동안 메인 서버 장애 시 서비스를 넘겨받을 서버가 없었습니다.<br>울산 스탠바이 백엔드가 재시작을 2,973회 반복했습니다.</dd>
+              <dt>문제</dt><dd>약 3일 21시간 동안 메인 서버 장애 시 서비스를 넘겨받을 서버가 없었습니다.<br>울산 스탠바이 백엔드가 재시작을 2,973회 반복했습니다.<br>Standby drift 워크플로 경고가 발생했지만 3일 이상 지나 확인했습니다.</dd>
               <dt>원인</dt><dd>서버 시작 시 실행되는 전적 백필이 <code>SELECT ... FOR UPDATE</code>를 실행했습니다.<br>스트리밍 복제본은 읽기 전용이라 SQLSTATE 25006으로 실패했습니다.<br>이 백필은 Flyway와 스케줄러 비활성화 설정과 무관하게 실행됐습니다.</dd>
               <dt>대안</dt><dd><code>pg_is_in_recovery()</code>는 복제 상태만 판별해 제외했습니다.<br>스케줄러 설정 연동은 DB 쓰기 가능 여부와 무관하고 승격 전 재기동 시 재발해 제외했습니다.</dd>
-              <dt>해결</dt><dd>트랜잭션 시작 직후 <code>SHOW transaction_read_only</code>가 on이면 백필을 건너뜁니다.<br>로컬 PostgreSQL 17 복제 환경에서 실패를 재현했습니다.<br><code>pg_promote()</code> 승격 후 백필이 실행되는 것까지 확인했습니다.</dd>
+              <dt>해결</dt><dd>트랜잭션 시작 직후 <code>SHOW transaction_read_only</code>가 on이면 백필을 건너뜁니다.<br>로컬 PostgreSQL 17 복제 환경에서 실패를 재현했습니다.<br><code>pg_promote()</code> 승격 후 백필이 실행되는 것까지 확인했습니다.<br>2026-11-15 Mac mini 감시 스크립트에 스탠바이 응답 점검(5분 주기)을 추가했습니다.</dd>
               <dt>담당</dt><dd>장애 분석, 수정, 회귀 테스트 2건 추가를 담당했습니다.</dd>
             </dl>
           </article>
 
           <article class="case">
             <div class="case-side">
-              <div class="case-no">4</div>
-              <h4 class="h-card">느린 회선의 웹 스플래시 고정</h4>
-              <div class="case-tags"><span class="chip">2026-11-15</span><span class="chip">웹 성능</span></div>
-              <div class="case-result">
-                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
-                  <tr><td>첫 화면 전송량</td><td>9,384KB</td><td class="after">2,360KB</td></tr>
-                  <tr><td>글꼴 용량</td><td>5,388KB</td><td class="after">789KB</td></tr>
-                  <tr><td>1.6Mbps 첫 글자</td><td>120초 내 미표시</td><td class="after">12.0초</td></tr>
-                </tbody></table>
-              </div>
-            </div>
-            <dl class="case-body">
-              <dt>문제</dt><dd>3Mbps 이하 회선에서 웹 첫 화면이 90초 넘게 스플래시 상태로 유지됐습니다.<br>첫 화면 9,384KB 중 글꼴이 5,388KB(57%)였습니다.</dd>
-              <dt>원인</dt><dd>웹 글꼴 로더(<code>expo-font</code>)는 12초가 지나면 실패를 반환합니다.<br>앱 시작 코드는 글꼴 로딩 완료만 확인해 실패 시 화면에 진입하지 못했습니다.<br>글꼴 5종을 12초 안에 받으려면 약 3.5Mbps가 필요합니다.</dd>
-              <dt>대안</dt><dd>언어 설정과 로그인 복원 대기 가설은 6Mbps에서 정상 동작해 제외했습니다.<br>Metro 자산으로 woff2를 제공하는 안은 기본 자산 확장자에 woff2가 없어 제외했습니다.</dd>
-              <dt>해결</dt><dd>글꼴 오류 시에도 화면에 진입하도록 시작 조건을 바꿨습니다.<br>글꼴은 woff2 3종, 한글 2,350자 부분 집합으로 축소하고 preload했습니다.<br>화면별 코드 분할과 HTML 스플래시를 추가했습니다.</dd>
-              <dt>측정</dt><dd>Playwright Chrome 390×844, 캐시 끔, 지연 150ms, CPU 4배 감속 조건에서 운영 웹을 측정했습니다.</dd>
-            </dl>
-          </article>
-
-          <article class="case">
-            <div class="case-side">
-              <div class="case-no">5</div>
+              <div class="case-no">3</div>
               <h4 class="h-card">커뮤니티 글 조회 수 중복과 후속 500 장애</h4>
               <div class="case-tags"><span class="chip">2026-11-06 ~ 07</span><span class="chip">JPA</span></div>
               <div class="case-result">
@@ -391,7 +347,7 @@
       <div class="block">
         <h3 class="h-sub">핵심 수치</h3>
         <div class="kpis">
-          <div class="kpi"><div class="kpi-value">35/35</div><div class="kpi-label">AI 운영 도우미 평가 정답</div><div class="kpi-note">단일 턴 31문항, 다중 턴 4문항</div></div>
+          <div class="kpi"><div class="kpi-value">35/35</div><div class="kpi-label">AI 도구 선택 정답</div><div class="kpi-note">평가 35문항, 지침만 쓴 3회 중 1회는 34/35</div></div>
           <div class="kpi"><div class="kpi-value">0.758</div><div class="kpi-label">처음 보는 건물 실내기 재현율</div><div class="kpi-note">평가 전용 6동 평균, 기존 0.339, 대수 합계 0.566</div></div>
           <div class="kpi"><div class="kpi-value">4.2<small>초</small></div><div class="kpi-label">AI 응답 시간 중앙값</div><div class="kpi-note">단일 턴 기준</div></div>
           <div class="kpi"><div class="kpi-value">13<small>개</small></div><div class="kpi-label">Lambda 함수</div><div class="kpi-note">AWS SAM 스택 5개</div></div>
@@ -402,8 +358,8 @@
         <div>
           <h3 class="h-sub">팀 분담</h3>
           <ul class="did">
-            <li>팀 4명, 본인 팀장</li>
-            <li>팀원: 3D 트윈 외관, EnergyPlus 계산 서버, 기상청 연동</li>
+            <li>팀 4명, 본인 팀장: 영역별 분담, 운영자 문제 조사 결과로 구현 범위 결정</li>
+            <li>팀원: three.js 3D 화면 표현, EnergyPlus 계산 서버, 기상청 연동</li>
           </ul>
         </div>
         <div>
@@ -411,7 +367,7 @@
           <ul class="did">
             <li>React 운영자 화면 <b>5종</b>: 전체 현황, 건물 운영, 전력 분석, 운전 시뮬레이션, 도면 편집</li>
             <li>Lambda(Python 3.12) 조회·관리 API, WebSocket AI 응답 스트리밍</li>
-            <li>Bedrock Claude Sonnet 5.5 구조화 응답, 평가 <b>35/35</b></li>
+            <li>Bedrock Claude Sonnet 5.5 구조화 응답, 도구 선택 정답 <b>35/35</b></li>
             <li>도면 실내기 인식 YOLO11s v1~v9, 재현율 <b>0.339 → 0.758</b>(대수 합계 0.288 → 0.566)</li>
             <li>AWS SAM 배포</li>
           </ul>
@@ -434,51 +390,6 @@
           <article class="case">
             <div class="case-side">
               <div class="case-no">1</div>
-              <h4 class="h-card">트윈 로딩 중 이전 화면 노출과 지연</h4>
-              <div class="case-tags"><span class="chip">2026-11-20</span></div>
-              <div class="case-result">
-                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
-                  <tr><td>자체 화면 노출</td><td>14회</td><td class="after">0회</td></tr>
-                  <tr><td>준비 시각(새 건물)</td><td>1.8초</td><td class="after">1.4초</td></tr>
-                  <tr><td>앱 JS 전송량</td><td>451KB</td><td class="after">133KB</td></tr>
-                  <tr><td>트윈 없는 건물 요청</td><td>18건</td><td class="after">0건</td></tr>
-                </tbody></table>
-              </div>
-            </div>
-            <dl class="case-body">
-              <dt>문제</dt><dd>트윈을 여는 동안 트윈 자체 도구 줄과 0kW 지표가 잠깐 표시됐습니다.<br>시뮬레이션 입력과 층 카드 값도 로딩 중에 바뀌었습니다.<br>0.1초 간격 8초 측정에서 자체 화면이 14회 노출됐습니다.</dd>
-              <dt>원인</dt><dd>트윈 iframe은 앱의 첫 상태 메시지를 받은 뒤에 임베드 모드로 전환했습니다.<br>첫 보고는 호실 데이터 반영 전에 전송됐습니다.<br>CloudFront 압축 설정이 없었고, 트윈 도면이 없는 건물도 트윈 파일 18건을 요청했습니다.</dd>
-              <dt>배제</dt><dd>CloudFront가 이전 HTML을 응답한다는 가설은 무효화 완료로 제외했습니다.<br>API 처리 지연은 예열 상태 128ms 이하라 주원인에서 제외했습니다.</dd>
-              <dt>해결</dt><dd>트윈 주소에 <code>host=1</code>을 넣어 첫 표시부터 임베드 모드로 시작합니다.<br>앱 데이터 반영 후에만 보고합니다.<br>건물 목록에 <code>hasTwin</code>을 추가해 도면이 없으면 트윈을 불러오지 않습니다.<br>CloudFront 압축을 켜고 캐시 헤더를 해시 파일과 HTML로 나눴습니다.</dd>
-              <dt>측정</dt><dd>지연 80ms, 10Mbps, API 300ms 조건에서 측정했습니다.<br>배포 후 응답 헤더의 <code>Content-Encoding: br</code>을 확인했습니다.</dd>
-            </dl>
-          </article>
-
-          <article class="case">
-            <div class="case-side">
-              <div class="case-no">2</div>
-              <h4 class="h-card">AI 답변 길이 편차</h4>
-              <div class="case-tags"><span class="chip">2026-11-20</span></div>
-              <div class="case-result">
-                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
-                  <tr><td>3문장 초과 답변</td><td>3~12건</td><td class="after">0건</td></tr>
-                  <tr><td>평가 정답</td><td>35/35</td><td class="after">35/35</td></tr>
-                  <tr><td>응답 시간 중앙값</td><td>3.6~4.3초</td><td class="after">4.2초</td></tr>
-                </tbody></table>
-              </div>
-            </div>
-            <dl class="case-body">
-              <dt>문제</dt><dd>주 사용자인 운영자(기계설비유지관리자 72%가 50대 이상)가 읽는 AI 답변 분량이 일정하지 않았습니다.<br>답변을 3문장 이하로 지시했습니다.<br>평가 35문항 중 3문장 초과 답변이 실행마다 3건, 8건, 12건으로 달랐습니다.</dd>
-              <dt>원인</dt><dd>프롬프트 지침만으로는 모델 출력의 문장 수를 제한할 수 없었습니다.</dd>
-              <dt>대안</dt><dd>초과 답변 재작성은 해당 답변이 1~2초 지연되고 긴 답변이 먼저 표시되어 제외했습니다.<br>4문장으로 완화하는 안은 읽기 부담이 그대로라 제외했습니다.</dd>
-              <dt>해결</dt><dd>Bedrock 구조화 응답으로 결론, 근거, 조치 3칸을 받습니다.<br>서버가 칸마다 첫 문장만 화면에 전송합니다.<br>층을 지정하지 않은 제어 요청은 서버 검증 후 되묻습니다.</dd>
-              <dt>검증</dt><dd>실제 Bedrock 호출로 35문항을 평가했습니다.<br>응답 형식 테스트와 스트리밍 순서 테스트를 추가했습니다.</dd>
-            </dl>
-          </article>
-
-          <article class="case">
-            <div class="case-side">
-              <div class="case-no">3</div>
               <h4 class="h-card">실내기 인식 모델의 실제 도면 일반화 실패</h4>
               <div class="case-tags"><span class="chip">2026-11-20 ~ 21</span><span class="chip">YOLO11s</span><span class="chip">SageMaker</span></div>
               <div class="case-result">
@@ -500,7 +411,7 @@
 
           <article class="case">
             <div class="case-side">
-              <div class="case-no">4</div>
+              <div class="case-no">2</div>
               <h4 class="h-card">운영 시작 0시 건물로 전력 분석 전체 400 오류</h4>
               <div class="case-tags"><span class="chip">2026-11-21</span><span class="chip">장애 대응</span></div>
               <div class="case-result">
@@ -652,47 +563,6 @@
             </dl>
           </article>
 
-          <article class="case">
-            <div class="case-side">
-              <div class="case-no">3</div>
-              <h4 class="h-card">버스 상태 이벤트 리스너 누락</h4>
-              <div class="case-tags"><span class="chip">2025-06-16</span><span class="chip">Spring Event</span></div>
-              <div class="case-result">
-                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
-                  <tr><td>이벤트 리스너</td><td>0개</td><td class="after">1개</td></tr>
-                  <tr><td>승객 앱 상태 전달</td><td>없음</td><td class="after">3초 주기</td></tr>
-                </tbody></table>
-              </div>
-            </div>
-            <dl class="case-body">
-              <dt>문제</dt><dd>버스 위치는 서버에 저장됐지만 승객 앱에 버스 상태가 전달되지 않았습니다.<br>이 상태가 약 2개월 지속됐습니다.</dd>
-              <dt>원인</dt><dd>2025-04에 서비스 간 순환 참조(승객 → BusService → 운전자 → BusService)를 끊으려고 직접 호출을 이벤트 발행으로 바꿨습니다.<br>이때 발행 코드만 추가됐고 <code>@EventListener</code>는 코드에 없었습니다.</dd>
-              <dt>해결</dt><dd><code>BusStatusEventListener</code>(<code>@EventListener</code>, <code>@Async</code>)를 추가했습니다.<br>리스너는 같은 조직의 승객 WebSocket 세션에 <code>busUpdate</code>를 전송합니다.</dd>
-              <dt>영향</dt><dd>이벤트 방식은 발행자와 구독자의 연결을 컴파일 단계에서 확인하지 않습니다.<br>그래서 빌드와 기동은 정상이었고 결함이 약 2개월 동안 발견되지 않았습니다.</dd>
-            </dl>
-          </article>
-
-          <article class="case">
-            <div class="case-side">
-              <div class="case-no">4</div>
-              <h4 class="h-card">전시 대비 WebSocket 연결 관리</h4>
-              <div class="case-tags"><span class="chip">2025-11-24</span></div>
-              <div class="case-result">
-                <table><thead><tr><th>항목</th><th>수정 전</th><th>수정 후</th></tr></thead><tbody>
-                  <tr><td>IP당 연결 한도</td><td>10개</td><td class="after">100개</td></tr>
-                  <tr><td>사용자당 세션</td><td>제한 없음</td><td class="after">1개</td></tr>
-                  <tr><td>운전자 연결 종료 시 승객</td><td>탑승 유지</td><td class="after">자동 하차</td></tr>
-                </tbody></table>
-              </div>
-            </div>
-            <dl class="case-body">
-              <dt>배경</dt><dd>CoShow 2025 전시(2025-11-26 ~ 11-29) 전에 다수 관람객의 동시 접속을 기준으로 연결 처리 코드를 점검했습니다.</dd>
-              <dt>원인</dt><dd>핸드셰이크 실패와 전송 오류 경로에서 IP별 연결 수를 차감하지 않아 카운트가 남았습니다.<br>같은 사용자가 재접속하면 이전 세션이 남았습니다.<br>운전자 연결이 끊겨도 승객의 탑승 상태가 유지됐습니다.</dd>
-              <dt>해결</dt><dd>오류 경로에서도 IP별 연결 수를 차감합니다.<br>사용자와 세션을 맵으로 연결하고 새 연결이 오면 이전 세션을 GOING_AWAY로 종료합니다.<br>운전자 연결이 끊기면 해당 버스 승객을 모두 하차 처리합니다.</dd>
-              <dt>설정</dt><dd>MongoDB 연결 풀 최대 200개, Tomcat 최대 스레드 500개, 응답 gzip 압축을 적용했습니다.</dd>
-            </dl>
-          </article>
-
         </div>
       </div>
     </div>
@@ -719,7 +589,6 @@
           <li>PNU × AWS Maestro AI 해커톤 최우수상(에게)<span>2026.11.21</span></li>
           <li>클라우드 AI PBL 팀 프로젝트 최우수상<span>부산대학교 AI융합교육원장, 2026.07.20</span></li>
           <li>COSS 아이디어·성과 경진대회(CoShow) 차세대통신단장상<span>2025.11.21</span></li>
-          <li>International CanSat Competition 2025(미국 버지니아) 32위<span>2025.06.21</span></li>
           <li>디지텍 캡스톤디자인 경진대회 디지텍상<span>2024.11.21</span></li>
           <li>소프트웨어개발 캡스톤디자인 경진대회 은상, 소프트웨어 부문(버스트래커)<span>울산과학대학교 총장, 2024.11.08</span></li>
           <li>캡스톤디자인 경진대회 은상, 일반 부문<span>울산과학대학교 총장, 2024.11.08</span></li>
@@ -733,6 +602,10 @@
           <li>SQLD<span>SQL 개발자, 한국데이터산업진흥원</span></li>
           <li>ADsP<span>데이터분석 준전문가, 한국데이터산업진흥원</span></li>
           <li>ISTQB CTFL<span>소프트웨어 테스팅 Foundation Level</span></li>
+        </ul>
+        <h3 class="h-sub" style="margin-top:32px">대회 참가</h3>
+        <ul class="list-rows">
+          <li>International CanSat Competition 2025(미국 버지니아) 32위<span>2025.06.21</span></li>
         </ul>
       </div>
     </div>

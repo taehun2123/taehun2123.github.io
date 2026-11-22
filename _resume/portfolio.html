@@ -102,7 +102,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 <!-- 1. 넉터 -->
 <section class="break">
   <h2 id="nuktu">1. 넉터</h2>
-  <p>농구 동호회 운영진은 게스트 모집, 친선전 상대 섭외, 체육관 대관을 단톡방과 전화로 조율합니다.<br>창업팀 조사에서 운영진 1명이 경기 1회 일정을 확정하는 데 1~2시간 이상을 썼습니다.</p>
+  <p>농구 동호회 운영진은 게스트 모집, 친선전 상대 섭외, 체육관 대관을 단톡방과 전화로 조율합니다.<br>창업팀 조사에서 운영진 1명이 경기 1회 일정을 확정하는 데 1시간 이상을 썼습니다.</p>
   <p>2026-08-19 App Store와 Google Play에 출시해 95일째 운영 중입니다.<br>가입 회원은 485명입니다.</p>
   <table class="links">
     <tr><td>App Store</td><td><a href="https://apps.apple.com/kr/app/id6801552960">https://apps.apple.com/kr/app/id6801552960</a></td></tr>
@@ -130,7 +130,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
       <tr><td class="k">docs</td><td>팀 문서 사이트 구축, 문서 검사 자동화</td><td class="n">586 / 666 (88%)</td><td class="n">290 / 349</td></tr>
     </tbody>
   </table>
-  <p class="note">팀은 개발 3명, 디자이너 2명입니다.<br>다른 개발 팀원 2명은 장애 전환 서버 최초 구축과 CI 초기 구성, 경기장 상황 알리기·채팅 알림·회원 경기장 추가 승인을 담당했습니다.<br>디자이너 2명은 로고, 스토어 이미지, 웹 배색 조합, 마케팅 포스터를 담당했습니다.<br>운영 구성은 Mac mini blue/green 배포, 울산 스탠바이 복제 서버, 자체 CI 러너 4대입니다.<br>본인은 운영 중 장애 대응, 배포 시간 단축, CI 러너 증설을 맡았습니다.</p>
+  <p class="note">팀은 개발 3명, 디자이너 2명입니다.<br>다른 개발 팀원 2명은 장애 전환 서버 최초 구축과 CI 초기 구성, 경기장 상황 알리기·채팅 알림·회원 경기장 추가 승인을 담당했습니다.<br>디자이너 2명은 로고, 스토어 이미지, 웹 배색 조합, 마케팅 포스터를 담당했습니다.<br>운영 구성은 Mac mini blue/green 배포, 울산 스탠바이 복제 서버, 자체 CI 러너 4대입니다.<br>본인은 운영 중 장애 대응, 배포 시간 단축, CI 러너 증설을 맡았습니다.<br>설계와 코드 리뷰는 직접 하고, 구현은 AI 코딩 도구(Claude Code)로 보조했습니다.<br>병합 전 테스트와 CI 검사를 통과시켰습니다.</p>
 
   <h3>1-2. 지표</h3>
   <table>
@@ -141,8 +141,6 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
       <tr><td class="k">주간 활동 회원</td><td class="n after">40명</td><td>2026-11-16 ~ 11-22 조회·채팅·작성·신청 회원(관리자 제외), 주별 18명 → 23명 → 38명, 최근 30일 62명</td></tr>
       <tr><td class="k">완료 경기</td><td class="n">11건</td><td>2026-08-19 ~ 11-21 운영 DB, 11월 5건, 수락된 참가 신청 22건(17명)</td></tr>
       <tr><td class="k">등록 데이터</td><td class="n">경기장 139곳</td><td>2026-11-18 운영 DB, 개설 클럽 41개, 모집글 62건</td></tr>
-      <tr><td class="k">App Store 순위</td><td class="n">스포츠 일간 53위</td><td>2026-09-02</td></tr>
-      <tr><td class="k">배포 버전</td><td class="n">1.1.2</td><td>2026-11-16 스토어 업로드</td></tr>
     </tbody>
   </table>
 </section>
@@ -194,13 +192,13 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
   </table>
   <p class="note">기본 스택: Java 17, Spring Boot 3.2, PostgreSQL 17(스트리밍 복제), Redis 7.4, Flyway(V0~V190), STOMP WebSocket, React Native 0.86(Expo SDK 57), TypeScript, Cloudflare Workers·Pages, Docker, GitHub Actions, Sentry.</p>
 
-  <h3>1-6. 운영 장애 대응</h3>
+  <h3>1-6. 장애와 성능 문제 대응</h3>
   <table>
     <thead><tr><th style="width:30mm">장애</th><th>원인</th><th>조치</th><th style="width:38mm">전후 수치</th></tr></thead>
     <tbody>
-      <tr><td class="k">큐 매칭 요청 6초 대기<br>2026-08-21</td><td>후보자마다 요약 조회를 따로 호출하는 N+1 조회. 지역 전체 매칭을 요청 스레드에서 계산</td><td>일괄 조회, 개수 전용 쿼리, 등록 티켓 기준 즉시 매칭과 60초 주기 지역 배치 분리</td><td>요청당 SQL 1,259개 → <b>25개</b>, 응답 6.30초 → <b>0.51초</b>(테스트 데이터, 매칭 성립 시 1.27초)</td></tr>
+      <tr><td class="k">큐 매칭 요청 6초 대기<br>2026-08-21, 부하 조건에서 발견</td><td>후보자마다 요약 조회를 따로 호출하는 N+1 조회. 지역 전체 매칭을 요청 스레드에서 계산</td><td>일괄 조회, 개수 전용 쿼리, 등록 티켓 기준 즉시 매칭과 60초 주기 지역 배치 분리</td><td>요청당 SQL 1,259개 → <b>25개</b>, 응답 6.30초 → <b>0.51초</b>(테스트 데이터, 매칭 성립 시 1.27초)</td></tr>
       <tr><td class="k">커뮤니티 글 상세 500<br>2026-11-07</td><td>조회 기록 쿼리의 <code>@Modifying(clearAutomatically = true)</code>로 먼저 조회한 게시글이 준영속 상태가 되어 지연 로딩 실패</td><td>조회 기록 후 게시글 조회로 순서 변경, 통합 테스트 추가, 리뷰 기준을 장애 기록에 추가</td><td>로그인 회원 글 상세 500 → <b>200</b>, 영향 약 20시간</td></tr>
-      <tr><td class="k">스탠바이 서버 기동 실패<br>2026-11-14</td><td>서버 시작 시 백필의 <code>SELECT ... FOR UPDATE</code>가 읽기 전용 복제본에서 실패</td><td><code>SHOW transaction_read_only</code>가 on이면 백필 생략. <code>pg_is_in_recovery()</code>는 복제 상태만 판별해 제외</td><td>재시작 2,973회 → <b>0회</b>, 기동 <b>17.1초</b></td></tr>
+      <tr><td class="k">스탠바이 서버 기동 실패<br>2026-11-14</td><td>서버 시작 시 백필의 <code>SELECT ... FOR UPDATE</code>가 읽기 전용 복제본에서 실패</td><td><code>SHOW transaction_read_only</code>가 on이면 백필 생략. <code>pg_is_in_recovery()</code>는 복제 상태만 판별해 제외</td><td>재시작 2,973회 → <b>0회</b>, 기동 <b>17.1초</b>. 경고를 3일 넘게 놓쳐 스탠바이 응답 5분 주기 점검 추가</td></tr>
       <tr><td class="k">다른 기기 로그인 시<br>세션 덮어쓰기<br>2026-10-30</td><td>계정당 리프레시 토큰 1개만 저장. 운영 Redis는 AOF 꺼짐 상태</td><td>저장 키를 기기 세션 단위(<code>refresh_token:&lt;userId&gt;:&lt;sid&gt;</code>)로 분리, Redis AOF <code>everysec</code> 전환</td><td>갱신 거부 7건 해소, 배포 전후 세션 키 24개 유지</td></tr>
     </tbody>
   </table>
@@ -210,7 +208,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 <section class="break">
   <h2 id="ege">2. 에게</h2>
   <p>LG전자 ES사업본부(BECON 빌딩 제어 솔루션)가 출제한 과제는 "건물 운영자가 공간과 설비 상태를 직관적으로 파악하기 어렵다"였습니다.<br>구현 전에 운영자 문제 자료 155건을 조사해 이 문제를 검증했습니다.</p>
-  <p>3일 해커톤에서 도면 기반 3D 트윈과 AI 운영 도우미를 운영 사이트까지 배포했고 PNU × AWS Maestro AI 해커톤 최우수상(2026-11-21)을 받았습니다.</p>
+  <p>3일 해커톤에서 도면 기반 3D 트윈과 AI 운영 도우미를 만들어 배포까지 마쳤고, PNU × AWS Maestro AI 해커톤 최우수상(2026-11-21)을 받았습니다.</p>
   <table class="links">
     <tr><td>시연 영상</td><td><a href="https://taehun2123.github.io/assets/video/ege-demo.mp4">https://taehun2123.github.io/assets/video/ege-demo.mp4</a> (3분 59초)</td></tr>
     <tr><td>소스 코드</td><td><a href="https://github.com/Energy-gate">https://github.com/Energy-gate</a> (Frontend, Lambda, docs 공개)</td></tr>
@@ -264,12 +262,12 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
       <tr><td class="k">규정 문서<br>검색 저장소</td><td>S3 Vectors, OpenSearch Serverless, Aurora pgvector</td><td>S3 Vectors. 문서 7건 규모에서 월 $0.01 미만. OpenSearch Serverless 최소 월 $214~428, Aurora pgvector 최소 월 $73. 검색 중앙값 0.345초</td></tr>
       <tr><td class="k">AI 답변<br>길이 제어</td><td>초과 답변 재작성, 4문장 완화, 구조화 응답</td><td>구조화 응답. 재작성은 1~2초 지연되고 긴 답변이 먼저 표시됨. 4문장 완화는 읽기 부담 유지. 3문장 초과 3~12건 → 0건</td></tr>
       <tr><td class="k">도면 실내기<br>인식</td><td>비전 언어 모델, 공개 IFC 학습, YOLO 미세조정</td><td>YOLO11s. 비전 언어 모델은 좌표 정밀도가 낮고 호출마다 비용 발생. 처음 보는 건물 6동 재현율 0.339 → 0.758(대수 합계 0.288 → 0.566)</td></tr>
-      <tr><td class="k">API 함수 구성</td><td>기능별 함수 9개, 조회·관리 API 통합</td><td>통합. 화면마다 콜드 스타트 9회로 첫 호출 2.6~2.9초. 통합 후 로컬 계산 456ms → 52ms</td></tr>
+      <tr><td class="k">API 함수 구성</td><td>기능별 함수 9개, 조회·관리 API 통합</td><td>통합. 화면마다 콜드 스타트 9회로 첫 호출 2.6~2.9초. 통합 후 화면당 콜드 스타트 1회, 계산 456ms → 52ms(로컬 측정)</td></tr>
     </tbody>
   </table>
 
   <h3>2-5. 팀 구성과 담당</h3>
-  <p>4명 팀의 팀장을 맡았습니다.</p>
+  <p>4명 팀의 팀장을 맡았습니다.<br>화면, API, 도면 인식 모델은 본인이 맡고 three.js 3D 화면 표현, EnergyPlus 계산 서버, 기상청 연동은 팀원이 맡도록 나눴습니다.<br>운영자 문제 조사 결과로 구현 범위를 정했습니다.</p>
   <table>
     <thead><tr><th>영역</th><th>본인 담당</th><th style="width:40mm">본인 / 전체 커밋(병합 제외)</th></tr></thead>
     <tbody>
@@ -278,14 +276,13 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
       <tr><td class="k">ML</td><td>도면 실내기 기호 인식 YOLO11s v1~v9 학습과 배포(SageMaker)</td><td class="n">14 / 15</td></tr>
     </tbody>
   </table>
-  <p class="note">3D 트윈 외관, EnergyPlus 계산 서버, 기상청 연동은 팀원이 담당했습니다.</p>
 </section>
 
 <!-- 3. 버스트래커 -->
 <section class="break">
   <h2 id="bustracker">3. 버스트래커</h2>
   <p>학생은 통학버스 지연과 정류장 변경을 미리 확인하기 어려웠습니다.<br>기존 위치 서비스는 버스마다 단말기를 설치해야 해서 대여 버스에는 적용하기 어려웠습니다.</p>
-  <p>2024년 학교 건물 단말기 방식으로 시작해 2025년 운전자 앱 GPS 방식으로 전환했습니다.<br>2025-11 CoShow 2025에 전시하고 Android 앱 v1.0.6을 배포했습니다.</p>
+  <p>2024년 버스 탑재 IoT 단말기 방식으로 시작해 2025년 운전자 앱 GPS 방식으로 전환했습니다.<br>2025-11 CoShow 2025에 전시하고 Android 앱 v1.0.6을 배포했습니다.</p>
   <table class="links">
     <tr><td>2024 백엔드</td><td><a href="https://github.com/Hardware-BBB-App/BackEnd">https://github.com/Hardware-BBB-App/BackEnd</a></td></tr>
     <tr><td>2025 백엔드</td><td><a href="https://github.com/BBB-bus-buddy-buddy/App-Backend">https://github.com/BBB-bus-buddy-buddy/App-Backend</a></td></tr>

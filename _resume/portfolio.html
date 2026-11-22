@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>김태훈 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=block" rel="stylesheet">
+<style>
+/* 포트폴리오 PDF 인쇄 규칙
+ - 용지: A4, 여백 14mm
+ - 색: 잉크 본문, 빨강은 표지 표시에만 사용
+ - 링크: 인쇄본에서도 읽히도록 전체 주소 표기 */
+@page { size: A4; margin: 14mm; }
+:root { --primary: #e60000; --ink: #25282b; --body: #5d6165; --hair: #dcdcdc; --soft: #f2f2f2; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "IBM Plex Sans KR", sans-serif; color: var(--ink); font-size: 9.3pt; line-height: 1.58; word-break: keep-all; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+h1, h2, h3, p, ul, table { margin: 0; }
+a { color: inherit; text-decoration: none; }
+.break { break-before: page; }
+.top { display: grid; grid-template-columns: 1fr auto; align-items: end; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
+.name { font-size: 28pt; font-weight: 700; line-height: 1; letter-spacing: -0.5px; }
+.name span { font-size: 12pt; font-weight: 400; margin-left: 10px; letter-spacing: 0; }
+.logo { height: 13mm; width: auto; }
+.apply { margin-top: 8px; font-size: 10pt; }
+.apply b { font-weight: 700; margin-right: 6px; }
+h2 { font-size: 15pt; font-weight: 700; margin: 0 0 4px; padding-bottom: 6px; border-bottom: 2px solid var(--ink); }
+h3 { font-size: 11pt; font-weight: 700; margin: 16px 0 6px; }
+.claim { font-weight: 600; margin: 4px 0 6px; }
+p + p { margin-top: 4px; }
+.summary { margin-top: 14px; padding: 12px 14px; background: var(--soft); border-radius: 4px; }
+.summary-title { font-weight: 700; margin-bottom: 4px; }
+.summary ul { padding-left: 1.05em; }
+.summary li { margin: 2px 0; }
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
+.kpi { border-top: 2px solid var(--ink); padding-top: 6px; }
+.kpi b { display: block; font-size: 17pt; line-height: 1.1; font-weight: 700; font-variant-numeric: tabular-nums; }
+.kpi span { font-size: 8.4pt; color: var(--body); }
+table { width: 100%; border-collapse: collapse; font-size: 8.7pt; line-height: 1.5; margin-top: 6px; }
+th { text-align: left; font-weight: 600; font-size: 8pt; color: var(--body); padding: 4px 8px 4px 0; border-bottom: 1px solid var(--ink); vertical-align: bottom; }
+td { padding: 5px 8px 5px 0; border-bottom: 1px solid var(--hair); vertical-align: top; }
+td.k { font-weight: 600; white-space: nowrap; }
+td.n, .n { font-variant-numeric: tabular-nums; }
+td.after { font-weight: 700; }
+tr { break-inside: avoid; }
+.links td:first-child { width: 30mm; font-weight: 600; }
+.links td a { font-variant-numeric: tabular-nums; }
+.note { margin-top: 5px; font-size: 8.2pt; color: var(--body); }
+code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius: 2px; }
+.toc { margin-top: 12px; }
+.toc li { margin: 1px 0; }
+.toc { padding-left: 1.05em; }
+</style>
+</head>
+<body>
+
+<!-- 표지 -->
+<div class="top">
+  <div>
+    <h1 class="name">김태훈<span>Full-Stack Developer</span></h1>
+    <div class="apply"><b>지원</b>당근 2027 프로덕트 빌더 인턴십, 커뮤니티 팀(Software Engineer, Backend)</div>
+  </div>
+  <img class="logo" src="../assets/taehun-clay-bold.svg" alt="태훈">
+</div>
+
+<table class="links" style="margin-top:10px">
+  <tr><td>이메일</td><td>taehun@pusan.ac.kr</td></tr>
+  <tr><td>전화</td><td>010-3343-8636</td></tr>
+  <tr><td>포트폴리오 웹</td><td><a href="https://taehun2123.github.io/">https://taehun2123.github.io/</a> (시연 영상 3개 포함)</td></tr>
+  <tr><td>GitHub</td><td><a href="https://github.com/taehun2123">https://github.com/taehun2123</a></td></tr>
+  <tr><td>이력서 PDF</td><td><a href="https://taehun2123.github.io/assets/kim-taehun-resume.pdf">https://taehun2123.github.io/assets/kim-taehun-resume.pdf</a></td></tr>
+</table>
+
+<div class="summary">
+  <div class="summary-title">요약 (기준일 2026-11-22)</div>
+  <ul>
+    <li>동네 농구 커뮤니티 앱 넉터를 직접 개발해 2026-08-19에 출시했습니다. 95일째 운영 중이며 가입 회원은 485명입니다.</li>
+    <li>개발 3명 중 앱·웹 커밋의 87.5%, 서버 커밋의 72.8%를 작성했습니다. 관리자 도구, 배포, 장애 대응도 맡았습니다.</li>
+    <li>직접 사용, 제휴 체육관 미팅, 점검으로 찾은 문제 6건을 고쳤습니다. 기술은 비용과 성능을 비교해 선택했고 선택 기록 56건을 작성했습니다.</li>
+  </ul>
+  <div class="kpis">
+    <div class="kpi"><b>485명</b><span>넉터 가입 회원(2026-11-22)</span></div>
+    <div class="kpi"><b>95일</b><span>운영 기간(2026-08-19 출시)</span></div>
+    <div class="kpi"><b>87.5%</b><span>앱·웹 비병합 커밋 비율</span></div>
+    <div class="kpi"><b>56건</b><span>직접 작성한 기술 선택 기록</span></div>
+  </div>
+</div>
+
+<h3>구성</h3>
+<ol class="toc">
+  <li>넉터: 직접 개발해 운영 중인 서비스(팀 구성과 담당, 지표, 사용자 문제와 변경, 기술 선택, 운영 장애 대응)</li>
+  <li>버스트래커: 통학버스 위치 서비스, 캡스톤 은상과 CoShow 2025 전시</li>
+  <li>에게: 건물 운영 3D 디지털트윈, PNU × AWS Maestro AI 해커톤 최우수상</li>
+</ol>
+
+<!-- 1. 넉터 -->
+<section class="break">
+  <h2>1. 넉터: 직접 개발해 운영 중인 동네 농구 커뮤니티 앱</h2>
+  <p class="claim">넉터는 농구 매칭, 체육관 대관, 클럽 운영, 커뮤니티를 앱 하나에서 처리합니다.</p>
+  <p>농구 동호회 운영진은 게스트 모집, 친선전 상대 섭외, 대관을 단톡방과 전화로 처리합니다. 창업팀 조사에서 운영진 1명은 경기 1회를 조율하는 데 1~2시간 이상을 사용했습니다.</p>
+  <table class="links">
+    <tr><td>App Store</td><td><a href="https://apps.apple.com/kr/app/id6801552960">https://apps.apple.com/kr/app/id6801552960</a></td></tr>
+    <tr><td>Google Play</td><td><a href="https://play.google.com/store/apps/details?id=com.pnu.basketball">https://play.google.com/store/apps/details?id=com.pnu.basketball</a></td></tr>
+    <tr><td>웹 앱</td><td><a href="https://app.nuktu.com">https://app.nuktu.com</a></td></tr>
+    <tr><td>제휴 체육관 웹</td><td><a href="https://partner.nuktu.com">https://partner.nuktu.com</a></td></tr>
+    <tr><td>서비스 소개</td><td><a href="https://nuktu.com">https://nuktu.com</a></td></tr>
+    <tr><td>시연 영상</td><td><a href="https://taehun2123.github.io/assets/video/nuktu-demo.mp4">https://taehun2123.github.io/assets/video/nuktu-demo.mp4</a> (앱 화면 녹화 119초)</td></tr>
+    <tr><td>소스 코드</td><td>NUKTU 조직 비공개 저장소(Backend, Frontend, Partner, docs)</td></tr>
+  </table>
+
+  <h3>1-1. 팀 구성과 담당: 개발 3명 중 앱·웹·서버·운영 주 개발</h3>
+  <table>
+    <thead><tr><th>저장소</th><th>비병합 커밋</th><th>병합 PR</th><th>본인 담당</th></tr></thead>
+    <tbody>
+      <tr><td class="k">App·Web</td><td class="n">1,098 / 1,255 (87.5%)</td><td class="n">687 / 795</td><td>React Native(Expo) 화면 58개, iOS·Android·웹 동시 배포, OTA 업데이트</td></tr>
+      <tr><td class="k">Backend</td><td class="n">643 / 883 (72.8%)</td><td class="n">459 / 611</td><td>매칭 큐, 모집글, 클럽, 대관, 채팅, 푸시 알림, 커뮤니티 API와 관리자 경기장 관리</td></tr>
+      <tr><td class="k">Partner</td><td class="n">137 / 140 (97.9%)</td><td class="n">78 / 81</td><td>제휴 체육관 앱·웹: 대관 예약, 입금 확인, 대관현황표 사진 등록, 기기별 푸시</td></tr>
+      <tr><td class="k">docs</td><td class="n">586 / 666 (88.0%)</td><td class="n">290 / 349</td><td>장애 기록 82건, 기술 선택 기록 62건 중 56건 작성</td></tr>
+    </tbody>
+  </table>
+  <p class="note">팀원 담당: 장애 전환 서버 최초 구축과 CI 초기 구성(팀원 1), 경기장 상황 알리기·채팅 알림·회원 경기장 추가 승인(팀원 2). 운영 구성은 Mac mini blue/green 배포, 울산 스탠바이 복제 서버, 자체 CI 러너 4대입니다. 본인은 운영 중 장애 대응, 배포 시간 단축, CI 러너 증설을 맡았습니다.</p>
+
+  <h3>1-2. 지표: 출시 95일, 가입 회원 485명</h3>
+  <table>
+    <thead><tr><th>지표</th><th>값</th><th>기준</th></tr></thead>
+    <tbody>
+      <tr><td class="k">가입 회원</td><td class="n after">485명</td><td>2026-11-22</td></tr>
+      <tr><td class="k">운영 기간</td><td class="n">95일</td><td>App Store 출시 2026-08-19 ~ 2026-11-22</td></tr>
+      <tr><td class="k">등록 경기장</td><td class="n">139곳</td><td>2026-11-18 운영 DB</td></tr>
+      <tr><td class="k">개설 클럽</td><td class="n">41개</td><td>2026-11-18 운영 DB</td></tr>
+      <tr><td class="k">모집글</td><td class="n">62건</td><td>2026-11-18 운영 DB</td></tr>
+      <tr><td class="k">App Store 순위</td><td class="n">스포츠 일간 53위</td><td>2026-09-02</td></tr>
+      <tr><td class="k">배포 버전</td><td class="n">1.1.2</td><td>2026-11-16 스토어 업로드</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="break">
+  <h3 style="margin-top:0">1-3. 사용자 문제와 변경: 직접 사용, 체육관 미팅, 점검으로 찾은 문제 6건</h3>
+  <p>문제는 3가지 경로로 찾았습니다. 서비스를 직접 사용했습니다. 제휴 체육관 운영자와 미팅했습니다. 느린 회선과 AI 페르소나로 점검했습니다. 변경 후에는 같은 조건으로 다시 측정했습니다.</p>
+  <table>
+    <thead><tr><th style="width:22mm">발견 경로</th><th>문제</th><th>변경</th><th style="width:36mm">결과</th></tr></thead>
+    <tbody>
+      <tr><td class="k">직접 사용<br>2026-11-06</td><td>같은 회원이 커뮤니티 글을 다시 열 때마다 조회 수가 올랐습니다. 작성자 본인 조회도 포함됐습니다.</td><td>조회자당 1행인 조회 기록 표(<code>post_views</code>)를 추가했습니다. 첫 조회만 집계하고 작성자·운영진·비로그인은 제외합니다.</td><td>재조회 시 조회 수 변화 없음. 이 수정이 만든 글 상세 500 장애도 다음 날 수정</td></tr>
+      <tr><td class="k">직접 사용<br>2026-11-18</td><td>운영 웹의 체감 응답이 약 1.5초였습니다(앱 약 1.0초).</td><td>원인인 CORS 사전 요청(요청당 291~375ms)을 없애려고 Cloudflare Worker로 같은 도메인 <code>/api</code> 경유를 적용했습니다.</td><td>로그인 요청 중앙값 276ms → <b>139ms</b>, 사전 요청 0회</td></tr>
+      <tr><td class="k">체육관 미팅<br>2026-11-03</td><td>대관 문의가 문자, 인스타그램, 전화, 당근으로 흩어졌습니다. 답변이 늦으면 고객이 다른 체육관을 대관했습니다.</td><td>매체에 링크 1개를 올리면 예약, 결제, 일정 배정을 한 페이지에서 처리하는 대관 신청 페이지를 만들었습니다.</td><td>운영 반영 2026-11-13, 앱 대관 신청과 화면·단계 통일</td></tr>
+      <tr><td class="k">체육관 미팅<br>2026-11-03</td><td>체육관은 장기 대관을 엑셀 표로 관리하고 출력한 표를 사진으로 보관했습니다.</td><td>표 사진을 올리면 주간 일정으로 등록되는 기능을 만들었습니다. 인식 모델은 11개를 같은 사진으로 비교했습니다.</td><td>바로 선 사진 <b>17/17</b> 정확, 장당 $0.0144</td></tr>
+      <tr><td class="k">성능 점검<br>2026-11-15</td><td>3Mbps 이하 회선에서 웹 첫 화면이 90초 넘게 스플래시 상태로 유지됐습니다. 첫 화면 9,384KB 중 글꼴이 5,388KB였습니다.</td><td>글꼴 로딩 오류 시에도 진입하도록 시작 조건을 바꿨습니다. 글꼴은 woff2 3종 부분 집합으로 축소하고 화면별 코드 분할을 추가했습니다.</td><td>첫 화면 9,384KB → <b>2,360KB</b>, 1.6Mbps 첫 글자 120초 내 미표시 → 12.0초</td></tr>
+      <tr><td class="k">AI 페르소나<br>2026-11-08</td><td>AI 에이전트로 만든 페르소나 8명(입문 대학생, 40대 디지털 초보, 외국인 교환학생 등)이 가입부터 정착까지 사용하며 불편 216건을 기록했습니다.</td><td>중복을 합쳐 102건으로 정리했습니다. 바로 고칠 항목을 위험도 순으로 PR 6건에 나눠 반영했습니다.</td><td>PR 6건 병합</td></tr>
+    </tbody>
+  </table>
+
+  <h3>1-4. 기술 선택: 비용과 성능 수치로 비교한 6건</h3>
+  <p>후보가 2개 이상이면 비용, 성능, 운영 부담을 표로 비교하고 기술 선택 기록으로 남깁니다.</p>
+  <table>
+    <thead><tr><th style="width:26mm">대상</th><th>비교한 후보</th><th>선택</th><th>이유</th></tr></thead>
+    <tbody>
+      <tr><td class="k">대관현황표<br>사진 인식</td><td>Gemini, Claude, GPT 계열 모델 11개</td><td>gemini-3-flash-preview</td><td>17/17 정확한 모델 2개 중 장당 $0.0144로 최저가. Claude Sonnet은 $0.0344</td></tr>
+      <tr><td class="k">사용자 글<br>자동 번역</td><td>Papago, Google 번역, Gemini</td><td>Gemini</td><td>Papago는 최소 월 2만 원. Gemini는 기존 키 재사용, 현재 규모 월 $1 미만 추정</td></tr>
+      <tr><td class="k">길찾기<br>소요 시간</td><td>API 5개(TMAP, ODsay, 카카오모빌리티 등)</td><td>TMAP 단일(추천안)</td><td>키 1개로 대중교통·차량·도보 3종 충족. 월 약 7,000원, 대안 조합은 최대 약 20만 원</td></tr>
+      <tr><td class="k">웹 API 경유</td><td>Cloudflare Worker, Pages 함수, 프록시 해제</td><td>Worker</td><td>Pages 함수는 비로그인 IP 제한이 웹 사용자 전체에 적용됨. 프록시 해제는 서버 공인 IP 노출</td></tr>
+      <tr><td class="k">앱 OTA 업데이트</td><td>EAS Update, 자체 호스팅 서버</td><td>EAS Update Free</td><td>월 $0, MAU 1,000명까지 무료. 자체 호스팅은 사용자 규모 대비 구현·운영 부담 과다</td></tr>
+      <tr><td class="k">웹 글꼴 제공</td><td>Metro 자산, 정적 경로 woff2</td><td>정적 경로 woff2 + preload</td><td>Metro 기본 자산 확장자에 woff2 없음. 글꼴 5,388KB → 789KB</td></tr>
+    </tbody>
+  </table>
+  <p class="note">기본 스택: Java 17, Spring Boot 3.2, PostgreSQL 17(스트리밍 복제), Redis 7.4, Flyway(V0~V190), STOMP WebSocket, React Native 0.86(Expo SDK 57), TypeScript, Cloudflare Workers·Pages, Docker, GitHub Actions, Sentry.</p>
+</section>
+
+<section class="break">
+  <h3 style="margin-top:0">1-5. 운영 장애 대응: 원인 기록과 전후 수치 4건</h3>
+  <p>운영 중 장애는 문제, 원인, 검토한 대안, 해결, 전후 수치 순서로 기록했습니다. 아래는 전체 82건 중 서버 장애 4건입니다.</p>
+  <table>
+    <thead><tr><th style="width:30mm">장애</th><th>원인</th><th>조치</th><th style="width:38mm">전후 수치</th></tr></thead>
+    <tbody>
+      <tr><td class="k">큐 매칭 요청 6초 대기<br>2026-08-21</td><td>후보자마다 요약 조회를 따로 호출하는 N+1 조회. 지역 전체 매칭을 요청 스레드에서 계산</td><td>일괄 조회, 개수 전용 쿼리, 등록 티켓 기준 즉시 매칭과 60초 주기 지역 배치 분리</td><td>요청당 SQL 1,259개 → <b>25개</b>, 응답 6.30초 → <b>0.51초</b></td></tr>
+      <tr><td class="k">커뮤니티 글 상세 500<br>2026-11-07</td><td>조회 기록 쿼리의 <code>@Modifying(clearAutomatically = true)</code>로 먼저 조회한 게시글이 준영속 상태가 되어 지연 로딩 실패</td><td>조회 기록 후 게시글 조회로 순서 변경, 통합 테스트 추가, 리뷰 기준을 장애 기록에 추가</td><td>로그인 회원 글 상세 500 → <b>200</b>, 영향 약 20시간</td></tr>
+      <tr><td class="k">스탠바이 서버 기동 실패<br>2026-11-14</td><td>서버 시작 시 백필의 <code>SELECT ... FOR UPDATE</code>가 읽기 전용 복제본에서 실패</td><td><code>SHOW transaction_read_only</code>가 on이면 백필 생략. <code>pg_is_in_recovery()</code>는 복제 상태만 판별해 제외</td><td>재시작 2,973회 → <b>0회</b>, 기동 <b>17.1초</b></td></tr>
+      <tr><td class="k">다른 기기 로그인 시<br>세션 덮어쓰기<br>2026-10-30</td><td>계정당 리프레시 토큰 1개만 저장. 운영 Redis는 AOF 꺼짐 상태</td><td>저장 키를 기기 세션 단위(<code>refresh_token:&lt;userId&gt;:&lt;sid&gt;</code>)로 분리, Redis AOF <code>everysec</code> 전환</td><td>갱신 거부 7건 해소, 배포 전후 세션 키 24개 유지</td></tr>
+    </tbody>
+  </table>
+  <p class="note">장애 기록과 기술 선택 기록은 비공개 문서 사이트(docs.nuktu.com)에 있습니다. 포트폴리오 웹의 넉터 구역에 트러블슈팅 5건의 상세 내용이 있습니다: <a href="https://taehun2123.github.io/#nuktu">https://taehun2123.github.io/#nuktu</a></p>
+</section>
+
+<!-- 2. 버스트래커 -->
+<section class="break">
+  <h2>2. 버스트래커: 버스에 기기 없이 위치를 제공하는 통학버스 서비스</h2>
+  <p class="claim">통학·통근 버스 이용자에게 실시간 버스 위치와 도착 정보를 제공합니다.</p>
+  <p>학생은 통학버스 지연과 정류장 변경을 미리 확인하기 어려웠습니다. 기존 위치 서비스는 버스마다 단말기를 설치해야 해서 대여 버스에는 적용하기 어려웠습니다.</p>
+  <table class="links">
+    <tr><td>앱 다운로드</td><td><a href="https://taehun2123.github.io/BBB-Download/">https://taehun2123.github.io/BBB-Download/</a> (Android APK v1.0.6)</td></tr>
+    <tr><td>2024 백엔드</td><td><a href="https://github.com/Hardware-BBB-App/BackEnd">https://github.com/Hardware-BBB-App/BackEnd</a></td></tr>
+    <tr><td>2025 백엔드</td><td><a href="https://github.com/BBB-bus-buddy-buddy/App-Backend">https://github.com/BBB-bus-buddy-buddy/App-Backend</a></td></tr>
+    <tr><td>시연 영상</td><td><a href="https://taehun2123.github.io/assets/video/bbb-demo.mp4">https://taehun2123.github.io/assets/video/bbb-demo.mp4</a> (67초)</td></tr>
+  </table>
+
+  <h3>2-1. 팀 구성과 담당</h3>
+  <table>
+    <thead><tr><th>버전</th><th>팀</th><th>본인 담당</th><th>비병합 커밋</th></tr></thead>
+    <tbody>
+      <tr><td class="k">2024 하드웨어</td><td>5명</td><td>Google OAuth2·JWT 인증, 학교 이메일 인증, 단말기 WebSocket 위치 수신, CI/CD</td><td class="n">백엔드 181 / 255 (71.0%)</td></tr>
+      <tr><td class="k">2025 소프트웨어</td><td>3명</td><td>백엔드 재구성, React Native 승객 앱 전체, 자동 탑승 감지 서버 로직, 배포. 운전자 앱과 관리자 웹은 팀원 담당</td><td class="n">백엔드 65 / 130 (50.0%)<br>승객 앱 23 / 23 (100%)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2-2. 지표</h3>
+  <table>
+    <thead><tr><th>지표</th><th>값</th></tr></thead>
+    <tbody>
+      <tr><td class="k">개발·운영 기간</td><td>2024-03 개발 시작 ~ 2025-11 CoShow 2025 전시</td></tr>
+      <tr><td class="k">배포</td><td>Android APK v1.0.6(2025-11-19), GitHub 릴리스 다운로드 22회</td></tr>
+      <tr><td class="k">수상</td><td>2024 소프트웨어개발 캡스톤디자인 경진대회 은상(울산과학대학교 총장, 2024-11-08)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2-3. 사용자 문제와 변경</h3>
+  <table>
+    <thead><tr><th style="width:40mm">문제</th><th>변경</th></tr></thead>
+    <tbody>
+      <tr><td class="k">대여 버스에는 단말기 설치가 어려움</td><td>2025 버전은 운전자 앱 GPS(2초 주기)로 위치를 수집해 버스에 설치하는 기기를 없앴습니다. 본인은 위치를 받아 처리하는 서버와 승객 앱을 맡았습니다.</td></tr>
+      <tr><td class="k">승객이 탑승을 직접 입력해야 함</td><td>승객 앱이 10초마다 위치를 보내고 서버가 가장 가까운 버스와의 거리로 판정합니다. 50m 이내 2회 연속이면 탑승, 100m 초과 2회 연속이면 하차입니다.</td></tr>
+      <tr><td class="k">승객 앱에 버스 상태 미표시</td><td>이벤트 발행만 있고 <code>@EventListener</code>가 없던 결함을 찾아 리스너를 추가했습니다. 승객 앱에 3초 주기로 버스 상태가 전달됩니다.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2-4. 기술 선택</h3>
+  <table>
+    <thead><tr><th style="width:30mm">대상</th><th>선택</th><th>이유</th></tr></thead>
+    <tbody>
+      <tr><td class="k">위치 저장 방식</td><td>버스별 최신값 메모리 보관 후 주기 배치 저장</td><td>수신마다 DB에 쓰던 방식을 버스당 주기 1회 쓰기로 축소</td></tr>
+      <tr><td class="k">서비스 간 호출</td><td>Spring 이벤트 발행</td><td>승객·운전자·버스 서비스 간 직접 호출로 생긴 순환 참조 제거(2025-04)</td></tr>
+      <tr><td class="k">위치 처리 분리</td><td>BusLocationService 분리</td><td>825줄 BusService에서 위치 수신·정류장 판정을 분리해 283줄로 축소(2024 백엔드, 2025-06)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 3. 에게 -->
+<section class="break">
+  <h2>3. 에게: 3일 해커톤에서 배포한 건물 운영 3D 디지털트윈</h2>
+  <p class="claim">PNU × AWS Maestro AI 해커톤 최우수상(2026-11-21). 실제 사용자 운영 이력은 없으며 3일 동안 운영 사이트까지 배포했습니다.</p>
+  <p>건물 운영자는 공간 현황과 냉난방 설비 상태를 서로 다른 화면에서 확인합니다. 에게는 PDF·CAD 도면으로 3D 트윈을 만들고, 운영자가 자연어로 조회와 제어 예약을 요청하도록 합니다.</p>
+  <table class="links">
+    <tr><td>운영 사이트</td><td><a href="https://d2y0m857hv27mz.cloudfront.net">https://d2y0m857hv27mz.cloudfront.net</a> (로그인 필요)</td></tr>
+    <tr><td>시연 영상</td><td><a href="https://taehun2123.github.io/assets/video/ege-demo.mp4">https://taehun2123.github.io/assets/video/ege-demo.mp4</a> (3분 59초)</td></tr>
+    <tr><td>소스 코드</td><td>해커톤 팀 조직 비공개 저장소</td></tr>
+  </table>
+
+  <h3>3-1. 팀 구성과 담당: 4명 중 웹·서버리스 API·도면 인식 모델·배포</h3>
+  <table>
+    <thead><tr><th>영역</th><th>비병합 커밋</th><th>본인 담당</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Frontend</td><td class="n">95 / 122 (77.9%)</td><td>React 19 운영자 화면(전체 현황, 건물 운영, 전력 분석, 시뮬레이션, 도면 편집)</td></tr>
+      <tr><td class="k">Lambda</td><td class="n">50 / 75 (66.7%)</td><td>조회·관리 API, WebSocket AI 응답 스트리밍, Bedrock 구조화 응답</td></tr>
+      <tr><td class="k">ML</td><td class="n">14 / 15</td><td>도면 실내기 기호 인식 YOLO11s v1~v9 학습과 배포(SageMaker)</td></tr>
+    </tbody>
+  </table>
+  <p class="note">3D 트윈 외관, EnergyPlus 계산 서버, 기상청 연동은 팀원이 담당했습니다.</p>
+
+  <h3>3-2. 지표</h3>
+  <table>
+    <thead><tr><th>지표</th><th>값</th></tr></thead>
+    <tbody>
+      <tr><td class="k">AI 운영 도우미 평가</td><td>35/35 정답, 단일 턴 응답 중앙값 4.2초</td></tr>
+      <tr><td class="k">처음 보는 건물 실내기 재현율</td><td>평가 전용 6동 평균 0.339 → 0.758</td></tr>
+      <tr><td class="k">장애·개선 기록</td><td>3일 동안 40건</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3-3. 사용자 문제와 변경</h3>
+  <table>
+    <thead><tr><th style="width:40mm">문제</th><th>변경</th><th style="width:32mm">결과</th></tr></thead>
+    <tbody>
+      <tr><td class="k">40~50대 운영자가 읽는 AI 답변 분량이 실행마다 다름</td><td>Bedrock 구조화 응답으로 결론, 근거, 조치 3칸을 받고 칸마다 첫 문장만 표시</td><td>3문장 초과 3~12건 → <b>0건</b></td></tr>
+      <tr><td class="k">트윈 로딩 중 이전 화면 노출</td><td>첫 표시부터 임베드 모드로 시작, 데이터 반영 후 보고, CloudFront 압축</td><td>노출 14회 → <b>0회</b>, 앱 JS 451KB → 133KB</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3-4. 기술 선택</h3>
+  <table>
+    <thead><tr><th style="width:30mm">대상</th><th>비교한 후보</th><th>선택과 이유</th></tr></thead>
+    <tbody>
+      <tr><td class="k">AI 답변 길이 제어</td><td>초과 답변 재작성, 4문장 완화, 구조화 응답</td><td>구조화 응답. 재작성은 답변이 1~2초 지연되고 긴 답변이 먼저 표시됨. 4문장 완화는 읽기 부담 유지</td></tr>
+      <tr><td class="k">도면 실내기 인식</td><td>비전 언어 모델, 공개 IFC 학습, YOLO 미세조정</td><td>YOLO11s. 비전 언어 모델은 좌표 정밀도가 낮고 호출마다 비용 발생. 공개 IFC는 1동 수준</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</body>
+</html>

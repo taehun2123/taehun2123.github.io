@@ -33,6 +33,8 @@
 | `assets/th-clay-bold.svg` | 정사각형 심볼 로고. 파비콘에 사용 |
 | `assets/img/` | 영상 포스터 이미지 3개 |
 | `assets/kim-taehun-resume.pdf` | 다운로드용 이력서 |
+| `assets/kim-taehun-portfolio.pdf` | 당근 제출용 서비스 소개 PDF(A4 6쪽). 팀 구성과 담당, 지표, 사용자 문제와 변경, 기술 선택 순서 |
+| `_resume/portfolio.html` | 서비스 소개 PDF 원본. 밑줄 폴더라 배포 대상에서 제외됨 |
 | `_resume/resume.html` | 이력서 원본. 밑줄 폴더라 Jekyll 배포 대상에서 제외됨 |
 | `google*.html`, `naver*.html`, `robots.txt`, `sitemap.xml` | 검색 엔진 소유 확인 파일 |
 
@@ -50,7 +52,9 @@
   --print-to-pdf=assets/kim-taehun-resume.pdf "file://$PWD/_resume/resume.html"
 ```
 
-생성 후 `pdffonts assets/kim-taehun-resume.pdf`로 IBM Plex Sans KR 포함 여부를 확인하십시오.
+서비스 소개 PDF는 같은 명령에서 입력을 `_resume/portfolio.html`, 출력을 `assets/kim-taehun-portfolio.pdf`로 바꿔 생성하십시오.
+
+생성 후 `pdffonts`로 IBM Plex Sans KR 포함 여부를 확인하십시오.
 
 ## 3. 시연 영상 원본: 프로젝트별 출처
 

@@ -9,7 +9,7 @@
 <style>
 /* 이력서 인쇄 규칙
  - 용지: A4 세로, 여백 13mm
- - 구성: 머리, 프로젝트(조직, 역할, 블록), 오픈소스, 학력·수상·자격증
+ - 구성: 머리, 프로젝트(조직, 역할, 블록), 오픈소스, 학력, 수상, 자격증
  - 색: 잉크 본문, 회색 보조, 빨강은 로고에만 사용 */
 @page { size: A4; margin: 13mm; }
 :root { --ink: #25282b; --body: #4b4f53; --mute: #7d8186; --hair: #dcdcdc; --soft: #f2f2f2; }
@@ -75,7 +75,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
   <div>
     <h1 class="name">김태훈<span>풀스택 개발자</span></h1>
     <div class="intro">
-      <p>Spring Boot 서버를 중심으로 React Native 앱·웹까지 개발합니다.</p>
+      <p>Spring Boot 서버를 중심으로 React Native 앱, 웹까지 개발합니다.</p>
       <p>동네 농구 커뮤니티 앱 넉터를 5명 팀에서 개발해 운영하고 있습니다.</p>
       <p>기술은 비용과 성능을 비교해 선택하고, 장애와 결정 과정은 문서로 남깁니다.</p>
       <p>설계와 코드 리뷰는 직접 하고, 구현은 AI 코딩 도구(Claude Code)로 보조합니다.</p>
@@ -92,7 +92,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 
 <!-- 넉터 -->
 <div class="org"><h2>넉터</h2><span class="period">2026.08 - NOW</span></div>
-<div class="role"><h3>5명(개발 3, 디자인 2), 앱·웹·서버 개발, 배포·장애 대응</h3><span class="period">운영 중</span></div>
+<div class="role"><h3>5명(개발 3, 디자인 2), 앱, 웹, 서버 개발, 배포, 장애 대응</h3><span class="period">운영 중</span></div>
 <p class="role-desc">농구 동호회 운영진이 게스트 모집, 친선전 섭외, 체육관 대관을 단톡방과 전화로 조율하던 문제를 다룹니다.<br>2026-08-19 App Store, Google Play, 웹에 출시했고 가입 회원은 485명입니다.<br>최근 7일 활동 회원은 40명이고 출시 후 완료 경기는 11건입니다.</p>
 <p class="stack">React Native(Expo), TypeScript, Java 17, Spring Boot 3.2, PostgreSQL 17, Redis, Cloudflare Workers, Docker, GitHub Actions</p>
 <ul>
@@ -101,7 +101,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
   <li>웹 글꼴 부분 집합과 화면 분할: 첫 화면 전송량 <span class="num">9,384KB → 2,360KB</span></li>
   <li>읽기 전용 복제본의 기동 실패 수정: 스탠바이 재시작 <span class="num">2,973회 → 0회</span></li>
   <li>체육관 대관현황표 사진 등록: 인식 모델 11개 비교, 장당 <span class="num">$0.0144</span> 모델 선택</li>
-  <li>팀 문서 사이트 docs.nuktu.com: 저장소 4곳 문서 통합, 빌드·배포·PR 문서 검사 자동화</li>
+  <li>팀 문서 사이트 docs.nuktu.com: 저장소 4곳 문서 통합, 빌드, 배포, PR 문서 검사 자동화</li>
 </ul>
 
 <!-- 에게 -->
@@ -118,13 +118,13 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
 
 <!-- 버스트래커 -->
 <div class="org"><h2>버스트래커(BBB)</h2><span class="period">2024.03 - 2025.11</span></div>
-<div class="role"><h3>캡스톤디자인, 5명(2024)·3명(2025)</h3><span class="period">수상 5건</span></div>
+<div class="role"><h3>캡스톤디자인, 5명(2024), 3명(2025)</h3><span class="period">수상 5건</span></div>
 <p class="role-desc">학생이 통학버스 지연과 정류장 변경을 미리 확인하기 어려웠던 문제를 다룹니다.<br>2025년 운전자 앱 GPS 방식으로 전환해 버스 설치 기기를 없앴고 CoShow 2025에서 차세대통신단장상을 받았습니다.</p>
 <p class="stack">Java 21, Spring Boot 3.3, MongoDB, WebSocket, OAuth2, JWT, React Native, Docker, GitHub Actions</p>
 <ul>
   <li>버스 위치 미저장 원인 3개 수정: 버스별 최신값 <span class="num">5초</span> 배치 저장</li>
   <li>자동 탑승 감지: <span class="num">50m</span> 이내 2회 연속 탑승, <span class="num">100m</span> 초과 2회 연속 하차</li>
-  <li>React Native 승객 앱 전체 개발, Google OAuth2·JWT 인증</li>
+  <li>React Native 승객 앱 전체 개발, Google OAuth2, JWT 인증</li>
   <li>버스 상태 이벤트 리스너 누락 수정: 승객 앱 상태 전달 없음 → <span class="num">3초</span> 주기 전달</li>
 </ul>
 
@@ -134,7 +134,7 @@ code { font-size: 0.92em; background: var(--soft); padding: 0 3px; border-radius
   <li><b>devdog-docs</b> 여러 저장소 문서를 위키 사이트 1곳으로 모으고 문서 검사를 설치하는 Claude Code 플러그인(github.com/taehun2123/devdog)</li>
 </ul>
 
-<!-- 학력·수상·자격증 -->
+<!-- 학력, 수상, 자격증 -->
 <div class="sec"><h2>Experience</h2></div>
 <div class="grid2">
   <div>

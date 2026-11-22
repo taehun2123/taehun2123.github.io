@@ -11,7 +11,7 @@
 > | 항목 | 값 | 비교 기준 |
 > |---|---|---|
 > | 소개 프로젝트 | 3개 | 과제 최소 기준 1개 |
-> | 트러블슈팅 카드 | 13건 | 넉터 5건, 에게·버스트래커 각 4건 |
+> | 트러블슈팅 카드 | 13건 | 넉터 5건, 에게, 버스트래커 각 4건 |
 > | 시연 영상 합계 | 약 50MB | GitHub 파일 권장 상한 50MB(파일당) |
 > | 이력서 PDF, 서비스 소개 PDF | A4 2쪽, A4 7쪽 | 당근 공고 제출 형식(PDF) |
 >
@@ -29,7 +29,7 @@
 | `index.html` | 포트폴리오 본문(요약, 프로젝트 3개, 이력, 연락처) |
 | `assets/site.css` | 디자인 토큰(빨강 1색, 잉크, 회색 단계), IBM Plex Sans KR, 반응형 규칙 |
 | `assets/video/` | 시연 영상 3개(`nuktu-demo.mp4`, `ege-demo.mp4`, `bbb-demo.mp4`) |
-| `assets/taehun-blue-clay.svg` | 가로형 워드마크 로고. 웹 상단 바, 이력서·포트폴리오 PDF 머리에 사용 |
+| `assets/taehun-blue-clay.svg` | 가로형 워드마크 로고. 웹 상단 바, 이력서, 포트폴리오 PDF 머리에 사용 |
 | `assets/th-blue-clay.svg` | 정사각형 심볼 로고. 파비콘에 사용 |
 | `assets/img/` | 영상 포스터 이미지 3개, 프로젝트 아이콘 3개, 프로필 사진 `profile.webp`(480px, 메타데이터 제거) |
 | `assets/kim-taehun-resume.pdf` | 다운로드용 이력서 |
@@ -71,4 +71,4 @@
 | 작업 | 기한 | 담당 |
 |---|---|---|
 | 넉터 운영 지표(회원 485명, 2026-11-22) 갱신 | 미정 | 김태훈 |
-| 수상·학력 변경 시 `index.html`과 `_resume/resume.html` 동시 수정 | 미정 | 김태훈 |
+| 수상, 학력 변경 시 `index.html`과 `_resume/resume.html` 동시 수정 | 미정 | 김태훈 |

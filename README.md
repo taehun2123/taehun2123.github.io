@@ -31,7 +31,7 @@
 | `assets/video/` | 시연 영상 3개(`nuktu-demo.mp4`, `ege-demo.mp4`, `bbb-demo.mp4`) |
 | `assets/taehun-blue-clay.svg` | 가로형 워드마크 로고. 웹 상단 바, 이력서, 포트폴리오 PDF 머리에 사용 |
 | `assets/th-blue-clay.svg` | 정사각형 심볼 로고. 파비콘에 사용 |
-| `assets/img/` | 영상 포스터 이미지 3개, 프로젝트 아이콘 3개, 프로필 사진 `profile.webp`(480px, 메타데이터 제거), 넉터 서버 구성도 `nuktu-architecture.svg`(가로형), `nuktu-architecture-tall.svg`(모바일 세로형). 구성도는 웹과 PDF에 SVG 본문을 직접 넣어 사용 |
+| `assets/img/` | 영상 포스터 이미지 3개, 프로젝트 아이콘 3개, 프로필 사진 `profile.webp`(480px, 메타데이터 제거), 넉터 서버 구성도 `nuktu-architecture.svg`(가로형), `nuktu-architecture-tall.svg`(모바일 세로형), 에게 서버 구성도 `ege-architecture.png`(2880×1400, 흰 바탕 합성, PDF용)와 `ege-architecture.webp`(웹용). 넉터 구성도는 웹과 PDF에 SVG 본문을 직접 넣어 사용 |
 | `assets/kim-taehun-resume.pdf` | 다운로드용 이력서 |
 | `assets/kim-taehun-portfolio.pdf` | 당근 제출용 서비스 소개 PDF(A4 8쪽, 쪽 번호 포함). 팀 구성과 담당, 지표, 사용자 문제와 변경, 기술 선택 순서 |
 | `_resume/portfolio.html` | 서비스 소개 PDF 원본. 밑줄 폴더라 배포 대상에서 제외됨 |

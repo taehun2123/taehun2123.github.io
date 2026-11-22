@@ -27,8 +27,9 @@
 | `index.html` | 포트폴리오 본문(요약, 프로젝트 3개, 이력, 연락처) |
 | `assets/site.css` | 디자인 토큰(빨강 1색, 잉크, 회색 단계), IBM Plex Sans KR, 반응형 규칙 |
 | `assets/video/` | 시연 영상 3개(`nuktu-demo.mp4`, `ege-demo.mp4`, `bbb-demo.mp4`) |
-| `assets/img/` | 영상 포스터 이미지 3개, 로고 `logo-taehun.png`(높이 160px, 여백 제거) |
-| `_source/logo-taehun-clay.png` | 로고 원본(2067×761). 밑줄 폴더라 배포 대상에서 제외됨 |
+| `assets/taehun-clay-bold.svg` | 가로형 워드마크 로고. 상단 바와 이력서 머리에 사용 |
+| `assets/th-clay-bold.svg` | 정사각형 심볼 로고. 파비콘에 사용 |
+| `assets/img/` | 영상 포스터 이미지 3개, 파비콘 대체 PNG `favicon-64.png`(심볼 로고에서 생성) |
 | `assets/kim-taehun-resume.pdf` | 다운로드용 이력서 |
 | `_resume/resume.html` | 이력서 원본. 밑줄 폴더라 Jekyll 배포 대상에서 제외됨 |
 | `google*.html`, `naver*.html`, `robots.txt`, `sitemap.xml` | 검색 엔진 소유 확인 파일 |

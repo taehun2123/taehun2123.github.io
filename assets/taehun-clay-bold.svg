@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="275 -2 1500 780" role="img"><title>태훈</title><defs>
+ <g id="mark"><path fill="currentColor" fill-rule="evenodd" transform="" d="M 690 205 Q 690 278 617 282 L 481 285 L 479 326 L 609 325 Q 680 324 681 398 Q 684 466 610 472 L 478 476 L 477 530 L 616 524 Q 690 522 695 595 Q 700 670 621 677 L 414 690 Q 317 694 313 594 L 317 231 Q 317 134 415 129 L 609 128 Q 681 128 690 205 Z"/><path fill="currentColor" fill-rule="evenodd" transform="" d="M704 190 C703 79 846 67 848 186 L847 315 L885 315 L886 167 C886 55 1046 43 1044 170 L1037 629 C1036 744 880 765 880 642 L882 462 L846 462 L845 637 C844 751 698 751 700 641 Z"/><path fill="currentColor" fill-rule="evenodd" transform="translate(10 7) translate(0 15) scale(1 .92)" d="M1094 172 Q1094 101 1173 99 L1307 98 C1321 9 1466 -4 1484 98 L1608 98 Q1689 100 1689 169 Q1689 231 1602 237 C1631 318 1581 389 1498 389 L1283 389 C1197 386 1149 322 1183 237 Q1094 233 1094 172 Z M1332 268 C1333 227 1442 221 1445 264 C1448 308 1334 316 1332 268 Z"/><path fill="currentColor" fill-rule="evenodd" transform="translate(10 42) scale(1 .92)" d="M1140 375 Q1064 375 1064 445 Q1064 508 1147 509 L1307 509 L1307 535 Q1307 609 1382 609 Q1457 611 1460 532 L1462 508 L1639 508 Q1717 506 1717 442 Q1717 375 1636 375 Z"/><path fill="currentColor" fill-rule="evenodd" transform="translate(10 55) scale(1 .92)" d="M1104 600 Q1106 528 1180 528 Q1262 528 1268 606 L1270 625 Q1417 629 1585 596 Q1672 580 1681 654 Q1690 720 1604 731 Q1440 744 1224 739 Q1100 742 1103 653 Z"/></g>
+ <filter id="clay" x="-12%" y="-18%" width="124%" height="140%" color-interpolation-filters="sRGB">
+ <feGaussianBlur in="SourceAlpha" stdDeviation="22" result="soft"/>
+ <feOffset in="soft" dx="10" dy="15" result="down"/>
+ <feComposite in="SourceAlpha" in2="down" operator="out" result="lit"/>
+ <feFlood flood-color="#fff1f3" flood-opacity=".48"/><feComposite in2="lit" operator="in" result="shine"/>
+ <feOffset in="soft" dx="-10" dy="-15" result="up"/>
+ <feComposite in="SourceAlpha" in2="up" operator="out" result="rim"/>
+ <feFlood flood-color="#710423" flood-opacity=".54"/><feComposite in2="rim" operator="in" result="shade"/>
+ <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="shade"/><feMergeNode in="shine"/></feMerge>
+ </filter></defs><use xlink:href="#mark" transform="translate(5.0 12.0)" color="#f3e4d5"/><use xlink:href="#mark" color="#e00b41" filter="url(#clay)"/></svg>

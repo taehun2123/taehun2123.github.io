@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 320 320" role="img"><title>ㅌㅎ</title><defs>
+ <g id="mark"><path d="M153 52 H51 V169 H267 M54 110 H138" fill="none" stroke="currentColor" stroke-width="48" stroke-linecap="round" stroke-linejoin="round"/><path d="M207 124 H227" fill="none" stroke="currentColor" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="216" cy="230" rx="55" ry="43" fill="none" stroke="currentColor" stroke-width="48"/></g>
+ <filter id="clay" x="-12%" y="-18%" width="124%" height="140%" color-interpolation-filters="sRGB">
+ <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="soft"/>
+ <feOffset in="soft" dx="3" dy="5" result="down"/>
+ <feComposite in="SourceAlpha" in2="down" operator="out" result="lit"/>
+ <feFlood flood-color="#fff1f3" flood-opacity=".48"/><feComposite in2="lit" operator="in" result="shine"/>
+ <feOffset in="soft" dx="-3" dy="-5" result="up"/>
+ <feComposite in="SourceAlpha" in2="up" operator="out" result="rim"/>
+ <feFlood flood-color="#710423" flood-opacity=".54"/><feComposite in2="rim" operator="in" result="shade"/>
+ <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="shade"/><feMergeNode in="shine"/></feMerge>
+ </filter></defs><use xlink:href="#mark" transform="translate(1.5 4.0)" color="#f3e4d5"/><use xlink:href="#mark" color="#e00b41" filter="url(#clay)"/></svg>

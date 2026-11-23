@@ -1,1 +1,7 @@
 .DS_Store
+
+# 제출용 PDF와 지원 기업 문구(공개 저장소에 올리지 않음)
+_resume/out/
+_resume/submit.txt
+_resume/.portfolio-build.html
+_review/

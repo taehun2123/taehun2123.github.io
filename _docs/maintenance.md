@@ -39,7 +39,8 @@
 | `_resume/resume.html` | 이력서 원본(A4 2쪽). 밑줄 폴더라 Jekyll 배포 대상에서 제외됨 |
 | `_docs/maintenance.md` | 이 문서. 밑줄 폴더라 배포 대상에서 제외됨 |
 | `README.md` | 저장소 방문자용 소개 |
-| `_resume/build_portfolio.py` | 포트폴리오 PDF 생성 스크립트. 목차 쪽 번호를 채우려고 2회 생성 |
+| `_resume/build_portfolio.py` | 포트폴리오 PDF 생성 스크립트. 목차 쪽 번호를 채우려고 2회 생성, 공개본과 제출본 생성 |
+| `_resume/portfolio.html`의 `<!-- @SUBMIT -->` | 제출본에서만 지원 기업 줄로 바뀌는 자리표시 |
 | `google*.html`, `naver*.html` | 검색 엔진 소유 확인 파일. 네이버는 `index.html` 머리의 `naver-site-verification` 메타 태그로도 확인 |
 | `robots.txt` | 전체 허용, 사이트맵 2개(루트, `/blog/`) 안내 |
 | `sitemap.xml` | 첫 페이지, 포트폴리오 PDF, 이력서 PDF 3개 주소. 내용을 바꾸면 `lastmod` 날짜를 갱신 |
@@ -64,6 +65,14 @@
 
 서비스 소개 PDF는 `python3 _resume/build_portfolio.py`로 생성하십시오.
 스크립트는 1쪽 목차 표의 쪽 번호 자리표시(`@P1`~`@P3`)를 실제 쪽으로 채우려고 Chrome 인쇄를 2회 실행합니다.
+결과물은 2개입니다.
+
+| 파일 | 지원 기업 줄 | 공개 여부 |
+|---|---|---|
+| `assets/kim-taehun-portfolio.pdf` | 없음 | 웹에서 내려받기 |
+| `_resume/out/kim-taehun-portfolio-submit.pdf` | `_resume/submit.txt` 한 줄을 1쪽 이름 아래에 표시 | 커밋 제외(`.gitignore`), 제출용 |
+
+`_resume/submit.txt`가 없으면 제출본은 만들지 않습니다.
 
 생성 후 `pdffonts`로 IBM Plex Sans KR 포함 여부를 확인하십시오.
 

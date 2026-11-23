@@ -5,7 +5,6 @@
 > **요약** (기준일 2026-11-23)
 >
 > - 포트폴리오 단일 페이지: 넉터, 에게, BBB(BusBuddyBuddy) 3개 프로젝트의 트러블슈팅과 담당 업무
-> - 지원 대상: 당근 2027 프로덕트 빌더 인턴십 커뮤니티 팀(서류 마감 2026-12-06)
 > - 공개 정보 기준: 프로필 사진은 첫 화면과 이력서에 표기(사용자 결정, 2026-11-22), 학력은 하단 이력 구역에만 표기, 영상의 발표자 얼굴 구간 제외
 > - 정적 파일 배포: GitHub Pages `main` 브랜치 루트, 빌드 단계 없음
 > - 기술 블로그는 별도 저장소(`/blog`)에서 배포
@@ -15,7 +14,7 @@
 > | 소개 프로젝트 | 3개 | 과제 최소 기준 1개 |
 > | 트러블슈팅 카드 | 7건 | 넉터 3건, 에게, BBB 각 2건 |
 > | 시연 영상 합계 | 약 50MB | GitHub 파일 권장 상한 50MB(파일당) |
-> | 이력서 PDF, 서비스 소개 PDF | A4 2쪽, A4 8쪽 | 당근 공고 제출 형식(PDF) |
+> | 이력서 PDF, 서비스 소개 PDF | A4 2쪽, A4 8쪽 | 제출 형식(PDF) |
 >
 > **다음 작업**: 넉터 회원 수 등 운영 지표 갱신 시 `index.html`, 이력서, 서비스 소개 PDF 원본을 함께 수정하고 PDF 재생성
 
@@ -35,7 +34,7 @@
 | `assets/th-blue-clay.svg` | 정사각형 심볼 로고. 파비콘에 사용 |
 | `assets/img/` | 영상 포스터 이미지 3개, 프로젝트 아이콘 3개, 프로필 사진 `profile.webp`(480px, 메타데이터 제거), 넉터 서버 구성도 `nuktu-architecture.svg`(가로형), `nuktu-architecture-tall.svg`(모바일 세로형), 에게 서버 구성도 `ege-architecture.png`(2880×1400, 흰 바탕 합성, PDF용)와 `ege-architecture.webp`(웹용). 넉터 구성도는 웹과 PDF에 SVG 본문을 직접 넣어 사용 |
 | `assets/kim-taehun-resume.pdf` | 다운로드용 이력서 |
-| `assets/kim-taehun-portfolio.pdf` | 당근 제출용 서비스 소개 PDF(A4 8쪽, 쪽 번호 포함). 팀 구성과 담당, 지표, 사용자 문제와 변경, 기술 선택 순서 |
+| `assets/kim-taehun-portfolio.pdf` | 서비스 소개 PDF(A4 8쪽, 쪽 번호 포함). 팀 구성과 담당, 지표, 사용자 문제와 변경, 기술 선택 순서 |
 | `_resume/portfolio.html` | 서비스 소개 PDF 원본. 밑줄 폴더라 배포 대상에서 제외됨 |
 | `_resume/resume.html` | 이력서 원본(A4 2쪽). 밑줄 폴더라 Jekyll 배포 대상에서 제외됨 |
 | `_docs/maintenance.md` | 이 문서. 밑줄 폴더라 배포 대상에서 제외됨 |

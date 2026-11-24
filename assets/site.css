@@ -264,6 +264,7 @@ code { font-size: 0.88em; background: var(--soft); padding: 1px 6px; border-radi
 /* 움직임
  - 등장: 24px 아래에서 위로 0.62초(넉터 마케팅 sequence-copy-rise 곡선), 형제 요소 60ms 간격
  - 타이핑: 글자 칸을 먼저 잡고 투명도만 전환. 쓰기와 지우기를 반복하고, 커서는 멈춘 동안에만 깜빡임
+ - 커서: 절대 위치로 줄바꿈 계산에서 제외. 인라인 블록이면 커서 위치마다 줄바꿈이 바뀌어 320px 폭에서 제목이 3줄과 4줄을 반복함(CLS 0.176)
  - 숫자: 고정폭 숫자, 최종 폭을 스크립트가 min-width로 고정
  - html[data-motion]은 머리 스크립트가 설정. 동작 줄이기 설정이나 JS 미동작이면 효과 없음 */
 html[data-motion] [data-reveal] { transition: opacity .62s cubic-bezier(.2, .78, .2, 1), transform .62s cubic-bezier(.2, .78, .2, 1); transition-delay: calc(var(--i, 0) * 60ms); }
@@ -271,7 +272,7 @@ html[data-motion] [data-reveal]:not([data-revealed]) { opacity: 0; transform: tr
 html[data-typing] .hero-title { visibility: hidden; }
 .tw-char { opacity: 0; }
 .tw-char.on { opacity: 1; }
-.tw-caret { display: inline-block; width: 0; height: 0.95em; margin-right: -3px; border-left: 3px solid var(--accent); vertical-align: -0.1em; }
+.tw-caret { position: absolute; width: 0; height: 0.95em; margin-top: 0.17em; border-left: 3px solid var(--accent); }
 .tw-caret.idle { animation: tw-blink 1s steps(1) infinite; }
 @keyframes tw-blink { 50% { opacity: 0; } }
 .count { display: inline-block; font-variant-numeric: tabular-nums; }
